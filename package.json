@@ -1,0 +1,28 @@
+{
+  "name": "talk-to-me",
+  "version": "1.0.0",
+  "description": "Chat using Web RTC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashanthr/talk-to-me.git"
+  },
+  "author": "Prashanth Rajaram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prashanthr/talk-to-me/issues"
+  },
+  "homepage": "https://github.com/prashanthr/talk-to-me#readme",
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-latest": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "config": "^1.25.1",
+    "debug": "^2.6.3"
+  }
+}

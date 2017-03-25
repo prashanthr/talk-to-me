@@ -14,10 +14,9 @@ let server = async () => {
   app.use(function (req, res) {
     res.sendfile(path.join(__dirname, '/../../build', 'index.html'))
   })
-  app.use('/peer', ExpressPeerServer(server, { debug: true }))
-  httpServer.listen(9095, function () {
-    debug('Server running on 9095')
+  app.use('/peer', ExpressPeerServer(httpServer, { debug: true }))
+  httpServer.listen(config.port, () => {
+    debug(`Server running on ${config.port}`)
   })
 }
 server()
-

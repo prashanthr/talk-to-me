@@ -3,8 +3,31 @@
   "version": "1.0.0",
   "description": "Chat using Web RTC",
   "main": "index.js",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-latest": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-watch": "^2.0.6",
+    "config": "^1.25.1",
+    "debug": "^2.6.3",
+    "peer": "^0.2.8",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "proxy": "http://localhost:9095",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "start-server": "bin/server.sh",
+    "start-server-dev": "bin/server-dev.sh",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -14,15 +37,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/prashanthr/talk-to-me/issues"
-  },
-  "homepage": "https://github.com/prashanthr/talk-to-me#readme",
-  "dependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-latest": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
-    "config": "^1.25.1",
-    "debug": "^2.6.3"
   }
 }

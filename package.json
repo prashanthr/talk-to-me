@@ -17,8 +17,10 @@
     "config": "^1.25.1",
     "debug": "^2.6.3",
     "peer": "^0.2.8",
+    "peerjs": "^0.3.14",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "standard-version": "^4.0.0"
   },
   "proxy": "http://localhost:9095",
   "scripts": {

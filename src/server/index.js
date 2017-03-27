@@ -12,9 +12,15 @@ app.use(express.static(path.join(__dirname, '/../../build')))
 let server = async () => {
   let httpServer = http.Server(app)
   app.use(function (req, res) {
-    res.sendfile(path.join(__dirname, '/../../build', 'index.html'))
+    res.sendFile(path.join(__dirname, '/../../build', 'index.html'))
   })
   app.use('/peer', ExpressPeerServer(httpServer, { debug: true }))
+  httpServer.on('connection', (id) => { 
+    debug('Peer connected')
+  })
+  httpServer.on('disconnect', (id) => { 
+    debug('Peer disconnected')
+  })
   httpServer.listen(config.port, () => {
     debug(`Server running on ${config.port}`)
   })

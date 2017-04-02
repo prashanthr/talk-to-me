@@ -1,12 +1,14 @@
 import Peer from 'peerjs'
 import _debug from 'debug'
 import config from '../../config'
-// import  cuid from 'cuid'
+import  cuid from 'cuid'
+import axios from 'axios'
 var debug = _debug('peer')
 
 export default class Peery {
-    constructor () {
-      this.peer = new Peer('123', {
+    async init () {
+      let id = cuid()
+      this.peer = new Peer(id, {
         key: config.apiKey,
         host: 'localhost',
         port: 9095,
@@ -27,6 +29,9 @@ export default class Peery {
       
       // local Copy
       this.peerConnections = []
+
+      // Register manually with server
+      await axios.post('/api/peer', { id: this.id })
     }
 
     async connect (peerId) { 

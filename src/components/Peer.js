@@ -7,15 +7,32 @@ export default class PeerBox extends Component {
       this.client = new Peer()
     }
 
+    componentWillMount() {
+      this.setState({
+        id: null
+      })
+    }
+
+    init () {
+      this.client.init()
+    }
+
     test () {
+     this.init()
      console.log(this.client.peer)
+     this.setState({
+       id: this.client.peer.id
+     })
     }
 
     render() {
-        return (<div>
+        return this.state ? (<div>
             Peer
-            <div id='peer'>{this.client.peer.id}</div>
-            <button name='test' onClick={this.test.bind(this)} />
-        </div>)
+            <div id='peer'>{this.state.id}</div>
+            <button type='button' onClick={this.test.bind(this)}>Register</button>
+            <div>
+                <label>Connected Peers</label>
+            </div>
+        </div>) : null
     }
 }

@@ -1,13 +1,16 @@
 import Peer from 'peerjs'
 import _debug from 'debug'
+import config from '../../config'
+// import  cuid from 'cuid'
 var debug = _debug('peer')
 
 export default class Peery {
     constructor () {
-      this.peer = new Peer({
-        host: 'http://localhost',
+      this.peer = new Peer('123', {
+        key: config.apiKey,
+        host: 'localhost',
         port: 9095,
-        path: '/peer',
+        path: '/',
         config: {}
       })
       this.id = this.peer.id

@@ -19,10 +19,26 @@ export default class PeerBox extends Component {
 
     test () {
      this.init()
-     console.log(this.client.peer)
+     console.log('peer', this.client.peer)
      this.setState({
        id: this.client.peer.id
      })
+    }
+
+    call () {
+      console.log(this.client.id + ' calling ' + this.state.destPeerId)
+      this.client.call(this.state.destPeerId).then(res => console.log('hh', res))
+    }
+
+    sendData () {
+      this.client.peer.sendData(this.state.destPeerId, 'hi')
+    }
+
+    onInputChanged (e) {
+      console.log('e', e)
+      this.setState({
+        destPeerId: e.target.value
+      })
     }
 
     render() {
@@ -30,6 +46,8 @@ export default class PeerBox extends Component {
             Peer
             <div id='peer'>{this.state.id}</div>
             <button type='button' onClick={this.test.bind(this)}>Register</button>
+            <input type='text' name='peer-id' onChange={this.onInputChanged.bind(this)} />
+            <button type='button' onClick={this.call.bind(this)}>Call</button>
             <div>
                 <label>Connected Peers</label>
             </div>

@@ -25,11 +25,11 @@ let server = async () => {
     res.sendFile(path.join(__dirname, '/../../build', 'index.html'))
   })
   app.use('/peerjs', ExpressPeerServer(httpServer, { debug: true }))
-  httpServer.on('connection', (id) => { 
+  httpServer.on('connection', (id) => {
     debug(`Peer connected:`, id)
     axios.post('/api/peer', { id })
   })
-  httpServer.on('disconnect', (id) => { 
+  httpServer.on('disconnect', (id) => {
     debug('Peer disconnected')
   })
   httpServer.listen(config.port, () => {

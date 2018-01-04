@@ -15,7 +15,7 @@ var app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: '0.5mb'}))
-app.use(express.static(path.join(__dirname, '/../../build')))
+// app.use(express.static(path.join(__dirname, '/../../build')))
 app.use('/', publicRouter)
 
 // API
@@ -26,14 +26,14 @@ let server = async () => {
   app.use(function (req, res) {
     res.sendFile(path.join(__dirname, '/../../build', 'index.html'))
   })
-  app.use('/peerjs', ExpressPeerServer(httpServer, { debug: true }))
-  httpServer.on('connection', (id) => {
-    debug(`Peer connected:`, id)
-    axios.post('/api/peer', { id })
-  })
-  httpServer.on('disconnect', (id) => {
-    debug('Peer disconnected')
-  })
+  // app.use('/peerjs', ExpressPeerServer(httpServer, { debug: true }))
+  // httpServer.on('connection', (id) => {
+  //   debug(`Peer connected:`, id)
+  //   axios.post('/api/peer', { id })
+  // })
+  // httpServer.on('disconnect', (id) => {
+  //   debug('Peer disconnected')
+  // })
   httpServer.listen(config.port, () => {
     debug(`Server running on ${config.port}`)
   })

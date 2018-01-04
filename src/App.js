@@ -5,7 +5,7 @@ import VideoBox from './components/video-box'
 import { stream } from './peer/simple-peer'
 import SimplePeer from 'simple-peer'
 
-class App extends Component {
+export default class App extends Component {
   componentDidMount () {
     const targetPeer = new SimplePeer()
     stream(targetPeer)
@@ -22,5 +22,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

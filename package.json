@@ -24,6 +24,11 @@
     "peerjs": "^0.3.14",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-redux": "next",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
     "simple-peer": "^8.1.1",
     "standard-version": "^4.0.0",
     "wrtc": "^0.0.65"

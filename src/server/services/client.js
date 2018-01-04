@@ -1,18 +1,38 @@
+import SimplePeer from 'simple-peer'
+import RoomService from './room'
 import DB from '../db'
+import wrtc from 'wrtc'
 import cuid from 'cuid'
 import { keyBy } from 'lodash'
+import _debug from 'debug'
 
+const debug = _debug('service:client')
 const KEY = 'clients'
 
 class ClientService {
   register (roomId, name, ip) {
     const id = cuid()
+    const room = RoomService.get(roomId)
+    if (!room) {
+      throw new Error(`Room ${roomId} does not exist`)
+    }
+    const initiator = room.numberOfClients === 0
     DB.append(KEY, {
       id,
       name,
-      ip
+      ip,
+      roomId,
+      initiator,
+      connection: new SimplePeer({
+        initiator,
+        wrtc
+      })
     })
-    return this.keyedClients()[id]
+    DB.updateDeep(KEY, roomId, {
+      ...room,
+      numberOfClients: room.numberOfClients + 1
+    })
+    return this.get(id)
   }
 
   keyedClients () {
@@ -20,11 +40,19 @@ class ClientService {
   }
 
   destroy (id) {
+    const client = this.get(id)
+    const room = RoomService.get(client.roomId)
     DB.deleteDeep(KEY, id)
+    DB.updateDeep(KEY, room.id, {
+      ...room,
+      numberOfClients: room.numberOfClients - 1
+    })
   }
 
   get (id) {
-    return this.keyedClients()[id] || null
+    const client = this.keyedClients()[id] || null
+    debug('client', client)
+    return client
   }
 }
 

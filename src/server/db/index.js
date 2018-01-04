@@ -20,6 +20,22 @@ class DB {
     this.db[key] = data
   }
 
+  updateDeep (key, subKey, data, primaryKey = 'id') {
+    if (this.db[key]) {
+      const index = this.db[key].findIndex(record => record[primaryKey] === subKey)
+      if (index !== -1) {
+        this.db[key][index] = {
+          ...this.db[key][index],
+          ...data
+        }
+      } else {
+        this.db[key].push(data)
+      }
+    } else {
+      throw new Error(`${key} not found in db`)
+    }
+  }
+
   append (key, data) {
     debug('old', this.db)
     if (this.db[key]) {

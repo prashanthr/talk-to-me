@@ -1,6 +1,9 @@
 import DB from '../db'
 import cuid from 'cuid'
 import { keyBy } from 'lodash'
+import _debug from 'debug'
+
+const debug = _debug('service:room')
 
 const KEY = 'rooms'
 
@@ -10,7 +13,6 @@ class RoomService {
   }
   keyedRooms () {
     const raw = DB.read(KEY)
-    console.log('raw', raw)
     return keyBy(
       raw,
       'id'
@@ -23,7 +25,6 @@ class RoomService {
       name,
       numberOfClients: 0
     })
-    console.log(this.get(id))
     return this.get(id)
   }
   destroy (id) {
@@ -31,8 +32,9 @@ class RoomService {
   }
   get (id) {
     const rooms = this.keyedRooms()
-    console.log('rpp,', rooms)
-    return rooms[id]
+    const room = rooms[id]
+    debug('room', room)
+    return room
   }
 }
 

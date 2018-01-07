@@ -18,19 +18,28 @@ class RoomService {
       'id'
     ) || {}
   }
-  create (name) {
-    const id = cuid()
+  create (name, id) {
+    const room = this.get(id)
+    if (room) {
+      debug('found room, skip create')
+      return room
+    } else {
+      debug('creating room...')
+    }
+    id = id || cuid()
     DB.append(KEY, {
       id,
-      name,
+      name: name || id,
       numberOfClients: 0
     })
     return this.get(id)
   }
   destroy (id) {
+    debug('deleting room...')
     DB.deleteDeep(KEY, id)
   }
   get (id) {
+    debug('fetching room...')
     const rooms = this.keyedRooms()
     const room = rooms[id]
     debug('room', room)

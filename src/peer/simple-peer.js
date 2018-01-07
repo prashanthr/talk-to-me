@@ -2,7 +2,7 @@ import SimplePeer from 'simple-peer'
 
 function gotMedia (stream, targetPeer) {
   var peer1 = new SimplePeer({ initiator: true, stream: stream })
-  var peer2 = targetPeer
+  var peer2 = targetPeer || new SimplePeer({ stream: stream })
 
   peer1.on('signal', function (data) {
     peer2.signal(data)

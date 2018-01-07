@@ -10,7 +10,7 @@ const debug = _debug('service:client')
 const KEY = 'clients'
 
 class ClientService {
-  register (roomId, name, ip) {
+  register (name, roomId, ip) {
     const id = cuid()
     const room = RoomService.get(roomId)
     if (!room) {
@@ -33,6 +33,40 @@ class ClientService {
       numberOfClients: room.numberOfClients + 1
     })
     return this.get(id)
+  }
+
+  update (currentUser, roomId, ip) {
+    const id = cuid()
+    const room = RoomService.get(roomId)
+    if (!room) {
+      throw new Error(`Room ${roomId} does not exist`)
+    }
+    const initiator = room.numberOfClients === 0
+    DB.updateDeep(KEY, currentUser.id, {
+      ip,
+      roomId,
+      initiator,
+      connection: new SimplePeer({
+        initiator,
+        wrtc
+      })
+    })
+    DB.updateDeep(KEY, roomId, {
+      ...room,
+      numberOfClients: room.numberOfClients + 1
+    })
+    return this.get(id)
+  }
+
+  findPeers (roomId, clientId) {
+    const room = RoomService.get(roomId)
+    if (room.numberOfClients > 1) {
+      const clients = DB.read(KEY)
+      const peers = clients.filter(client => client.roomId === roomId)
+      return peers
+    } else {
+      return []
+    }
   }
 
   keyedClients () {

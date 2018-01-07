@@ -1,9 +1,9 @@
 
-import mainSagas from './main'
+import sessionSagas from './session'
 
 function * saga () {
   yield [
-    ...mainSagas
+    ...sessionSagas
   ]
 }
 

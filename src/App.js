@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import VideoBox from './components/video-box'
-import { stream } from './peer/simple-peer'
-import SimplePeer from 'simple-peer'
+import CreateRoom from './components/create-room'
+// import SimplePeer from 'simple-peer'
 
 export default class App extends Component {
   componentDidMount () {
-    const targetPeer = new SimplePeer()
-    stream(targetPeer)
+    // const targetPeer = new SimplePeer()
+    // stream(targetPeer)
   }
   render () {
     return (
@@ -17,7 +16,7 @@ export default class App extends Component {
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to React</h2>
         </div>
-        <VideoBox />
+        <CreateRoom />
       </div>
     )
   }

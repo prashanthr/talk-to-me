@@ -1,8 +1,13 @@
 import _debug from 'debug'
 const debug = _debug('server:socket')
-
-export const emitEvent = (io, event, data) => {
-  io.sockets.emit(event, data)
+import io from '../socket/io'
+export const emitEvent = (event, data) => {
+  debug('io', io)
+  debug('socket event', data)
+  io.sockets.emit(event, {
+    type: 'PEER_CONNECTED',
+    data
+  })
 }
 
 const setup = io => {

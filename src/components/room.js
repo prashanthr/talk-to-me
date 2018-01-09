@@ -19,7 +19,8 @@ class Room extends Component {
   }
   componentWillReceiveProps (nextProps) {
     if (this.props.room !== nextProps.room) {
-      this.props.joinRoom('abc', this.props.roomId)
+      console.log('roomId to reg', nextProps.roomId)
+      this.props.joinRoom('abc', nextProps.roomId)
     }
     if (this.props.peers !== nextProps.peers) {
       this.stream()

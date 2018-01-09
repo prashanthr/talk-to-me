@@ -11,10 +11,13 @@ const KEY = 'clients'
 
 class ClientService {
   register (name, roomId, ip) {
+    debug('registering')
     const id = cuid()
     const room = RoomService.get(roomId)
     if (!room) {
       throw new Error(`Room ${roomId} does not exist`)
+    } else {
+      debug('room', room)
     }
     const initiator = room.numberOfClients === 0
     DB.append(KEY, {
@@ -28,14 +31,17 @@ class ClientService {
         wrtc
       })
     })
-    DB.updateDeep(KEY, roomId, {
+    DB.updateDeep('rooms', roomId, {
       ...room,
       numberOfClients: room.numberOfClients + 1
     })
-    return this.get(id)
+    const client = this.get(id)
+    debug('client --- ', client)
+    return client
   }
 
   update (currentUser, roomId, ip) {
+    debug('updating...')
     const id = cuid()
     const room = RoomService.get(roomId)
     if (!room) {
@@ -51,7 +57,7 @@ class ClientService {
         wrtc
       })
     })
-    DB.updateDeep(KEY, roomId, {
+    DB.updateDeep('rooms', roomId, {
       ...room,
       numberOfClients: room.numberOfClients + 1
     })

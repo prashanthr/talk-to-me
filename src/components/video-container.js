@@ -13,6 +13,12 @@ const VideoContainer = ({
         className='video-box'
       />
     </div>
+    <div className='video-active-2'>
+      <video
+        id='video-box-2'
+        className='video-box-2'
+      />
+    </div>
   </div>
 )
 

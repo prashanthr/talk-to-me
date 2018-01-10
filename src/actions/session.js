@@ -13,6 +13,7 @@ export const LOAD_ROOM_ERROR = 'LOAD_ROOM_ERROR'
 export const FIND_PEERS = 'FIND_PEERS'
 export const FIND_PEERS_SUCCESS = 'FIND_PEERS_SUCCESS'
 export const FIND_PEERS_ERROR = 'FIND_PEERS_ERROR'
+export const PEER_CONNECTED = 'PEER_CONNECTED'
 
 export function findPeers (roomId, clientId) {
   return {

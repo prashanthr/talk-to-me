@@ -2,13 +2,8 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import CreateRoom from './components/create-room'
-// import SimplePeer from 'simple-peer'
 
 export default class App extends Component {
-  componentDidMount () {
-    // const targetPeer = new SimplePeer()
-    // stream(targetPeer)
-  }
   render () {
     return (
       <div className='App'>

@@ -36,7 +36,7 @@ const api = (app) => {
     const client = currentUser !== null
       ? ClientService.update(currentUser, roomId, clientIp)
       : ClientService.register(name, roomId, clientIp)
-    emitEvent('join', client)
+    emitEvent('redux-action', client)
     return res.send(client)
   })
 

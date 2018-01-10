@@ -14,7 +14,8 @@ import {
   LOAD_ROOM_SUCCESS,
   FIND_PEERS,
   FIND_PEERS_ERROR,
-  FIND_PEERS_SUCCESS
+  FIND_PEERS_SUCCESS,
+  PEER_CONNECTED
 } from '../actions/session'
 import { select, call, put, fork, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
@@ -110,6 +111,18 @@ function* createRoom (action) {
   }
 }
 
+function* peerConnected (action) {
+  try {
+    console.log('peer-connected-saga', action)
+  } catch (error) {
+    console.log('Peer Connected error', error)
+  }
+}
+
+function* peerConnectedFlow () {
+  yield takeLatest(PEER_CONNECTED, peerConnected)
+}
+
 function* findPeersFlow () {
   yield takeLatest(FIND_PEERS, findPeers)
 }
@@ -135,5 +148,6 @@ export default [
   fork(joinRoomFlow),
   fork(createRoomFlow),
   fork(loadRoomFlow),
-  fork(findPeersFlow)
+  fork(findPeersFlow),
+  fork(peerConnectedFlow)
 ]

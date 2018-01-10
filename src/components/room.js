@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VideoContainer from './video-container'
-import { stream, streamSelf } from '../peer/simple-peer'
+import { stream } from '../peer/simple-peer'
 import { connect } from 'react-redux'
 import { joinRoom, loadRoom, findPeers } from '../actions/session'
+import { keys } from 'lodash'
 
 class Room extends Component {
-  stream () {
-    if (this.props.peers && this.props.peers.length > 0) {
-      stream(this.props.peers[0].connection)
-    }
-  }
-  streamSelf () {
-    streamSelf()
-  }
   componentDidMount () {
     this.props.loadRoom(this.props.roomId)
   }
@@ -22,8 +15,8 @@ class Room extends Component {
       console.log('roomId to reg', nextProps.roomId)
       this.props.joinRoom('abc', nextProps.roomId)
     }
-    if (this.props.peers !== nextProps.peers) {
-      this.stream()
+    if (this.props.peers !== nextProps.peers && keys(nextProps.peers).length > 0) {
+      stream(keys(nextProps.peers)[0].connection, 'video-box-2')
     } else {
       stream(undefined)
     }
@@ -37,7 +30,7 @@ class Room extends Component {
 }
 
 Room.propTypes = {
-  peers: PropTypes.array,
+  peers: PropTypes.object,
   user: PropTypes.object,
   room: PropTypes.object,
   roomId: PropTypes.string,

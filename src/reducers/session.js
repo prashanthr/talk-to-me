@@ -11,7 +11,7 @@ const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case PEER_CONNECTED:
       console.log('peer-connected-reducer', action)
-      const shouldInsert = action.data.id !== state.user.id &&
+      const shouldInsert = state.user && action.data.id !== state.user.id &&
         keys(state.peers).filter(key => key === action.data.id).length === 0
       console.log('should insert', shouldInsert)
       let peerToInsert = {}
@@ -47,12 +47,12 @@ const sessionReducer = (state = initialState, action) => {
     case JOIN_ROOM_SUCCESS:
       return {
         ...state,
-        user: action.data
-        // user: action.data.user,
-        // peers: {
-        //   ...state.peers,
-        //   ...action.data.peers
-        // }
+        // user: action.data
+        user: action.data.client,
+        peers: {
+          ...state.peers,
+          ...action.data.peers
+        }
       }
     case LEAVE_ROOM_SUCCESS:
       return {

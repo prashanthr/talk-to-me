@@ -14,16 +14,24 @@ class Room extends Component {
     if (this.props.room !== nextProps.room) {
       console.log('roomId to reg', nextProps.roomId)
       this.props.joinRoom('abc', nextProps.roomId)
+      return
+    }
+    // if ) {
+    //   stream(keys(nextProps.peers)[0].connection, 'video-box-2')
+    // } else {
+    //   stream(undefined)
+    // }
+    if (this.props.user !== nextProps.user && nextProps.user) {
+      stream(undefined)
     }
     if (this.props.peers !== nextProps.peers && keys(nextProps.peers).length > 0) {
       stream(keys(nextProps.peers)[0].connection, 'video-box-2')
-    } else {
-      stream(undefined)
     }
   }
   render () {
-    if (!this.props.user) {
-      return <div>Registering...</div>
+    {
+      !this.props.user &&
+      <div>Registering...</div>
     }
     return <VideoContainer />
   }

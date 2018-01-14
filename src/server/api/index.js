@@ -32,14 +32,18 @@ const api = (app) => {
     const roomId = req.body.roomId
     const name = req.body.name
     const currentUser = req.body.currentUser
-    console.log('client-here')
+    console.log('client-here', roomId, currentUser)
     const client = currentUser !== null
       ? ClientService.update(currentUser, roomId, clientIp)
       : ClientService.register(name, roomId, clientIp)
     emitEvent('redux-action', client)
+    console.log('client-boo', client)
     const peers = ClientService.findPeers(roomId, client.id)
     console.log('peers-boo', peers)
-    return res.send(client)
+    return res.send({
+      client,
+      peers
+    })
     // return res.send({
     //   client,
     //   peers: ClientService.findPeers(roomId, client.id)

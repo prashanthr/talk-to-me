@@ -15,6 +15,7 @@ function gotMedia (stream, targetPeer, targetDOMId) {
   peer2.on('stream', function (stream) {
     // got remote video stream, now let's show it in a video tag
     var video = document.querySelector(`#${targetDOMId}`)
+    console.log('targetDOMId', targetDOMId)
     if (!video.src) {
       console.log('video', video)
       video.src = window.URL.createObjectURL(stream)

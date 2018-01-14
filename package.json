@@ -43,7 +43,8 @@
     "start-server-dev": "bin/server-dev.sh",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",

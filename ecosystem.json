@@ -1,0 +1,14 @@
+{
+  "deploy": {
+     "production" : {
+      "user": "root",
+      "host": ["45.55.194.231"],
+      "ref": "origin/master",
+      "key": "~/.ssh/do",
+      "repo": "git@github.com:prashanthr/talk-to-me.git",
+      "path": "/var/www",
+      "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
+      "post-deploy": "echo deployment complete ✓"
+    }
+  }
+}

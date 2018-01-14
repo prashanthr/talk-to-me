@@ -66,12 +66,12 @@ class ClientService {
 
   findPeers (roomId, clientId) {
     const room = RoomService.get(roomId)
-    if (room.numberOfClients > 1) {
+    if (room && room.numberOfClients > 1) {
       const clients = DB.read(KEY)
-      const peers = clients.filter(client => client.roomId === roomId)
-      return peers
+      const peers = clients.filter(client => client.roomId === roomId && client.id !== clientId)
+      return keyBy(peers, 'id')
     } else {
-      return []
+      return {}
     }
   }
 

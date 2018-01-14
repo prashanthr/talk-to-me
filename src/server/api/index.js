@@ -37,7 +37,13 @@ const api = (app) => {
       ? ClientService.update(currentUser, roomId, clientIp)
       : ClientService.register(name, roomId, clientIp)
     emitEvent('redux-action', client)
+    const peers = ClientService.findPeers(roomId, client.id)
+    console.log('peers-boo', peers)
     return res.send(client)
+    // return res.send({
+    //   client,
+    //   peers: ClientService.findPeers(roomId, client.id)
+    // })
   })
 
   app.get('/api/peers/:roomId/:clientId', (req, res) => {

@@ -48,6 +48,11 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.data
+        // user: action.data.user,
+        // peers: {
+        //   ...state.peers,
+        //   ...action.data.peers
+        // }
       }
     case LEAVE_ROOM_SUCCESS:
       return {

@@ -44,7 +44,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "release": "standard-version"
+    "release": "standard-version",
+    "takeoff": "echo 'Taking off...' && yarn build-prod && yarn ship-prod",
+    "build-prod": "NODE_ENV=production react-scripts build",
+    "ship-prod": "yarn ship-prod-client && yarn ship-prod-server",
+    "ship-prod-client": "scp  -i ~/.ssh/do -r build/*  root@45.55.194.231:/var/www/current/build/",
+    "ship-prod-server": "pm2 deploy ecosystem.json production"
   },
   "repository": {
     "type": "git",

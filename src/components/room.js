@@ -29,11 +29,15 @@ class Room extends Component {
     }
   }
   render () {
-    {
-      !this.props.user &&
-      <div>Registering...</div>
-    }
-    return <VideoContainer />
+    return (
+      <div>
+        {
+          !this.props.user &&
+          <div>Registering...</div>
+        }
+        <VideoContainer />
+      </div>
+    )
   }
 }
 

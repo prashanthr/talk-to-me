@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name prashanthr.me;
+    server_name talktome.space;
 
     location / {
         proxy_pass http://localhost:9095;

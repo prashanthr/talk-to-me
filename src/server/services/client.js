@@ -20,16 +20,17 @@ class ClientService {
       debug('room', room)
     }
     const initiator = room.numberOfClients === 0
+    const connection = new SimplePeer({
+      initiator,
+      wrtc
+    })
     DB.append(KEY, {
       id,
       name,
       ip,
       roomId,
       initiator,
-      connection: new SimplePeer({
-        initiator,
-        wrtc
-      })
+      connection
     })
     DB.updateDeep('rooms', roomId, {
       ...room,
@@ -42,26 +43,27 @@ class ClientService {
 
   update (currentUser, roomId, ip) {
     debug('updating...')
-    const id = cuid()
+    // const id = cuid()
     const room = RoomService.get(roomId)
     if (!room) {
       throw new Error(`Room ${roomId} does not exist`)
     }
     const initiator = room.numberOfClients === 0
+    const connection = new SimplePeer({
+      initiator,
+      wrtc
+    })
     DB.updateDeep(KEY, currentUser.id, {
       ip,
       roomId,
       initiator,
-      connection: new SimplePeer({
-        initiator,
-        wrtc
-      })
+      connection
     })
     DB.updateDeep('rooms', roomId, {
       ...room,
       numberOfClients: room.numberOfClients + 1
     })
-    return this.get(id)
+    return this.get(currentUser.id)
   }
 
   findPeers (roomId, clientId) {

@@ -15,35 +15,27 @@ import {
   FIND_PEERS,
   FIND_PEERS_ERROR,
   FIND_PEERS_SUCCESS,
-  PEER_CONNECTED
+  PEER_CONNECTED,
+  INIT_STREAM
 } from '../actions/session'
 import { select, call, put, fork, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
-
-function* findPeers (action) {
-  try {
-    const response = yield call(() => axios.get(`/api/peers/${action.roomId}/${action.clientId}`))
-    if (response.data && response.data.length > 0) {
-      yield put({
-        type: FIND_PEERS_SUCCESS,
-        data: response.data
-      })
-    }
-  } catch (err) {
-    console.log(`Error occurred while fetching peers: ${err.message}`)
-    yield put({
-      type: FIND_PEERS_ERROR,
-      error: err
-    })
-  }
-}
+import cuid from 'cuid'
+import { joinRoom as socketJoinRoom, leaveRoom as socketLeaveRoom, signal as socketSignal, stream as socketStream} from '../socket'
+import { getMediaStream, createPeer } from '../peer/simple-peer'
 
 function* loadRoom (action) {
   try {
-    const response = yield call(() => axios.get(`/api/rooms/${action.id}`))
+    const roomId = action.id
+    yield socketJoinRoom(roomId)
+    // yield put({
+    //   type: LOAD_ROOM_SUCCESS,
+    //   roomId
+    // })
+    // yield joinRoom(action)
     yield put({
-      type: LOAD_ROOM_SUCCESS,
-      data: response.data
+      type: INIT_STREAM,
+      roomId
     })
   } catch (err) {
     console.log(`Error occurred while loading room: ${err.message}`)
@@ -54,20 +46,34 @@ function* loadRoom (action) {
   }
 }
 
+function* initStream (action) {
+  try {
+    const roomId = action.roomId
+    console.log('r@', roomId)
+    let streamg = yield getMediaStream()
+    // yield getMediaStream({ audio: true, video: true }, (stream) => {
+    //   streamg = stream
+    // })
+    // let signalg
+    const peer = yield createPeer({ initiator: true }, roomId, streamg)
+    console.log('peer@', peer)
+    console.log('streamg@', streamg)
+    yield socketStream(roomId, peer, streamg)
+    // yield socketSignal(roomId, signalg)
+  } catch (err) {
+    console.log(`Error occurred while init stream: ${err.message}`)
+  }
+}
+
 function* joinRoom (action) {
   try {
-    const user = yield select(
-      state => state.session.user
-    )
-    const response = yield call(() => axios.post('/api/client', {
-      name: action.name,
-      currentUser: user,
-      roomId: action.roomId
-    }))
+    const user = { id: cuid() }
+    const stream = yield getMediaStream()
     yield put({
       type: JOIN_ROOM_SUCCESS,
-      data: response.data
+      data: { user, stream }
     })
+    yield socketSignal(user.id, stream)
   } catch (err) {
     console.log(`Error occurred while joining room: ${err.message}`)
     yield put({
@@ -123,10 +129,6 @@ function* peerConnectedFlow () {
   yield takeLatest(PEER_CONNECTED, peerConnected)
 }
 
-function* findPeersFlow () {
-  yield takeLatest(FIND_PEERS, findPeers)
-}
-
 function* leaveRoomFlow () {
   yield takeLatest(LEAVE_ROOM, leaveRoom)
 }
@@ -143,11 +145,15 @@ function* loadRoomFlow () {
   yield takeLatest(LOAD_ROOM, loadRoom)
 }
 
+function* initStreamFlow () {
+  yield takeLatest(INIT_STREAM, initStream)
+}
+
 export default [
   fork(leaveRoomFlow),
   fork(joinRoomFlow),
   fork(createRoomFlow),
   fork(loadRoomFlow),
-  fork(findPeersFlow),
-  fork(peerConnectedFlow)
+  fork(peerConnectedFlow),
+  fork(initStreamFlow)
 ]

@@ -14,6 +14,9 @@ export const FIND_PEERS = 'FIND_PEERS'
 export const FIND_PEERS_SUCCESS = 'FIND_PEERS_SUCCESS'
 export const FIND_PEERS_ERROR = 'FIND_PEERS_ERROR'
 export const PEER_CONNECTED = 'PEER_CONNECTED'
+export const PEER_SIGNAL = 'PEER_SIGNAL'
+export const PEER_STREAM = 'PEER_STREAM'
+export const INIT_STREAM = 'INIT_STREAM'
 
 export function findPeers (roomId, clientId) {
   return {
@@ -27,6 +30,12 @@ export function loadRoom (id) {
   return {
     type: LOAD_ROOM,
     id
+  }
+}
+
+export function initStream () {
+  return {
+    type: INIT_STREAM
   }
 }
 

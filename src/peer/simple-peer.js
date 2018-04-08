@@ -42,7 +42,7 @@ import { signal as socketSignal } from '../socket'
 //   return peer
 // }
 
-export const createPeer = async (opts = { initiator: true }, roomId, stream, signalCallback, streamCallback) => {
+export const createPeer = async (opts = { initiator: false }, roomId, stream, signalCallback, streamCallback) => {
   return new Promise((resolve, reject) => {
     const peer = new SimplePeer({
       ...opts,
@@ -50,7 +50,7 @@ export const createPeer = async (opts = { initiator: true }, roomId, stream, sig
     })
     peer.on('signal', signalCallback || (
       (data) => {
-        console.log('signal', peer)
+        console.log('peer-signal', peer)
         socketSignal(roomId, data)
       }
     ))

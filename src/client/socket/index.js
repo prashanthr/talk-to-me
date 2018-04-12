@@ -3,7 +3,7 @@ import Io from 'socket.io-client'
 let socket = new Io()
 
 export default store => {
-  socket.on('redux-action', (data) => {
+  socket.on('redux-action', data => {
     store.dispatch(data)
   })
 

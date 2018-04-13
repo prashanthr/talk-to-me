@@ -1,11 +1,13 @@
 import cuid from 'cuid'
 import { INITIALIZE_SUCCESS } from './room'
 import createObjectUrl from '../../utils/create-object-url'
+import { SOCKET_INITIALIZE_SUCCESS } from './socket'
 
 let initialState = {
   id: null,
   stream: null,
-  streamUrl: null
+  streamUrl: null,
+  socket: null
 }
 
 const roomReducer = (state = initialState, action) => {
@@ -17,6 +19,11 @@ const roomReducer = (state = initialState, action) => {
         id: cuid(),
         stream: action.stream,
         streamUrl: createObjectUrl(action.stream)
+      }
+    case SOCKET_INITIALIZE_SUCCESS:
+      return {
+        ...state,
+        socket: action.socket
       }
     default:
       return state

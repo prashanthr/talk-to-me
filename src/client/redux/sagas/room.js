@@ -1,8 +1,7 @@
-import { call, put, select, fork } from 'redux-saga/effects'
-import axios from 'axios'
-import { takeLatest } from 'redux-saga'
+import { call, put, select, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED } from '../ducks/room'
 import getUserMedia from '../../utils/get-user-media'
+import { SOCKET_INITIALIZE } from '../ducks/socket'
 
 function* initialize (action) {
   try {
@@ -13,6 +12,9 @@ function* initialize (action) {
       stream
     })
     console.log('Stream', stream)
+    yield put({
+      type: SOCKET_INITIALIZE
+    })
   } catch (error) {
     console.error('Initialize Failed', error)
     yield put({

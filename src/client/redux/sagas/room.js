@@ -13,7 +13,8 @@ function* initialize (action) {
     })
     console.log('Stream', stream)
     yield put({
-      type: SOCKET_INITIALIZE
+      type: SOCKET_INITIALIZE,
+      roomId: action.roomId
     })
   } catch (error) {
     console.error('Initialize Failed', error)

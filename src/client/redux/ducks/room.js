@@ -1,3 +1,5 @@
+import { JOIN_ROOM_SUCCESS } from './socket'
+
 export const INITIALIZE = 'INITIALIZE'
 export const INITIALIZE_SUCCESS = 'INITIALIZE_SUCCESS'
 export const INITIALIZE_FAILED = 'INITIALIZE_FAILED'
@@ -18,6 +20,11 @@ const roomReducer = (state = initialState, action) => {
       return {
         ...state,
         id: action.roomId
+      }
+    case JOIN_ROOM_SUCCESS:
+      return {
+        ...state,
+        initiator: action.initiator
       }
     default:
       return state

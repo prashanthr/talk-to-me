@@ -1,6 +1,6 @@
 import _debug from 'debug'
 import io from '../socket/io'
-import { keys } from 'lodash'
+import { keys, filter, keyBy, mapValues } from 'lodash'
 
 const debug = _debug('server:socket')
 /* Utils for broadcasting redux-actions */
@@ -66,12 +66,14 @@ const setup = io => {
       socket.join(roomId)
       socket.roomId = roomId
       const users = getUsers(roomId)
+      const peers = users //filter(users, user => user !== socket.id)
+      // const transformedPeers = mapValues(keyBy(peers, peerId => peerId), id => ({ }))
       debug('ready: %s, room: %s, users: %o', socket.id, roomId, users)
       broadcast({
         roomId,
         payload: buildReduxPayload('JOIN_ROOM_SUCCESS', {
-          socketId: socket.id,
-          peers: users
+          initiator: socket.id,
+          peers
         })
       })
     })

@@ -5,8 +5,21 @@ import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED } from '../ducks/room
 import getUserMedia from '../../utils/get-user-media'
 
 function* initialize (action) {
-  const stream = yield call(getUserMedia)
-  console.log('Stream', stream)
+  try {
+    const stream = yield call(getUserMedia)
+    yield put({
+      type: INITIALIZE_SUCCESS,
+      roomId: action.roomId,
+      stream
+    })
+    console.log('Stream', stream)
+  } catch (error) {
+    console.error('Initialize Failed', error)
+    yield put({
+      type: INITIALIZE_FAILED,
+      error
+    })
+  }
 }
 
 function* initializeFlow () {

@@ -6,7 +6,7 @@ import { initialize } from '../../redux/ducks/room'
 class Room extends Component {
   componentWillMount () {
     console.log('willMount', this.props)
-    this.props.initialize()
+    this.props.initialize(this.props.roomId)
   }
 
   render () {
@@ -19,11 +19,15 @@ class Room extends Component {
 }
 
 Room.propTypes = {
+  roomId: PropTypes.string,
   initialize: PropTypes.func
 }
 
 function mapStateToProps (state, ownProps) {
-  return state
+  console.log('ownProps', ownProps)
+  return {
+    roomId: ownProps && ownProps.match ? ownProps.match.params.id : null
+  }
 }
 
 export default connect(mapStateToProps, { initialize })(Room)

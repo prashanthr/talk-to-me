@@ -1,7 +1,29 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { initialize } from '../../redux/ducks/room'
 
-export default class Room extends Component {
+class Room extends Component {
+  componentWillMount () {
+    console.log('willMount', this.props)
+    this.props.initialize()
+  }
+
   render () {
-    return `Welcome to Room`
+    return (
+      <div>
+        Hello Room!
+      </div>
+    )
   }
 }
+
+Room.propTypes = {
+  initialize: PropTypes.func
+}
+
+function mapStateToProps (state, ownProps) {
+  return state
+}
+
+export default connect(mapStateToProps, { initialize })(Room)

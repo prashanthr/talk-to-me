@@ -1,10 +1,10 @@
 
 import { all } from 'redux-saga/effects'
-// import sessionSagas from './session'
+import roomSagas from './room'
 
 function * saga () {
   yield all([
-    // ...sessionSagas
+    ...roomSagas
   ])
 }
 

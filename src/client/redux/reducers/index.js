@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import sessionReducer from './session'
-import peerReducer from './peer'
+// import sessionReducer from './session'
+// import peerReducer from '..'
+import roomReducer from '../ducks/room'
 // import streamReducer from './stream'
 
 export default combineReducers({
   router: routerReducer,
-  session: sessionReducer,
+  room: roomReducer
+  // session: sessionReducer,
   // stream: streamReducer,
-  peer: peerReducer
+  // peer: peerReducer
 })

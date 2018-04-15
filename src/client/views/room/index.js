@@ -6,15 +6,18 @@ import { initialize } from '../../redux/ducks/room'
 
 class Room extends Component {
   componentWillMount () {
-    console.log('willMount', this.props)
     this.props.initialize(this.props.roomId)
   }
 
   render () {
     return (
       <div>
-        Hello Room!
-        {this.props.user && this.props.user.streamUrl && <VideoContainer />}
+        {`Welcome to Room ${this.props.roomId}`}
+        <br />
+        {this.props.user && this.props.user.streamUrl
+          ? <VideoContainer />
+          : 'Initializing streams...'
+        }
       </div>
     )
   }
@@ -27,7 +30,6 @@ Room.propTypes = {
 }
 
 function mapStateToProps (state, ownProps) {
-  console.log('ownProps', ownProps)
   return {
     roomId: ownProps && ownProps.match ? ownProps.match.params.id : null,
     user: state.user

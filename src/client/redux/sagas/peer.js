@@ -1,7 +1,7 @@
 import { put, select, fork, takeLatest } from 'redux-saga/effects'
 import { JOIN_ROOM_SUCCESS } from '../ducks/socket'
 import { PEER_ADD, PEER_REMOVE } from '../ducks/peer'
-import { forEach } from 'lodash'
+import { forEach, filter, keys } from 'lodash'
 import Peer from 'simple-peer'
 import { store } from '../../index'
 
@@ -48,8 +48,10 @@ const createPeer = ({
   initiator
 }) => {
   return new Promise((resolve, reject) => {
+    const isInitiator = socket.id === initiator
+    console.log('new peer - initiator', peerId, isInitiator)
     const peer = new Peer({
-      initiator: socket.id === initiator,
+      initiator: isInitiator,
       config: {
         iceServers: [{
           url: 'stun:stun.l.google.com:19302',
@@ -98,14 +100,16 @@ function* removePeer (peerId) {
 }
 
 function* setupPeers (action) {
-  const { stream, socket } = yield select(state => state.user)
+  const state = yield select(state => state)
+  const { stream, socket } = state.user
+  const existingPeers = state.peer
 
   const { peers, initiator } = action
+  const filteredPeers = filter(peers, peerId => !existingPeers[peerId] && peerId !== socket.id)
+
   let setupPromises = []
-  // for (const pr of peers) {
-  //   yield removePeer(pr)
-  // }
-  forEach(peers, peerId => {
+
+  forEach(filteredPeers, peerId => {
     setupPromises.push(createPeer({
       peerId,
       initiator,
@@ -114,9 +118,19 @@ function* setupPeers (action) {
     }))
   })
   const peerChannels = yield Promise.all(setupPromises)
-  console.log('done', peerChannels)
   for (const peerChannel of peerChannels) {
     yield addPeer(peerChannel)
+  }
+
+  // Destroy any old peers
+  const peersToDestroy = keys(existingPeers).filter(key => !peers.includes(key))
+  console.log('Removing peers', peersToDestroy)
+  for (const key of peersToDestroy) {
+    const peerToDestroy = existingPeers[key]
+    if (peerToDestroy && peerToDestroy.channel) {
+      peerToDestroy.channel.destroy()
+      yield removePeer(key)
+    }
   }
 }
 

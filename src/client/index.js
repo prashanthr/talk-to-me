@@ -7,7 +7,7 @@ import configureStore from './store'
 import routes from './routes'
 
 const history = createHistory()
-const store = configureStore(history)
+export const store = configureStore(history)
 
 ReactDOM.render(
   <Provider store={store}>

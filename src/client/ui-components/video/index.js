@@ -10,18 +10,31 @@ class VideoPlayer extends Component {
   render () {
     return (
       <video
+        src={this.props.src}
         ref={el => { this.videoRef = el }}
+        muted={this.props.muted}
+        onClick={this.props.onClick}
+        autoPlay={this.props.autoPlay}
+        playsInline={this.props.playsInline}
+        onLoadedMetadata={this.props.onLoadedMetadata}
       />
     )
   }
 }
 
 VideoPlayer.propTypes = {
-
+  src: PropTypes.string,
+  muted: PropTypes.bool,
+  playsInline: PropTypes.bool,
+  autoPlay: PropTypes.bool,
+  onClick: PropTypes.func,
+  onLoadedMetadata: PropTypes.func
 }
 
-function mapStateToProps (state, ownProps) {
-  return state
+VideoPlayer.defaultProps = {
+  playsInline: true,
+  autoPlay: true,
+  muted: false
 }
 
-export default connect(mapStateToProps, {})(VideoPlayer)
+export default VideoPlayer

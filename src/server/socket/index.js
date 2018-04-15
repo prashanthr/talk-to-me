@@ -39,8 +39,8 @@ const setup = io => {
     socket.on('signal', payload => {
       debug('signal: %s, payload: %o', socket.id, payload)
       broadcast({
-        roomId: payload.roomId,
-        payload: buildReduxPayload('PEER_SIGNAL', {
+        roomId: payload.peerId,
+        payload: buildReduxPayload('SOCKET_SIGNAL', {
           peerId: socket.id,
           signal: payload.signal
         })
@@ -50,10 +50,10 @@ const setup = io => {
     socket.on('stream', payload => {
       debug('stream: %s, payload: %o', socket.id, payload)
       broadcast({
-        roomId: payload.roomId,
-        payload: buildReduxPayload('PEER_STREAM', {
+        roomId: payload.peerId,
+        payload: buildReduxPayload('SOCKET_STREAM', {
           peerId: socket.id,
-          peer: payload.peer,
+          // peer: payload.peer,
           stream: payload.stream
         })
       })

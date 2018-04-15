@@ -1,4 +1,4 @@
-import { call, put, select, fork, takeLatest } from 'redux-saga/effects'
+import { call, put, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED } from '../ducks/room'
 import getUserMedia from '../../utils/get-user-media'
 import { SOCKET_INITIALIZE } from '../ducks/socket'

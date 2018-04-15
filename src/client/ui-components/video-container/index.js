@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import VideoPlayer from '../video'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { map } from 'lodash'
+import { map, filter } from 'lodash'
 import createObjectUrl from '../../utils/create-object-url'
 
 class VideoContainer extends Component {
@@ -19,6 +19,7 @@ class VideoContainer extends Component {
   render () {
     return (
       <div>
+        {<span>{`USER>>>${this.props.user.socket.id}`}</span>}
         <VideoPlayer
           src={this.props.user.streamUrl}
           muted
@@ -26,11 +27,15 @@ class VideoContainer extends Component {
         />
         <br />
         {map(this.props.peer, (peer, peerId) => (
-          <VideoPlayer
-            key={peerId || peer.socketId}
-            onLoadedMetadata={this.playStream}
-            // src={peer.streamUrl || createObjectUrl(peer.channel.stream)}
-          />
+          <div>
+            {<span key={peerId}>{`PEER>>>${peer.socketId}`}</span>}
+            <VideoPlayer
+              src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
+              key={peerId || peer.socketId}
+              onLoadedMetadata={this.playStream}
+            />
+            <br />
+          </div>
         ))}
       </div>
     )
@@ -50,7 +55,7 @@ VideoContainer.defaultProps = {
 function mapStateToProps (state, ownProps) {
   return {
     user: state.user,
-    peer: state.peer
+    peer: filter(state.peer, (peer, peerId) => peerId !== state.user.socket.id) // Don't render user stream again
   }
 }
 

@@ -1,4 +1,4 @@
-import { call, put, select, fork, takeLatest } from 'redux-saga/effects'
+import { put, select, fork, takeLatest } from 'redux-saga/effects'
 import { JOIN_ROOM_SUCCESS } from '../ducks/socket'
 import { PEER_ADD, PEER_REMOVE } from '../ducks/peer'
 import { forEach } from 'lodash'
@@ -77,9 +77,9 @@ const createPeer = ({
   })
 }
 
-const destroyPeer = () => {
+// const destroyPeer = () => {
 
-}
+// }
 
 // state
 function* addPeer ({ channel, peerId }) {
@@ -102,9 +102,9 @@ function* setupPeers (action) {
 
   const { peers, initiator } = action
   let setupPromises = []
-  for (const pr of peers) {
-    yield removePeer(pr)
-  }
+  // for (const pr of peers) {
+  //   yield removePeer(pr)
+  // }
   forEach(peers, peerId => {
     setupPromises.push(createPeer({
       peerId,

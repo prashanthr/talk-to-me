@@ -1,11 +1,11 @@
-import { call, put, select, fork, takeLatest, takeEvery } from 'redux-saga/effects'
+import { put, select, fork, takeLatest, takeEvery } from 'redux-saga/effects'
 import { socket as clientSocket } from '../../socket'
 import {
   SOCKET_INITIALIZE,
   SOCKET_INITIALIZE_SUCCESS,
   SOCKET_INITIALIZE_FAILED,
   SOCKET_SIGNAL,
-  SOCKET_STREAM,
+  // SOCKET_STREAM,
   JOIN_ROOM_SUCCESS
 } from '../ducks/socket'
 

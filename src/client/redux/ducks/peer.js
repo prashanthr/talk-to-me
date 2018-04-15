@@ -5,14 +5,13 @@ export const PEER_REMOVE = 'PEER_REMOVE'
 // export const PEER_SIGNAL = 'PEER_SIGNAL'
 
 let initialState = {
-  'test': {
-    socketId: null,
-    channel: null
-  }
+  // 'test': {
+  //   socketId: null,
+  //   channel: null
+  // }
 }
 
 const peerReducer = (state = initialState, action) => {
-  console.log('ADD_PEER', action)
   switch (action.type) {
     case PEER_ADD:
       return {

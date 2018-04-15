@@ -14,7 +14,6 @@ let initialState = {
 }
 
 const roomReducer = (state = initialState, action) => {
-  console.log('room-reducer', action.type, action)
   switch (action.type) {
     case INITIALIZE_SUCCESS:
       return {

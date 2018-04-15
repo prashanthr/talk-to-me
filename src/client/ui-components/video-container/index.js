@@ -33,7 +33,6 @@ class VideoContainer extends Component {
             showDebugInfo
             metadata={peer.socketId}
             src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
-            muted
             key={cuid()}
             onLoadedMetadata={this.playStream}
           />

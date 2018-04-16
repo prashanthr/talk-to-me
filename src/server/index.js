@@ -8,7 +8,6 @@ import { publicRouter } from './router'
 import api from './api'
 import _debug from 'debug'
 import socketController from './socket'
-//import io from 'socket.io'
 import io from './socket/io'
 var debug = _debug('server')
 

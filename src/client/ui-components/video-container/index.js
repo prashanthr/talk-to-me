@@ -21,7 +21,6 @@ class VideoContainer extends Component {
     return (
       <div>
         <VideoPlayer
-          showDebugInfo
           metadata={this.props.user.socket ? this.props.user.socket.id : null}
           src={this.props.user.streamUrl}
           muted
@@ -30,7 +29,6 @@ class VideoContainer extends Component {
         <br />
         {map(this.props.peer, (peer, peerId) => (
           <VideoPlayer
-            showDebugInfo
             metadata={peer.socketId}
             src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
             key={cuid()}

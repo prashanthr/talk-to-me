@@ -31,7 +31,6 @@ const peerReducer = (state = initialState, action) => {
         ...newState
       }
     case SOCKET_STREAM:
-      console.log('socketstreamreducer', action, state)
       return {
         ...state,
         [action.peerId]: {

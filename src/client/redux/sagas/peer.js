@@ -15,7 +15,6 @@ const peerEventSignal = ({
   signal,
   socket
 }) => {
-  console.info('Peer event signal', signal)
   socket.emit('signal', { signal, peerId })
 }
 
@@ -28,7 +27,6 @@ const peerEventData = (data) => {
 }
 
 const peerEventStream = ({ peerId, socket, stream }) => {
-  console.info('Peer event stream', stream)
   // socket.emit('stream', { stream, peerId })
   return store.dispatch({
     type: 'SOCKET_STREAM',
@@ -49,7 +47,6 @@ const createPeer = ({
 }) => {
   return new Promise((resolve, reject) => {
     const isInitiator = socket.id === initiator
-    console.log('new peer - initiator', peerId, isInitiator)
     const peer = new Peer({
       initiator: isInitiator,
       config: {
@@ -78,10 +75,6 @@ const createPeer = ({
     })
   })
 }
-
-// const destroyPeer = () => {
-
-// }
 
 // state
 function* addPeer ({ channel, peerId }) {
@@ -124,7 +117,6 @@ function* setupPeers (action) {
 
   // Destroy any old peers
   const peersToDestroy = keys(existingPeers).filter(key => !peers.includes(key))
-  console.log('Removing peers', peersToDestroy)
   for (const key of peersToDestroy) {
     const peerToDestroy = existingPeers[key]
     if (peerToDestroy && peerToDestroy.channel) {

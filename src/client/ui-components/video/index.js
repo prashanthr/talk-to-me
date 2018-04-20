@@ -46,7 +46,7 @@ VideoPlayer.propTypes = {
 
 VideoPlayer.defaultProps = {
   height: 480,
-  width: 640,
+  width: 500,
   playsInline: true,
   autoPlay: true,
   muted: false,

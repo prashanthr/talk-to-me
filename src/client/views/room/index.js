@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import VideoContainer from '../../ui-components/video-container'
 import PropTypes from 'prop-types'
+import VideoContainer from '../../ui-components/video-container'
+import ToolbarWrapper from '../../ui-components/toolbar/toolbar-wrapper'
+import { Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
 
@@ -15,16 +17,27 @@ class Room extends Component {
   render () {
     return (
       <div>
-        {`Welcome to Room ${this.props.roomId}`}
+        <Grid.Row columns={2}>
+          <Grid.Column style={{ float: 'left' }}>
+            {`Welcome to Room ${this.props.roomId}`}
+          </Grid.Column>
+          <Grid.Column style={{ float: 'right' }}>
+            <ToolbarWrapper
+              onLeaveRoom={this.props.shutdown}
+            />
+          </Grid.Column>
+        </Grid.Row>
         <br />
-        {this.props.error
-          ? 'Encountered an error getting streams'
-          : (
-            this.props.user && this.props.user.streamUrl
-            ? <VideoContainer />
-            : 'Initializing streams...'
-          )
-        }
+        <Grid.Row>
+          {this.props.error
+            ? 'Encountered an error getting streams'
+            : (
+              this.props.user && this.props.user.streamUrl
+              ? <VideoContainer />
+              : 'Initializing streams...'
+            )
+          }
+        </Grid.Row>
       </div>
     )
   }

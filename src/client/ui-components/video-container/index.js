@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { map } from 'lodash'
 import createObjectUrl from '../../utils/create-object-url'
 import cuid from 'cuid'
+import { Grid } from 'semantic-ui-react'
 
 class VideoContainer extends Component {
   constructor (props) {
@@ -20,21 +21,29 @@ class VideoContainer extends Component {
   render () {
     return (
       <div>
-        <VideoPlayer
-          metadata={this.props.user.socket ? this.props.user.socket.id : null}
-          src={this.props.user.streamUrl}
-          muted
-          onLoadedMetadata={this.playStream}
-        />
-        <br />
-        {map(this.props.peer, (peer, peerId) => (
-          <VideoPlayer
-            metadata={peer.socketId}
-            src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
-            key={cuid()}
-            onLoadedMetadata={this.playStream}
-          />
-        ))}
+        <Grid columns={3}>
+          <Grid.Column>
+            <VideoPlayer
+              metadata={this.props.user.socket ? this.props.user.socket.id : null}
+              src={this.props.user.streamUrl}
+              muted
+              onLoadedMetadata={this.playStream}
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <span />
+          </Grid.Column>
+          <Grid.Column>
+            {map(this.props.peer, (peer, peerId) => (
+              <VideoPlayer
+                metadata={peer.socketId}
+                src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
+                key={cuid()}
+                onLoadedMetadata={this.playStream}
+              />
+            ))}
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }

@@ -38,7 +38,7 @@ const roomReducer = (state = initialState, action) => {
         initiator: action.initiator
       }
     case SHUTDOWN:
-      return initialize
+      return initialState
     default:
       return state
   }

@@ -4,7 +4,7 @@ import createObjectUrl from '../../utils/create-object-url'
 import { SOCKET_INITIALIZE_SUCCESS } from './socket'
 
 let initialState = {
-  id: null,
+  id: null, // not used right now
   stream: null,
   streamUrl: null,
   socket: null

@@ -3,7 +3,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { routerMiddleware } from 'react-router-redux'
 import { default as socketReduxActionMiddleware } from './socket'
-import reducers from './redux/reducers'
+import reducers from './redux/ducks/reducers'
 import sagas from './redux/sagas'
 
 export default function configureStore (history) {

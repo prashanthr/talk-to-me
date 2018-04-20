@@ -5,24 +5,21 @@ import {
   SOCKET_INITIALIZE_SUCCESS,
   SOCKET_INITIALIZE_FAILED,
   SOCKET_SIGNAL,
-  // SOCKET_STREAM,
-  JOIN_ROOM_SUCCESS
+  JOIN_ROOM_SUCCESS,
+  SOCKET_DESTROY
 } from '../ducks/socket'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
-  console.info('Received signal', peerId, signal)
   return new Promise((resolve, reject) => {
     if (!peer) {
       return reject(`Peer unknown ${peerId} ${peer}`)
     }
-    console.info('sig', signal, 'peer', peer)
     peer.signal(signal)
     return resolve()
   })
 }
 
 const handleSocketUsers = async ({ initiator, peers }) => {
-  console.info('Received users', initiator, peers)
   // already done in peer sagas
 }
 const setup = async (socket, roomId) => {
@@ -32,16 +29,6 @@ const setup = async (socket, roomId) => {
     socket.once('connect', () => {
       console.info('<>Reconnecting to server once<>')
     })
-    // socket.on('signal', ({ userId, signal }) => {
-    //   console.log('Is this even working?')
-    //   console.info('<>Signalevent<>', userId, signal)
-    //   handleSocketSignal()
-    // })
-    // socket.on('users', ({ initiator, users }) => {
-    //   console.log('Is this even working?')
-    //   console.info('<>usersevent<>', initiator, users)
-    //   handleSocketUsers()
-    // })
     socket.emit('join', roomId)
     return resolve(socket)
   })
@@ -64,8 +51,12 @@ function* socketInitialize (action) {
   }
 }
 
+function* socketDestroy (action) {
+  const destroy = (socket, roomId) => socket.emit('leave', roomId)
+  yield destroy(clientSocket, action.roomId)
+}
+
 function* socketSignal (action) {
-  console.log('socketSignalFlow', action)
   try {
     const peers = yield select(state => state.peer)
     const peer = peers[action.peerId].channel
@@ -76,7 +67,6 @@ function* socketSignal (action) {
 }
 
 function* socketUsers (action) {
-  console.log('socketUsersflow', action)
   yield handleSocketUsers({ initiator: action.initiator, peers: action.peers })
 }
 function* socketInitializeFlow () {
@@ -91,8 +81,13 @@ function* socketUsersFlow () {
   yield takeEvery(JOIN_ROOM_SUCCESS, socketUsers)
 }
 
+function* socketDestroyFlow () {
+  yield takeLatest(SOCKET_DESTROY, socketDestroy)
+}
+
 export default [
   fork(socketInitializeFlow),
   fork(socketSignalFlow),
-  fork(socketUsersFlow)
+  fork(socketUsersFlow),
+  fork(socketDestroyFlow)
 ]

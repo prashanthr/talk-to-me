@@ -1,7 +1,7 @@
 import { call, put, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED, SHUTDOWN } from '../ducks/room'
-import getUserMedia from '../../utils/get-user-media'
 import { SOCKET_INITIALIZE, SOCKET_DESTROY } from '../ducks/socket'
+import getUserMedia from '../../utils/get-user-media'
 
 function* initialize (action) {
   try {

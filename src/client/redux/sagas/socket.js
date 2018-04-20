@@ -5,8 +5,8 @@ import {
   SOCKET_INITIALIZE_SUCCESS,
   SOCKET_INITIALIZE_FAILED,
   SOCKET_SIGNAL,
-  // SOCKET_STREAM,
-  JOIN_ROOM_SUCCESS
+  JOIN_ROOM_SUCCESS,
+  SOCKET_DESTROY
 } from '../ducks/socket'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
@@ -32,16 +32,6 @@ const setup = async (socket, roomId) => {
     socket.once('connect', () => {
       console.info('<>Reconnecting to server once<>')
     })
-    // socket.on('signal', ({ userId, signal }) => {
-    //   console.log('Is this even working?')
-    //   console.info('<>Signalevent<>', userId, signal)
-    //   handleSocketSignal()
-    // })
-    // socket.on('users', ({ initiator, users }) => {
-    //   console.log('Is this even working?')
-    //   console.info('<>usersevent<>', initiator, users)
-    //   handleSocketUsers()
-    // })
     socket.emit('join', roomId)
     return resolve(socket)
   })
@@ -62,6 +52,11 @@ function* socketInitialize (action) {
       error
     })
   }
+}
+
+function* socketDestroy (action) {
+  const destroy = (socket, roomId) => socket.emit('leave', roomId)
+  yield destroy(clientSocket, action.roomId)
 }
 
 function* socketSignal (action) {
@@ -91,8 +86,13 @@ function* socketUsersFlow () {
   yield takeEvery(JOIN_ROOM_SUCCESS, socketUsers)
 }
 
+function* socketDestroyFlow () {
+  yield takeLatest(SOCKET_DESTROY, socketDestroy)
+}
+
 export default [
   fork(socketInitializeFlow),
   fork(socketSignalFlow),
-  fork(socketUsersFlow)
+  fork(socketUsersFlow),
+  fork(socketDestroyFlow)
 ]

@@ -2,13 +2,14 @@ import { SOCKET_STREAM } from './socket'
 import createObjectUrl from '../../utils/create-object-url'
 export const PEER_ADD = 'PEER_ADD'
 export const PEER_REMOVE = 'PEER_REMOVE'
-// export const PEER_SIGNAL = 'PEER_SIGNAL'
 
 let initialState = {
-  // 'test': {
-  //   socketId: null,
-  //   channel: null
-  // }
+  /*
+    'peer-x': {
+      socketId: null,
+      channel: null
+    }
+  */
 }
 
 const peerReducer = (state = initialState, action) => {

@@ -1,8 +1,9 @@
 import _debug from 'debug'
 import io from '../socket/io'
-import { keys, filter, keyBy, mapValues } from 'lodash'
+import { keys } from 'lodash'
 
 const debug = _debug('server:socket')
+
 /* Utils for broadcasting redux-actions */
 const buildReduxPayload = (actionType, data) => ({ type: actionType, ...data })
 const broadcast = ({
@@ -30,12 +31,11 @@ const getUsers = (roomId) => {
   return users
 }
 
+/* Socket setup */
 const setup = io => {
   io.on('connection', socket => {
     debug('A user connected, will emit a welcome message')
-    // @todo add credentials verification
     socket.emit('connection-accepted', {})
-    // Handle server-side deletion
     socket.on('signal', payload => {
       debug('signal: %s, payload: %o', socket.id, payload)
       broadcast({
@@ -65,10 +65,8 @@ const setup = io => {
       socket.leave(roomId)
       socket.join(roomId)
       socket.roomId = roomId
-      const users = getUsers(roomId)
-      const peers = users //filter(users, user => user !== socket.id)
-      // const transformedPeers = mapValues(keyBy(peers, peerId => peerId), id => ({ }))
-      debug('ready: %s, room: %s, users: %o', socket.id, roomId, users)
+      const peers = getUsers(roomId)
+      debug('ready: %s, room: %s, users: %o', socket.id, roomId, peers)
       broadcast({
         roomId,
         payload: buildReduxPayload('JOIN_ROOM_SUCCESS', {

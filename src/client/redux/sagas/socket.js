@@ -10,19 +10,16 @@ import {
 } from '../ducks/socket'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
-  console.info('Received signal', peerId, signal)
   return new Promise((resolve, reject) => {
     if (!peer) {
       return reject(`Peer unknown ${peerId} ${peer}`)
     }
-    console.info('sig', signal, 'peer', peer)
     peer.signal(signal)
     return resolve()
   })
 }
 
 const handleSocketUsers = async ({ initiator, peers }) => {
-  console.info('Received users', initiator, peers)
   // already done in peer sagas
 }
 const setup = async (socket, roomId) => {
@@ -60,7 +57,6 @@ function* socketDestroy (action) {
 }
 
 function* socketSignal (action) {
-  console.log('socketSignalFlow', action)
   try {
     const peers = yield select(state => state.peer)
     const peer = peers[action.peerId].channel
@@ -71,7 +67,6 @@ function* socketSignal (action) {
 }
 
 function* socketUsers (action) {
-  console.log('socketUsersflow', action)
   yield handleSocketUsers({ initiator: action.initiator, peers: action.peers })
 }
 function* socketInitializeFlow () {

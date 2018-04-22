@@ -2,42 +2,48 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VideoContainer from '../../ui-components/video-container'
 import ToolbarWrapper from '../../ui-components/toolbar/toolbar-wrapper'
-import { Grid } from 'semantic-ui-react'
+// import { Grid } from 'semantic-ui-react'
+import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
+import './index.css'
 
 class Room extends Component {
   componentWillMount () {
     this.props.initialize(this.props.roomId)
   }
   componentWillUnmount () {
+    this.shutdown()
+  }
+  shutdown () {
     this.props.shutdown(this.props.roomId)
   }
-
   render () {
     return (
       <div>
-        <Grid.Row columns={2}>
-          <Grid.Column style={{ float: 'left' }}>
-            {`Welcome to Room ${this.props.roomId}`}
-          </Grid.Column>
-          <Grid.Column style={{ float: 'right' }}>
-            <ToolbarWrapper
-              onLeaveRoom={this.props.shutdown}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <br />
-        <Grid.Row>
-          {this.props.error
-            ? 'Encountered an error getting streams'
-            : (
-              this.props.user && this.props.user.streamUrl
-              ? <VideoContainer />
-              : 'Initializing streams...'
-            )
-          }
-        </Grid.Row>
+        <Grid fluid>
+          <Row className='show-grid'>
+            <Col md={12} xs={12} className='room-toolbar'>
+              <br />
+              <ToolbarWrapper
+                label={`Room - ${this.props.roomId}`}
+                onLeaveRoom={this.props.shutdown}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} xs={12}>
+              {this.props.error
+                ? 'Encountered an error getting streams'
+                : (
+                  this.props.user && this.props.user.streamUrl
+                  ? <VideoContainer />
+                  : 'Initializing streams...'
+                )
+              }
+            </Col>
+          </Row>
+        </Grid>
       </div>
     )
   }

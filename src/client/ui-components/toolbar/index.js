@@ -1,30 +1,33 @@
 import React, { Component } from 'react'
-import { Icon, Menu } from 'semantic-ui-react'
+import { Icon, Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import { map } from 'lodash'
 
 class Toolbar extends Component {
   renderMenuItem = (item) => (
-    <Menu.Item
+    <Button 
       key={item.key}
-      name={item.name || item.key}
-      active={this.props.activeMenuItem === item.key}
-      onClick={item.onClick}
-    >
+      onClick={item.onClick}>
       <Icon name={item.icon} />
       {item.label || item.key}
-    </Menu.Item>
+    </Button>
   )
   render() {
     return (
-      <Menu compact icon='labeled'>
-        {map(this.props.items, item => this.renderMenuItem(item))}
-      </Menu>
+      <div>
+        <Button.Group>
+          <Button active={false} onClick={e => e.preventDefault()}>
+            {this.props.label}
+          </Button>
+          {map(this.props.items, item => this.renderMenuItem(item))}
+        </Button.Group>
+      </div>
     )
   }
 }
 
 Toolbar.propTypes = {
+  label: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
   activeMenuItem: PropTypes.string
 }

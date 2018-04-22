@@ -42,6 +42,7 @@ class ToolbarWrapper extends Component {
     return (
       <div>
         <Toolbar
+          label={this.props.label}
           items={menuItems}
         />
         <SoundcheckWrapper 
@@ -54,6 +55,7 @@ class ToolbarWrapper extends Component {
 }
 
 ToolbarWrapper.propTypes = {
+  label: PropTypes.string,
   onLeaveRoom: PropTypes.func,
   history: PropTypes.any
 }

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import VideoPlayer from '../video'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { map } from 'lodash'
+import { map, keys, chunk } from 'lodash'
 import createObjectUrl from '../../utils/create-object-url'
 import cuid from 'cuid'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Row, Col } from 'react-bootstrap'
+import './index.css'
 
 class VideoContainer extends Component {
   constructor (props) {
@@ -19,32 +20,27 @@ class VideoContainer extends Component {
   }
 
   render () {
+    const rowSets = chunk(keys(this.props.users), this.props.usersPerRow)
     return (
-      <div>
-        <Grid columns={3}>
-          <Grid.Column>
-            <VideoPlayer
-              metadata={this.props.user.socket ? this.props.user.socket.id : null}
-              src={this.props.user.streamUrl}
-              muted
-              onLoadedMetadata={this.playStream}
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <span />
-          </Grid.Column>
-          <Grid.Column>
-            {map(this.props.peer, (peer, peerId) => (
-              <VideoPlayer
-                metadata={peer.socketId}
-                src={peer.streamUrl || (peer.stream ? createObjectUrl(peer.stream) : '')}
-                key={cuid()}
-                onLoadedMetadata={this.playStream}
-              />
-            ))}
-          </Grid.Column>
-        </Grid>
-      </div>
+      <Grid fluid>
+        {
+          map(rowSets, (rowUsers, index) => (
+            <Row key={`row-${index}`} className='show-grid flex'>
+              {map(rowUsers, userId => (
+                <Col md={4} key={`col-${index}-${userId}`} className='video-col'>
+                  <VideoPlayer
+                    metadata={this.props.users[userId].socketId}
+                    src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : '')}
+                    key={cuid()}
+                    muted={true || this.props.users[userId].isVideoMuted}
+                    onLoadedMetadata={this.playStream}
+                  />
+                </Col>
+              ))}
+            </Row>
+          ))
+        }
+      </Grid>
     )
   }
 }
@@ -54,16 +50,29 @@ VideoContainer.propTypes = {
     streamUrl: PropTypes.string,
     socket: PropTypes.object
   }),
-  peer: PropTypes.object
+  peer: PropTypes.object,
+  users: PropTypes.object,
+  usersPerRow: PropTypes.number
 }
 
 VideoContainer.defaultProps = {
+  usersPerRow: 3
 }
 
 function mapStateToProps (state, ownProps) {
+  const userSocketId = state.user && state.user.socket ? state.user.socket.id : null
   return {
-    user: state.user,
-    peer: state.peer
+    // user: state.user,
+    // peer: state.peer,
+    // numberOfUsers: (state.user ? 1 : 0) + (state.peer ? keys(state.peer) : 0),
+    users: {
+      ...state.peer,
+      [userSocketId]: {
+        streamUrl: state.user ? state.user.streamUrl : null,
+        socketId: userSocketId,
+        isVideoMuted: true
+      }
+    }
   }
 }
 

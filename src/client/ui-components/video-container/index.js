@@ -32,7 +32,7 @@ class VideoContainer extends Component {
                     metadata={this.props.users[userId].socketId}
                     src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : '')}
                     key={cuid()}
-                    muted={true || this.props.users[userId].isVideoMuted}
+                    muted={this.props.users[userId].muted}
                     onLoadedMetadata={this.playStream}
                   />
                 </Col>
@@ -70,7 +70,7 @@ function mapStateToProps (state, ownProps) {
       [userSocketId]: {
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: userSocketId,
-        isVideoMuted: true
+        muted: true
       }
     }
   }

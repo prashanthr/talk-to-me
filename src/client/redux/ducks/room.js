@@ -4,6 +4,12 @@ export const INITIALIZE = 'INITIALIZE'
 export const INITIALIZE_SUCCESS = 'INITIALIZE_SUCCESS'
 export const INITIALIZE_FAILED = 'INITIALIZE_FAILED'
 export const SHUTDOWN = 'SHUTDOWN'
+export const VIDEO_MUTE = 'VIDEO_MUTE'
+
+export const onMute = (peerId) => ({
+  type: VIDEO_MUTE,
+  peerId
+})
 
 export const initialize = (roomId) => ({
   type: INITIALIZE,

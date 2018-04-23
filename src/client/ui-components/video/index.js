@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Button, ButtonGroup } from 'react-bootstrap'
+import './index.css'
 
 class VideoPlayer extends Component {
   constructor (props) {
@@ -7,17 +9,17 @@ class VideoPlayer extends Component {
     this.videoRef = null
   }
   render () {
+    const height = this.props.height ? { height: this.props.height } : {}
+    const width = this.props.width ? { width: this.props.width } : { }
     return (
       <div>
         {this.props.showDebugInfo &&
           <span>
-            {`INFO>>>`}
-            {this.props.metadata}
+            {`${JSON.stringify(this.props.metadata, null, 2)}`}
           </span>
         }
         <video
-          height={this.props.height}
-          width={this.props.width}
+          className='video'
           src={this.props.src}
           ref={el => { this.videoRef = el }}
           muted={this.props.muted}
@@ -25,7 +27,18 @@ class VideoPlayer extends Component {
           autoPlay={this.props.autoPlay}
           playsInline={this.props.playsInline}
           onLoadedMetadata={this.props.onLoadedMetadata}
+          {...height}
+          {...width}
         />
+        {!this.props.disableMute &&
+          <div className='video-controls'>
+            <ButtonGroup vertical block>
+              <Button onClick={this.props.onMute}>
+                Mute
+              </Button>
+            </ButtonGroup>
+          </div>
+        }
       </div>
     )
   }
@@ -39,18 +52,21 @@ VideoPlayer.propTypes = {
   playsInline: PropTypes.bool,
   autoPlay: PropTypes.bool,
   onClick: PropTypes.func,
+  onMute: PropTypes.func,
   onLoadedMetadata: PropTypes.func,
   showDebugInfo: PropTypes.bool,
-  metadata: PropTypes.any
+  metadata: PropTypes.any,
+  disableMute: PropTypes.bool
 }
 
 VideoPlayer.defaultProps = {
-  height: 480,
-  width: 500,
+  height: null,
+  width: null,
   playsInline: true,
   autoPlay: true,
   muted: false,
-  showDebugInfo: false
+  showDebugInfo: false,
+  disableMute: false
 }
 
 export default VideoPlayer

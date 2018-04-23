@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import VideoPlayer from '../video'
+import { Grid, Row, Col } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { onMute } from '../../redux/ducks/room'
 import { map, keys, chunk } from 'lodash'
 import createObjectUrl from '../../utils/create-object-url'
-import cuid from 'cuid'
-import { Grid, Row, Col } from 'react-bootstrap'
 import './index.css'
 
 class VideoContainer extends Component {
   constructor (props) {
     super(props)
     this.videoRef = null
+    this.playStream = this.playStream.bind(this)
   }
 
   playStream (event) {
@@ -27,13 +28,23 @@ class VideoContainer extends Component {
           map(rowSets, (rowUsers, index) => (
             <Row key={`row-${index}`} className='show-grid flex'>
               {map(rowUsers, userId => (
-                <Col md={4} key={`col-${index}-${userId}`} className='video-col'>
+                <Col md={12 / rowUsers.length} key={`col-${index}-${userId}`} className='video-col'>
                   <VideoPlayer
-                    metadata={this.props.users[userId].socketId}
+                    metadata={{
+                      socketId: this.props.users[userId].socketId,
+                      isMuted: this.props.users[userId].muted,
+                      disableMute: this.props.users[userId].disableMute
+                    }}
                     src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : '')}
-                    key={cuid()}
-                    muted={this.props.users[userId].muted}
+                    key={`video-${userId}`}
                     onLoadedMetadata={this.playStream}
+                    onMute={event => {
+                      event.preventDefault()
+                      this.props.onMute(userId)
+                    }}
+                    disableMute={this.props.users[userId].disableMute}
+                    muted={this.props.users[userId].muted}
+                    showDebugInfo
                   />
                 </Col>
               ))}
@@ -52,7 +63,8 @@ VideoContainer.propTypes = {
   }),
   peer: PropTypes.object,
   users: PropTypes.object,
-  usersPerRow: PropTypes.number
+  usersPerRow: PropTypes.number,
+  onMute: PropTypes.func
 }
 
 VideoContainer.defaultProps = {
@@ -60,20 +72,18 @@ VideoContainer.defaultProps = {
 }
 
 function mapStateToProps (state, ownProps) {
-  const userSocketId = state.user && state.user.socket ? state.user.socket.id : null
+  if (!state.user || !state.user.socket) return { users: {} }
   return {
-    // user: state.user,
-    // peer: state.peer,
-    // numberOfUsers: (state.user ? 1 : 0) + (state.peer ? keys(state.peer) : 0),
     users: {
       ...state.peer,
-      [userSocketId]: {
+      [state.user.socket.id]: {
         streamUrl: state.user ? state.user.streamUrl : null,
-        socketId: userSocketId,
-        muted: true
+        socketId: state.user.socket.id,
+        muted: true,
+        disableMute: true
       }
     }
   }
 }
 
-export default connect(mapStateToProps, {})(VideoContainer)
+export default connect(mapStateToProps, { onMute })(VideoContainer)

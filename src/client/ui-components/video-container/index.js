@@ -44,7 +44,6 @@ class VideoContainer extends Component {
                     }}
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
-                    showDebugInfo
                   />
                 </Col>
               ))}

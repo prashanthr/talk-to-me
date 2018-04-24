@@ -35,8 +35,12 @@ const peerEventStream = ({ peerId, socket, stream }) => {
   })
 }
 
-const peerEventClose = () => {
+const peerEventClose = (peerId) => {
   console.info('Peer event close')
+  return store.dispatch({
+    type: PEER_REMOVE,
+    peerId
+  })
 }
 
 const createPeer = ({
@@ -65,7 +69,7 @@ const createPeer = ({
     })
     peer.once('error', peerEventError)
     peer.once('connect', peerEventConnect)
-    peer.once('close', peerEventClose)
+    peer.once('close', () => peerEventClose(peerId))
     peer.on('signal', signal => peerEventSignal({ signal, socket, peerId }))
     peer.on('stream', stream => peerEventStream({ stream, socket, peerId }))
     peer.on('data', peerEventData)

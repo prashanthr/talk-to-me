@@ -35,7 +35,8 @@ class VideoContainer extends Component {
                       isMuted: this.props.users[userId].muted,
                       disableMute: this.props.users[userId].disableMute
                     }}
-                    src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : '')}
+                    srcObject={this.props.users[userId].stream}
+                    src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : null)}
                     key={`video-${userId}`}
                     onLoadedMetadata={this.playStream}
                     onMute={event => {

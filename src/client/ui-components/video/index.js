@@ -11,6 +11,12 @@ class VideoPlayer extends Component {
   render () {
     const height = this.props.height ? { height: this.props.height } : {}
     const width = this.props.width ? { width: this.props.width } : { }
+    let source = {}
+    if (this.props.srcObject && this.videoRef) {
+      this.videoRef.srcObject = this.props.srcObject
+    } else {
+      source = { src: this.props.src }
+    }
     return (
       <div>
         {this.props.showDebugInfo &&
@@ -20,13 +26,13 @@ class VideoPlayer extends Component {
         }
         <video
           className='video'
-          src={this.props.src}
           ref={el => { this.videoRef = el }}
           muted={this.props.muted}
           onClick={this.props.onClick}
           autoPlay={this.props.autoPlay}
           playsInline={this.props.playsInline}
           onLoadedMetadata={this.props.onLoadedMetadata}
+          {...source}
           {...height}
           {...width}
         />
@@ -34,7 +40,7 @@ class VideoPlayer extends Component {
           <div className='video-controls'>
             <ButtonGroup vertical block>
               <Button onClick={this.props.onMute}>
-                Mute
+                Mute 🔇
               </Button>
             </ButtonGroup>
           </div>
@@ -48,6 +54,7 @@ VideoPlayer.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   src: PropTypes.string,
+  srcObject: PropTypes.object,
   muted: PropTypes.bool,
   playsInline: PropTypes.bool,
   autoPlay: PropTypes.bool,

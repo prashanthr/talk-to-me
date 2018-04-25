@@ -8,12 +8,20 @@ class VideoPlayer extends Component {
     super(props)
     this.videoRef = null
   }
+  setSrcObject (srcObject) {
+    this.videoRef.srcObject = srcObject
+  }
+  componentWillReceiveProps (nextProps) {
+    if (this.props !== nextProps && nextProps.srcObject) {
+      this.setSrcObject(nextProps.srcObject)
+    }
+  }
   render () {
     const height = this.props.height ? { height: this.props.height } : {}
     const width = this.props.width ? { width: this.props.width } : { }
     let source = {}
-    if (this.props.srcObject && this.videoRef) {
-      this.videoRef.srcObject = this.props.srcObject
+    if (this.props.srcObject && this.videoRef && !this.videoRef.srcObject) {
+      this.setSrcObject(this.props.srcObject)
     } else {
       source = { src: this.props.src }
     }
@@ -40,7 +48,7 @@ class VideoPlayer extends Component {
           <div className='video-controls'>
             <ButtonGroup vertical block>
               <Button onClick={this.props.onMute}>
-                Mute 🔇
+                {this.props.muted ? 'Unmute 🔈' : 'Mute 🔇'}
               </Button>
             </ButtonGroup>
           </div>

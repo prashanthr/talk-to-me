@@ -18,9 +18,9 @@ const findDefaultDevice = (type, devices) => {
   const device = find(devices, device => device.kind === type && device.deviceId === 'default')
   const firstDevice = find(devices, device => device.kind === type)
   return device
-    ? `${device.kind}-${device.deviceId}` 
+    ? `${device.kind}-${device.deviceId}`
     : firstDevice
-      ? `${firstDevice.kind}-${firstDevice.deviceId}` 
+      ? `${firstDevice.kind}-${firstDevice.deviceId}`
       : null
 }
 const soundcheckReducer = (state = initialState, action) => {

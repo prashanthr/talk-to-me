@@ -3,10 +3,12 @@ import { routerReducer } from 'react-router-redux'
 import peerReducer from './peer'
 import roomReducer from './room'
 import userReducer from './user'
+import soundcheckReducer from './soundcheck'
 
 export default combineReducers({
   router: routerReducer,
   room: roomReducer,
   user: userReducer,
-  peer: peerReducer
+  peer: peerReducer,
+  soundcheck: soundcheckReducer
 })

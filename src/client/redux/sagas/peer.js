@@ -4,6 +4,7 @@ import { PEER_ADD, PEER_REMOVE } from '../ducks/peer'
 import { forEach, filter, keys } from 'lodash'
 import Peer from 'simple-peer'
 import { store } from '../../index'
+import config from '../../config'
 
 // Peer event handlers
 const peerEventError = (err) => {
@@ -54,10 +55,7 @@ const createPeer = ({
     const peer = new Peer({
       initiator: isInitiator,
       config: {
-        iceServers: [{
-          url: 'stun:stun.l.google.com:19302',
-          urls: 'stun:stun.l.google.com:19302'
-        }]
+        iceServers: config.iceServers
       },
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95

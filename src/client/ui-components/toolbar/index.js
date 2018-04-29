@@ -5,7 +5,8 @@ import { map } from 'lodash'
 
 class Toolbar extends Component {
   renderMenuItem = (item) => (
-    <Button 
+    <Button
+      active={item.active !== false}
       key={item.key}
       onClick={item.onClick}>
       <Icon name={item.icon} />
@@ -16,9 +17,6 @@ class Toolbar extends Component {
     return (
       <div>
         <Button.Group>
-          <Button active={false} onClick={e => e.preventDefault()}>
-            {this.props.label}
-          </Button>
           {map(this.props.items, item => this.renderMenuItem(item))}
         </Button.Group>
       </div>
@@ -27,7 +25,6 @@ class Toolbar extends Component {
 }
 
 Toolbar.propTypes = {
-  label: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
   activeMenuItem: PropTypes.string
 }

@@ -9,6 +9,7 @@ class VideoPlayer extends Component {
     this.videoRef = null
   }
   setSrcObject (srcObject) {
+    console.info('setting src object')
     this.videoRef.srcObject = srcObject
   }
   componentWillReceiveProps (nextProps) {
@@ -20,11 +21,13 @@ class VideoPlayer extends Component {
     const height = this.props.height ? { height: this.props.height } : {}
     const width = this.props.width ? { width: this.props.width } : { }
     let source = {}
-    if (this.props.srcObject && this.videoRef && !this.videoRef.srcObject) {
-      this.setSrcObject(this.props.srcObject)
-    } else {
-      source = { src: this.props.src }
-    }
+    // if (this.props.srcObject && this.videoRef && !this.videoRef.srcObject) {
+    //   console.log('srcObject', this.props.srcObject, this.videoRef)
+    //   this.setSrcObject(this.props.srcObject)
+    // } else {
+    //   console.info('src-check', this.props)
+    //   // source = { src: this.props.src }
+    // }
     return (
       <div>
         {this.props.showDebugInfo &&

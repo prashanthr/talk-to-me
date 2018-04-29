@@ -77,6 +77,7 @@ function mapStateToProps (state, ownProps) {
     users: {
       ...state.peer,
       [state.user.socket.id]: {
+        stream: state.user ? state.user.stream : null,
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: state.user.socket.id,
         muted: true,

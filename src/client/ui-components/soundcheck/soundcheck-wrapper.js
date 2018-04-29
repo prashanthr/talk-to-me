@@ -36,7 +36,7 @@ class SoundcheckWrapper extends Component {
 SoundcheckWrapper.propTypes = {
   onClose: PropTypes.func,
   show: PropTypes.bool,
-  initializeSoundcheck: PropTypes.bool,
+  initializeSoundcheck: PropTypes.func,
   deviceInfo: PropTypes.object
 }
 

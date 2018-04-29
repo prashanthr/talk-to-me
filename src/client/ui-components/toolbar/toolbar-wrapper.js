@@ -31,17 +31,16 @@ class ToolbarWrapper extends Component {
     const menuItems = [{
       key: 'room',
       label: `Room - ${this.props.roomId}`,
-      icon: 'setting',
       onClick: (event) => event.preventDefault()
     },{
       key: 'setting',
       label: 'Settings',
-      icon: 'setting',
+      icon: 'cog',
       onClick: this.onSettingsClick
     }, {
       key: 'exit',
-      label: 'Exit Room',
-      icon: 'external',
+      label: 'Leave Room',
+      icon: 'remove-circle',
       onClick: this.onExitRoom
     }]
     return (

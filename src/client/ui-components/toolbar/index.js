@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Button } from 'semantic-ui-react'
+import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { map } from 'lodash'
 
@@ -9,16 +9,16 @@ class Toolbar extends Component {
       active={item.active !== false}
       key={item.key}
       onClick={item.onClick}>
-      <Icon name={item.icon} />
+      {item.icon && <Glyphicon glyph={item.icon} />}
       {item.label || item.key}
     </Button>
   )
   render() {
     return (
       <div>
-        <Button.Group>
+        <ButtonGroup size='large'>
           {map(this.props.items, item => this.renderMenuItem(item))}
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }

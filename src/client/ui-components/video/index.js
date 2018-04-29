@@ -13,7 +13,11 @@ class VideoPlayer extends Component {
     this.videoRef.srcObject = srcObject
   }
   componentWillReceiveProps (nextProps) {
-    if (this.props !== nextProps && nextProps.srcObject) {
+    console.log('this.props', this.props, 'nextProps', nextProps)
+    if (
+      this.props !== nextProps &&
+      nextProps.srcObject
+    ) {
       this.setSrcObject(nextProps.srcObject)
     }
   }

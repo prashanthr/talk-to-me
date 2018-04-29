@@ -9,7 +9,6 @@ import { initializeSoundcheck } from '../../redux/ducks/soundcheck'
 class SoundcheckWrapper extends Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.show !== nextProps.show && nextProps.show) {
-      console.log(this.props, nextProps)
       this.props.initializeSoundcheck()
     }
   }
@@ -25,7 +24,10 @@ class SoundcheckWrapper extends Component {
         </Modal.Header>
         <Modal.Body>
           <Soundcheck
-            deviceInfo={this.props.deviceInfo}
+            devices={this.props.devices}
+            videoInput={this.props.videoInput}
+            audioInput={this.props.audioInput}
+            audioOutput={this.props.audioOutput}
           />
         </Modal.Body>
       </Modal>
@@ -37,12 +39,33 @@ SoundcheckWrapper.propTypes = {
   onClose: PropTypes.func,
   show: PropTypes.bool,
   initializeSoundcheck: PropTypes.func,
-  deviceInfo: PropTypes.object
+  devices: PropTypes.object,
+  videoInput: PropTypes.object,
+  audioInput: PropTypes.object,
+  audioOutput: PropTypes.object
 }
 
 function mapStateToProps (state) {
   return {
-    deviceInfo: state.soundcheck
+    devices: state.soundcheck.devices,
+    videoInput: {
+      id: state.soundcheck.defaultVideoInputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultVideoInputId]
+        ? state.soundcheck.devices[state.soundcheck.defaultVideoInputId].label
+        : null
+    },
+    audioInput: {
+      id: state.soundcheck.defaultAudioInputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultAudioInputId]
+        ? state.soundcheck.devices[state.soundcheck.defaultAudioInputId].label
+        : null
+    },
+    audioOutput: {
+      id: state.soundcheck.defaultAudioOutputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultAudioOutputId]
+      ? state.soundcheck.devices[state.soundcheck.defaultAudioOutputId].label
+      : null
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { put, select, fork, takeLatest } from 'redux-saga/effects'
+import { put, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE_SOUNDCHECK, INITIALIZE_SOUNDCHECK_SUCCESS, INITIALIZE_SOUNDCHECK_FAILED } from '../ducks/soundcheck'
 import { getDevices } from '../../utils/navigator'
 

@@ -4,21 +4,22 @@ import { Row, Col } from 'react-bootstrap'
 
 class Soundcheck extends Component {
   render () {
+    if (!this.props.devices) return null
     return (
       <div>
         <Row>
           <Col>
-            Video: {this.props.deviceInfo.devices[this.props.deviceInfo.defaultVideoInputId].label}
+            Video Source: {`${this.props.videoInput.label}`}
           </Col>
         </Row>
         <Row>
           <Col>
-            AudioIn: {this.props.deviceInfo.devices[this.props.deviceInfo.defaultAudioInputId].label}
+            Audio Input Source: {`${this.props.audioInput.label}`}
           </Col>
         </Row>
         <Row>
           <Col>
-            AudioOut: {this.props.deviceInfo.devices[this.props.deviceInfo.defaultAudioOutputId].label}
+            Audio Output Source: {`${this.props.audioOutput.label}`}
           </Col>
         </Row>
       </div>
@@ -27,7 +28,10 @@ class Soundcheck extends Component {
 }
 
 Soundcheck.propTypes = {
-  deviceInfo: PropTypes.object
+  devices: PropTypes.object,
+  audioInput: PropTypes.object,
+  audioOutput: PropTypes.object,
+  videoInput: PropTypes.object
 }
 
 export default Soundcheck

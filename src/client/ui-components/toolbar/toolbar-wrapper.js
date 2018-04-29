@@ -34,12 +34,12 @@ class ToolbarWrapper extends Component {
       onClick: (event) => event.preventDefault()
     },{
       key: 'setting',
-      label: 'Settings',
+      label: ' Settings',
       icon: 'cog',
       onClick: this.onSettingsClick
     }, {
       key: 'exit',
-      label: 'Leave Room',
+      label: ' Exit Room',
       icon: 'remove-circle',
       onClick: this.onExitRoom
     }]

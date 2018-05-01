@@ -11,7 +11,6 @@ function* initialize (action) {
       roomId: action.roomId,
       stream
     })
-    console.log('Stream', stream)
     yield put({
       type: SOCKET_INITIALIZE,
       roomId: action.roomId

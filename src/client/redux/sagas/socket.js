@@ -24,7 +24,6 @@ const handleSocketUsers = async ({ initiator, peers }) => {
 }
 const setup = async (socket, roomId) => {
   return new Promise((resolve, reject) => {
-    console.log('socket', socket)
     // connection is already done in socket/index.js but just in case
     socket.once('connect', () => {
       console.info('<>Reconnecting to server once<>')
@@ -41,7 +40,6 @@ function* socketInitialize (action) {
       type: SOCKET_INITIALIZE_SUCCESS,
       socket
     })
-    console.log('socket', socket)
   } catch (error) {
     console.error('Socket Initialize Failed', error)
     yield put({

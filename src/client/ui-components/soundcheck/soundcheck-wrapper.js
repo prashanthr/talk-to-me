@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Modal } from 'react-bootstrap'
 import Soundcheck from './index'
 import { connect } from 'react-redux'
-import { initializeSoundcheck } from '../../redux/ducks/soundcheck'
+import { initializeSoundcheck, onSoundcheckUpdate } from '../../redux/ducks/soundcheck'
 
 class SoundcheckWrapper extends Component {
   componentWillReceiveProps (nextProps) {
@@ -28,6 +28,8 @@ class SoundcheckWrapper extends Component {
             videoInput={this.props.videoInput}
             audioInput={this.props.audioInput}
             audioOutput={this.props.audioOutput}
+            onSoundcheckUpdate={this.props.onSoundcheckUpdate}
+            onClose={this.props.onClose}
           />
         </Modal.Body>
       </Modal>
@@ -42,7 +44,8 @@ SoundcheckWrapper.propTypes = {
   devices: PropTypes.object,
   videoInput: PropTypes.object,
   audioInput: PropTypes.object,
-  audioOutput: PropTypes.object
+  audioOutput: PropTypes.object,
+  onSoundcheckUpdate: PropTypes.func
 }
 
 function mapStateToProps (state) {
@@ -69,4 +72,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, { initializeSoundcheck })(SoundcheckWrapper)
+export default connect(mapStateToProps, { initializeSoundcheck, onSoundcheckUpdate })(SoundcheckWrapper)

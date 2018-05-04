@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/prashanthr/talk-to-me/compare/v1.2.1...v1.2.2) (2018-05-04)
+
+
+### Bug Fixes
+
+* **peer:** remove peer upon disconnect ([b806aa8](https://github.com/prashanthr/talk-to-me/commit/b806aa8))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/prashanthr/talk-to-me/compare/v1.2.0...v1.2.1) (2018-04-23)
 

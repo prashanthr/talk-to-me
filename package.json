@@ -41,7 +41,8 @@
   "scripts": {
     "start": "react-scripts start",
     "start-server": "bin/server.sh",
-    "start-server-dev": "bin/server-dev.sh",
+    "start-server-dev": "pm2 startOrRestart ecosystem.json --only talk --env development",
+    "start-server-prod": "pm2 startOrRestart ecosystem.json --only talk --env production",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

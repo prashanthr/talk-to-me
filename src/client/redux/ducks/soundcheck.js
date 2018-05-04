@@ -3,9 +3,19 @@ import { keyBy, find } from 'lodash'
 export const INITIALIZE_SOUNDCHECK = 'INITIALIZE_SOUNDCHECK'
 export const INITIALIZE_SOUNDCHECK_SUCCESS = 'INITIALIZE_SOUNDCHECK_SUCCESS'
 export const INITIALIZE_SOUNDCHECK_FAILED = 'INITIALIZE_SOUNDCHECK_FAILED'
+export const UPDATE_SOUNDCHECK = 'UPDATE_SOUNDCHECK'
+export const UPDATE_SOUNDCHECK_SUCCESS = 'UPDATE_SOUNDCHECK_SUCCESS'
+export const UPDATE_SOUNDCHECK_FAILED = 'UPDATE_SOUNDCHECK_FAILED'
 
 export const initializeSoundcheck = () => ({
   type: INITIALIZE_SOUNDCHECK
+})
+
+export const onSoundcheckUpdate = ({ audioInput, audioOutput, videoInput }) => ({
+  type: UPDATE_SOUNDCHECK,
+  audioInput,
+  audioOutput,
+  videoInput
 })
 
 const initialState = {

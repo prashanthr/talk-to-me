@@ -15,6 +15,10 @@ class VideoContainer extends Component {
     this.playStream = this.playStream.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    // console.log('new', nextProps)
+  }
+
   playStream (event) {
     event.preventDefault()
     event.target.play()
@@ -77,6 +81,7 @@ function mapStateToProps (state, ownProps) {
     users: {
       ...state.peer,
       [state.user.socket.id]: {
+        stream: state.user ? state.user.stream : null,
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: state.user.socket.id,
         muted: true,

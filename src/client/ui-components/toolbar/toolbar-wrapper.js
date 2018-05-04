@@ -29,20 +29,23 @@ class ToolbarWrapper extends Component {
 
   render () {
     const menuItems = [{
+      key: 'room',
+      label: `Room - ${this.props.roomId}`,
+      onClick: (event) => event.preventDefault()
+    },{
       key: 'setting',
-      label: 'Settings',
-      icon: 'setting',
+      label: ' Settings',
+      icon: 'cog',
       onClick: this.onSettingsClick
     }, {
       key: 'exit',
-      label: 'Exit Room',
-      icon: 'external',
+      label: ' Exit Room',
+      icon: 'remove-circle',
       onClick: this.onExitRoom
     }]
     return (
       <div>
         <Toolbar
-          label={this.props.label}
           items={menuItems}
         />
         <SoundcheckWrapper 
@@ -55,7 +58,7 @@ class ToolbarWrapper extends Component {
 }
 
 ToolbarWrapper.propTypes = {
-  label: PropTypes.string,
+  roomId: PropTypes.string,
   onLeaveRoom: PropTypes.func,
   history: PropTypes.any
 }

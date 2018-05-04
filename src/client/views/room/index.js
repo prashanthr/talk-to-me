@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VideoContainer from '../../ui-components/video-container'
 import ToolbarWrapper from '../../ui-components/toolbar/toolbar-wrapper'
-// import { Grid } from 'semantic-ui-react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
@@ -26,7 +25,7 @@ class Room extends Component {
             <Col md={12} xs={12} className='room-toolbar'>
               <br />
               <ToolbarWrapper
-                label={`Room - ${this.props.roomId}`}
+                roomId={this.props.roomId}
                 onLeaveRoom={this.props.shutdown}
               />
             </Col>

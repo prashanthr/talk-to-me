@@ -4,12 +4,11 @@ import PropTypes from 'prop-types'
 import { Modal } from 'react-bootstrap'
 import Soundcheck from './index'
 import { connect } from 'react-redux'
-import { initializeSoundcheck } from '../../redux/ducks/soundcheck'
+import { initializeSoundcheck, onSoundcheckUpdate } from '../../redux/ducks/soundcheck'
 
 class SoundcheckWrapper extends Component {
   componentWillReceiveProps (nextProps) {
     if (this.props.show !== nextProps.show && nextProps.show) {
-      console.log(this.props, nextProps)
       this.props.initializeSoundcheck()
     }
   }
@@ -25,7 +24,12 @@ class SoundcheckWrapper extends Component {
         </Modal.Header>
         <Modal.Body>
           <Soundcheck
-            deviceInfo={this.props.deviceInfo}
+            devices={this.props.devices}
+            videoInput={this.props.videoInput}
+            audioInput={this.props.audioInput}
+            audioOutput={this.props.audioOutput}
+            onSoundcheckUpdate={this.props.onSoundcheckUpdate}
+            onClose={this.props.onClose}
           />
         </Modal.Body>
       </Modal>
@@ -36,14 +40,36 @@ class SoundcheckWrapper extends Component {
 SoundcheckWrapper.propTypes = {
   onClose: PropTypes.func,
   show: PropTypes.bool,
-  initializeSoundcheck: PropTypes.bool,
-  deviceInfo: PropTypes.object
+  initializeSoundcheck: PropTypes.func,
+  devices: PropTypes.object,
+  videoInput: PropTypes.object,
+  audioInput: PropTypes.object,
+  audioOutput: PropTypes.object,
+  onSoundcheckUpdate: PropTypes.func
 }
 
 function mapStateToProps (state) {
   return {
-    deviceInfo: state.soundcheck
+    devices: state.soundcheck.devices,
+    videoInput: {
+      id: state.soundcheck.defaultVideoInputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultVideoInputId]
+        ? state.soundcheck.devices[state.soundcheck.defaultVideoInputId].label
+        : null
+    },
+    audioInput: {
+      id: state.soundcheck.defaultAudioInputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultAudioInputId]
+        ? state.soundcheck.devices[state.soundcheck.defaultAudioInputId].label
+        : null
+    },
+    audioOutput: {
+      id: state.soundcheck.defaultAudioOutputId,
+      label: state.soundcheck.devices[state.soundcheck.defaultAudioOutputId]
+      ? state.soundcheck.devices[state.soundcheck.defaultAudioOutputId].label
+      : null
+    }
   }
 }
 
-export default connect(mapStateToProps, { initializeSoundcheck })(SoundcheckWrapper)
+export default connect(mapStateToProps, { initializeSoundcheck, onSoundcheckUpdate })(SoundcheckWrapper)

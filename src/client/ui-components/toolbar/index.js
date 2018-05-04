@@ -1,33 +1,30 @@
 import React, { Component } from 'react'
-import { Icon, Button } from 'semantic-ui-react'
+import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { map } from 'lodash'
 
 class Toolbar extends Component {
   renderMenuItem = (item) => (
-    <Button 
+    <Button
+      active={item.active !== false}
       key={item.key}
       onClick={item.onClick}>
-      <Icon name={item.icon} />
+      {item.icon && <Glyphicon glyph={item.icon} />}
       {item.label || item.key}
     </Button>
   )
   render() {
     return (
       <div>
-        <Button.Group>
-          <Button active={false} onClick={e => e.preventDefault()}>
-            {this.props.label}
-          </Button>
+        <ButtonGroup size='large'>
           {map(this.props.items, item => this.renderMenuItem(item))}
-        </Button.Group>
+        </ButtonGroup>
       </div>
     )
   }
 }
 
 Toolbar.propTypes = {
-  label: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
   activeMenuItem: PropTypes.string
 }

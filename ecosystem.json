@@ -1,4 +1,18 @@
 {
+  "apps": [
+    {
+      "name": "talk",
+      "script": "bin/server.sh",
+      "env_development": {
+        "DEBUG": "*,-babel",
+        "NODE_ENV": "development"
+      },
+      "env_production": {
+        "DEBUG": "*,-babel",
+        "NODE_ENV": "production"
+      }
+    }
+  ],
   "deploy": {
      "production" : {
       "user": "root",

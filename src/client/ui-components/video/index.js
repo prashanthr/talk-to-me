@@ -16,6 +16,12 @@ class VideoPlayer extends Component {
       this.props !== nextProps &&
       nextProps.srcObject
     ) {
+      // console.log('resetting', nextProps.srcObject)
+      // if (this.videoRef.srcObject && this.props.srcObject) {
+      //   const videoTracks = this.props.srcObject.getVideoTracks()
+      //   console.log('video tracks', videoTracks)
+      //   videoTracks.forEach(track => track.stop())
+      // }
       this.setSrcObject(nextProps.srcObject)
     }
   }

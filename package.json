@@ -51,7 +51,7 @@
     "release": "standard-version",
     "update-config": "REVERT=false ./bin/update-config",
     "takeoff": "echo 'Taking off...' && yarn build-prod && yarn ship-prod && yarn copy-config-prod && yarn update-config-prod",
-    "build-prod": "yarn && NODE_ENV=production react-scripxts build",
+    "build-prod": "yarn && NODE_ENV=production react-scripts build",
     "ship-prod": "yarn ship-prod-client && yarn ship-prod-sxerver",
     "ship-prod-client": "scp  -i ~/.ssh/do -r build/*  root@45.55.194.231:/var/www/current/build/",
     "ship-prod-server": "pm2 deploy ecosystem.json production",

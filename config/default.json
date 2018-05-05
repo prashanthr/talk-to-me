@@ -2,5 +2,9 @@
     "port": 9095,
     "appUri": "http://localhost:3000",
     "apiUri": "http://localhost:9095/api",
-    "apiKey": "vb8gy9wfj07iizfr"
+    "apiKey": "vb8gy9wfj07iizfr",
+    "auth": {
+        "audience": "talk-to-me",
+        "secret": ":secret"
+    }
 }

@@ -9,9 +9,10 @@ import api from './api'
 import _debug from 'debug'
 import socketController from './socket'
 import io from './socket/io'
-var debug = _debug('server')
 
-var app = express()
+const debug = _debug('server')
+
+const app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: '0.5mb'}))
@@ -28,8 +29,6 @@ let server = async () => {
   })
   httpServer.listen(config.port, () => {
     debug(`Server running on ${config.port}`)
-    // const ioServer = io(httpServer)
-    // socketController(ioServer)
     const ioServer = io.attach(httpServer)
     socketController(ioServer)
   })

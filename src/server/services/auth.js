@@ -36,7 +36,7 @@ class AuthService {
   }
 
   createToken ({ uid }) {
-    if (!config.auth.secret || config.auth.secret === ':secret') return reject('Invalid secret')
+    if (!config.auth.secret || config.auth.secret === ':secret') return null
     const iat = Math.floor(Date.now() / 1000)
     const exp = iat + (60 * 60 * 24 * 14)
     const token = jwt.sign(

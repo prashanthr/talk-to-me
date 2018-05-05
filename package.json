@@ -49,11 +49,14 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "release": "standard-version",
-    "takeoff": "echo 'Taking off...' && yarn build-prod && yarn ship-prod",
-    "build-prod": "yarn && NODE_ENV=production react-scripts build",
-    "ship-prod": "yarn ship-prod-client && yarn ship-prod-server",
+    "update-config": "REVERT=false ./bin/update-config",
+    "takeoff": "echo 'Taking off...' && yarn build-prod && yarn ship-prod && yarn copy-config-prod && yarn update-config-prod",
+    "build-prod": "yarn && NODE_ENV=production react-scripxts build",
+    "ship-prod": "yarn ship-prod-client && yarn ship-prod-sxerver",
     "ship-prod-client": "scp  -i ~/.ssh/do -r build/*  root@45.55.194.231:/var/www/current/build/",
-    "ship-prod-server": "pm2 deploy ecosystem.json production"
+    "ship-prod-server": "pm2 deploy ecosystem.json production",
+    "copy-config-prod": "scp -i ~/.ssh/do config/secrets/invite-codes.json ubuntu@45.55.194.231:/var/www/current/config/secrets/",
+    "update-config-prod": "ssh -i ~/.ssh/do rootu@45.55.194.231 \"cd /var/www/current; bash; yarn update-config\""
   },
   "repository": {
     "type": "git",

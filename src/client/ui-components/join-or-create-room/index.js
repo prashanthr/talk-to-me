@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 import { generateName, urlSafe } from '../../utils/room'
-import { browserHistory } from 'react-router'
+import { goToUrl } from '../../utils/navigator'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -19,9 +19,8 @@ export default class JoinOrCreateRoom extends Component {
   }
   gotoRoom (roomName) {
     const path = `/room/${roomName}`
-    const currentHistoryState = window.history.state
-    window.history.pushState(currentHistoryState, `Room - ${path}`, path)
-    window.location.replace(path)
+    const title = `Room - ${roomName}`
+    goToUrl(path, title)
   }
   render () {
     return (

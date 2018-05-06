@@ -6,6 +6,11 @@ export const JOIN_ROOM_SUCCESS = 'JOIN_ROOM_SUCCESS'
 export const SOCKET_SIGNAL = 'SOCKET_SIGNAL'
 export const SOCKET_STREAM = 'SOCKET_STREAM'
 
-const socketReducer = (state = {}, action) => {}
+const socketReducer = (state = {}, action) => {
+  switch (action) {
+    default:
+      return state
+  }
+}
 
 export default socketReducer

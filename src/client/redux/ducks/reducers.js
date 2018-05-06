@@ -4,9 +4,11 @@ import peerReducer from './peer'
 import roomReducer from './room'
 import userReducer from './user'
 import soundcheckReducer from './soundcheck'
+import appReducer from './app'
 
 export default combineReducers({
   router: routerReducer,
+  app: appReducer,
   room: roomReducer,
   user: userReducer,
   peer: peerReducer,

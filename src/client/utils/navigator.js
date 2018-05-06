@@ -43,3 +43,9 @@ export const getDevices = async (types = []) => {
   }
 }
 
+export const goToUrl = (path, title) => {
+  const currentHistoryState = window.history.state
+  window.history.pushState(currentHistoryState, title, path)
+  window.location.replace(path)
+}
+

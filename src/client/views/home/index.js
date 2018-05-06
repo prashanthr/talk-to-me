@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import InviteWrapper from '../../ui-components/invite-code/invite-wrapper'
 import './index.css'
 
 export default class App extends Component {
@@ -8,6 +9,7 @@ export default class App extends Component {
         <div className='splash'>
           Connecting Worlds
         </div>
+        <InviteWrapper />
       </div>
     )
   }

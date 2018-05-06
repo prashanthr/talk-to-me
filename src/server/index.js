@@ -21,6 +21,10 @@ app.use('/', publicRouter)
 
 // API
 api(app)
+// Error handler
+app.use((err, req, res, next) => {
+  debug('Server Error handler', err, err.stack)
+})
 
 let server = async () => {
   let httpServer = http.Server(app)

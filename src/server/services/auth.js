@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken'
 import config from 'config'
 import basicAuth from 'basic-auth'
+import _debug from 'debug'
+
+const debug = _debug('service:auth')
 
 class AuthService {
   async authenticateViaCode (code) {
@@ -17,40 +20,44 @@ class AuthService {
       return null
     }
   }
-  parseBasicAuth (req) : { name: string, pass: string } {
+  parseBasicAuth (req) {
     return basicAuth(req)
   }
+
   async verifyToken (token) {
     return new Promise((resolve, reject) => {
       if (!config.auth.secret || config.auth.secret === ':secret') return reject('Invalid secret')
       jwt.verify(
-        token, 
+        token,
         new Buffer(config.auth.secret, 'base64'), 
         { audience: config.auth.audience }, (err, payload) => {
-        if (err) {
-          return reject(err)
-        }
-        resolve(payload)
-      })
+          if (err) {
+            return reject(err)
+          }
+          resolve(payload)
+        })
     })
   }
 
   createToken ({ uid }) {
-    if (!config.auth.secret || config.auth.secret === ':secret') return null
+    if (!config.auth.secret || config.auth.secret === ':secret') {
+      debug('Secret not set')
+      return null
+    }
     const iat = Math.floor(Date.now() / 1000)
     const exp = iat + (60 * 60 * 24 * 14)
     const token = jwt.sign(
       { code: uid,
-        iat, 
-        exp 
-      }, 
+        iat,
+        exp
+      },
       new Buffer(config.auth.secret, 'base64'), 
       { audience: config.auth.audience }
     )
-    return { 
-      code: uid, 
-      exp, 
-      token 
+    return {
+      code: uid,
+      exp,
+      token
     }
   }
 }

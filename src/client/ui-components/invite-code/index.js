@@ -33,6 +33,7 @@ export default class JoinOrCreateRoom extends Component {
           >
             <FormControl
               type='text'
+              bsSize='large'
               size={25}
               placeholder='Enter your invite code'
             />
@@ -41,6 +42,7 @@ export default class JoinOrCreateRoom extends Component {
           </FormGroup>{' '}
           <Button
             bsStyle='warning'
+            bsSize='large'
             onClick={event => {
               console.log('here', this.state.inviteCode)
               event.preventDefault()
@@ -51,12 +53,9 @@ export default class JoinOrCreateRoom extends Component {
             Go
           </Button>
         </Form>
-        {' | '}
-        <Button
-          href={'#'}
-        >
-          Request an invite
-        </Button>
+        <div>
+          Don't have one? <a href='#'>Request an invite</a>
+        </div>
       </div>
     )
   }

@@ -13,7 +13,7 @@ body {
 
 .home {
   text-align: center;
-  background-image: url('../../assets/img/backdrop/mist.jpg');
+  /* background-image: url('../../assets/img/backdrop/mist.jpg'); */
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -24,8 +24,8 @@ body {
 
 .splash {
   position: absolute;
-  top: 50%;
-  bottom: 50%;
+  top: 40%;
+  bottom: 40%;
   left: 20%;
   right: 20%;
   font-size: 42px;

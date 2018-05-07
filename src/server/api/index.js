@@ -19,7 +19,9 @@ const api = (app) => {
         }
         return res.json({
           code,
-          ...credentials
+          auth: {
+            ...credentials
+          }
         })
       } else {
         return res.status(403).send({ code, message: 'Invalid code' })

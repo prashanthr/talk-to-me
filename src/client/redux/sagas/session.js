@@ -3,7 +3,7 @@ import {
   AUTHENTICATE,
   AUTHENTICATE_SUCCESS,
   AUTHENTICATE_FAILED
-} from '../ducks/app'
+} from '../ducks/session'
 import axios from 'axios'
 import { goToUrl } from '../../utils/navigator'
 
@@ -14,15 +14,17 @@ function* authenticate (action) {
     }))
     yield put({
       type: AUTHENTICATE_SUCCESS,
-      ...response.data
+      code: response.data.code,
+      auth: response.data.auth
     })
     goToUrl('/welcome', 'Welcome')
-  } catch (err) {
+  } catch (error) {
     console.log('Error authenticating')
-    console.error(err)
+    console.error(error)
     yield put({
       type: AUTHENTICATE_FAILED,
-      error: err
+      code: action.inviteCode,
+      error
     })
   }
 }

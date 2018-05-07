@@ -4,7 +4,7 @@ import roomSagas from './room'
 import socketSagas from './socket'
 import peerSagas from './peer'
 import soundcheckSagas from './soundcheck'
-import appSagas from './app'
+import sessionSagas from './session'
 
 function * saga () {
   yield all([
@@ -12,7 +12,7 @@ function * saga () {
     ...socketSagas,
     ...peerSagas,
     ...soundcheckSagas,
-    ...appSagas
+    ...sessionSagas
   ])
 }
 

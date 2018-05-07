@@ -19,12 +19,17 @@ export default class JoinOrCreateRoom extends Component {
   render () {
     return (
       <div>
-        <br />
         <Form inline>
-          <FormGroup controlId='room-name'
+          <FormGroup
+            controlId='invite-id'
             onChange={this.onInviteCodeChanged}
           >
-            <FormControl type='text' size={25} placeholder='Enter your invite code' />
+            <FormControl
+              type='text'
+              size={25}
+              value={this.props.code}
+              placeholder='Enter your invite code'
+            />
           </FormGroup>{' '}
           <Button
             bsStyle='warning'
@@ -37,18 +42,24 @@ export default class JoinOrCreateRoom extends Component {
             }}>
             Go
           </Button>
-          {' OR '}
+          {' | '}
           <Button
             href={'#'}
           >
             Request an invite
           </Button>
         </Form>
+        {this.props.error
+          ? <div className='error'>{this.props.error}</div>
+          : ''
+        }
       </div>
     )
   }
 }
 
 JoinOrCreateRoom.propTypes = {
+  code: PropTypes.string,
+  error: PropTypes.string,
   onAuthenticate: PropTypes.func
 }

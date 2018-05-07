@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InviteCode from './index'
 import { connect } from 'react-redux'
-import { authenticate } from '../../redux/ducks/app'
+import { authenticate } from '../../redux/ducks/session'
 
 class InviteWrapper extends Component {
   render () {
     return (
       <InviteCode
+        code={this.props.code}
+        error={this.props.error}
         onAuthenticate={this.props.authenticate}
       />
     )
@@ -15,7 +17,16 @@ class InviteWrapper extends Component {
 }
 
 InviteWrapper.propTypes = {
-  authenticate: PropTypes.func
+  authenticate: PropTypes.func,
+  code: PropTypes.string,
+  error: PropTypes.string
 }
 
-export default connect(state => ({}), { authenticate })(InviteWrapper)
+function mapStateToProps (state) {
+  return {
+    code: state.session.invite.code,
+    error: state.session.invite.error
+  }
+}
+
+export default connect(mapStateToProps, { authenticate })(InviteWrapper)

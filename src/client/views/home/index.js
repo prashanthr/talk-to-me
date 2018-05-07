@@ -7,9 +7,9 @@ export default class App extends Component {
     return (
       <div className='home'>
         <div className='splash'>
-          Connecting Worlds
+          {'Welcome'}
+          <InviteWrapper />
         </div>
-        <InviteWrapper />
       </div>
     )
   }

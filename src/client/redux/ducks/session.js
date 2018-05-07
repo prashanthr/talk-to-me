@@ -15,8 +15,7 @@ const initialState = {
 }
 
 const sessionReducer = (state = initialState, action) => {
-  console.log('action', action)
-  switch (action) {
+  switch (action.type) {
     case AUTHENTICATE_SUCCESS:
       return {
         ...state,
@@ -32,7 +31,7 @@ const sessionReducer = (state = initialState, action) => {
         auth: null,
         invite: {
           code: action.code,
-          error: JSON.stringify(action.error)
+          error: action.error
         }
       }
     default:

@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import './index.css'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
     super(props)
     this.onInviteCodeChanged = this.onInviteCodeChanged.bind(this)
+    this.validate = this.validate.bind(this)
     this.state = {
       inviteCode: null
     }
+  }
+  validate () {
+    if (this.props.error) return 'warning'
+    return 'success'
   }
   onInviteCodeChanged (event) {
     event.preventDefault()
@@ -23,13 +29,15 @@ export default class JoinOrCreateRoom extends Component {
           <FormGroup
             controlId='invite-id'
             onChange={this.onInviteCodeChanged}
+            validationState={this.validate}
           >
             <FormControl
               type='text'
               size={25}
-              value={this.props.code}
               placeholder='Enter your invite code'
             />
+            <FormControl.Feedback />
+            <span className='error'>{' '}{this.props.error}</span>
           </FormGroup>{' '}
           <Button
             bsStyle='warning'
@@ -42,17 +50,13 @@ export default class JoinOrCreateRoom extends Component {
             }}>
             Go
           </Button>
-          {' | '}
-          <Button
-            href={'#'}
-          >
-            Request an invite
-          </Button>
         </Form>
-        {this.props.error
-          ? <div className='error'>{this.props.error}</div>
-          : ''
-        }
+        {' | '}
+        <Button
+          href={'#'}
+        >
+          Request an invite
+        </Button>
       </div>
     )
   }

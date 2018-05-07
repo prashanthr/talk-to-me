@@ -9,7 +9,7 @@ import { goToUrl } from '../../utils/navigator'
 
 function* authenticate (action) {
   try {
-    const response = yield call(axios.post('/api/authenticate', {
+    const response = yield call(() => axios.post('/api/authenticate', {
       code: action.inviteCode
     }))
     yield put({
@@ -23,8 +23,8 @@ function* authenticate (action) {
     console.error(error)
     yield put({
       type: AUTHENTICATE_FAILED,
-      code: action.inviteCode,
-      error
+      code: error.response && error.response.data ? error.response.data.code : action.inviteCode,
+      error: error.response && error.response.data ? error.response.data.message : error.message
     })
   }
 }

@@ -42,4 +42,3 @@ export const getDevices = async (types = []) => {
     return []
   }
 }
-

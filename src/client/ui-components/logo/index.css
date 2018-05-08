@@ -1,0 +1,10 @@
+.logo {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: 100%;
+  width: 500px;
+  background-image: url('../../assets/img/logo.png');
+  background-repeat: no-repeat;
+  zoom: 50%;
+}

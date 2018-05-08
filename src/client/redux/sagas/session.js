@@ -1,21 +1,23 @@
-import { put, fork, takeLatest, call, select } from 'redux-saga/effects'
+import { put, fork, takeLatest, call } from 'redux-saga/effects'
 import { 
   AUTHENTICATE,
   AUTHENTICATE_SUCCESS,
   AUTHENTICATE_FAILED
 } from '../ducks/session'
 import axios from 'axios'
-import { goToUrl } from '../../utils/navigator'
+import { goToUrl, setLocalStorage } from '../../utils/window'
 
 function* authenticate (action) {
   try {
     const response = yield call(() => axios.post('/api/authenticate', {
       code: action.inviteCode
     }))
+    const auth = response.data.auth
+    setLocalStorage('auth', auth)
     yield put({
       type: AUTHENTICATE_SUCCESS,
-      code: response.data.code,
-      auth: response.data.auth
+      code: response.data.code || action.code,
+      auth
     })
     goToUrl('/welcome', 'Welcome')
   } catch (error) {

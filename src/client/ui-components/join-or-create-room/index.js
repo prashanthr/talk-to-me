@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 import { generateName, urlSafe } from '../../utils/room'
-import { goToUrl } from '../../utils/navigator'
+import { goToUrl } from '../../utils/window'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {

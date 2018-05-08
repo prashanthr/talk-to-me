@@ -1,6 +1,6 @@
 import { keys } from 'lodash'
 
-// Courtesy of https://uigradients.com/
+// Courtesy of https://uigradients.com/ and https://webgradients.com/
 export const themes = {
   orangeCoral: {
     color1: '#ff9966',
@@ -22,6 +22,10 @@ export const themes = {
   blueSkies: {
     color1: '#56CCF2',
     color2: '#2F80ED'
+  },
+  rainyAshville: {
+    color1: '#fbc2eb',
+    color2: '#a6c1ee'
   }
 }
 

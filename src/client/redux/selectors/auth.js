@@ -9,7 +9,7 @@ export const getAuth = createSelector(
   auth => {
     if (auth) return auth
     try {
-      return JSON.parse(getLocalStorage('auth'))
+      return JSON.parse(getLocalStorage('auth') || null)
     } catch (error) {
       console.error(error)
     }

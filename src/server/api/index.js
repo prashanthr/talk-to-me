@@ -12,17 +12,13 @@ const api = (app) => {
       const isCodeValid = InviteService.verifyCode(code)
       if (isCodeValid) {
         debug(`Code ${code} is valid`)
-        const credentials = await AuthService.authenticateViaCode(code)
-        debug('credentials', credentials)
-        if (!credentials) {
+        const auth = await AuthService.authenticateViaCode(code)
+        debug('credentials', auth)
+        if (!auth) {
           throw new Error('Received bad credentials from server')
+        } else {
+          return res.send({ code, auth })
         }
-        return res.json({
-          code,
-          auth: {
-            ...credentials
-          }
-        })
       } else {
         return res.status(403).send({ code, message: 'Invalid code' })
       }

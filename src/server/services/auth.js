@@ -29,7 +29,7 @@ class AuthService {
       if (!config.auth.secret || config.auth.secret === ':secret') return reject('Invalid secret')
       jwt.verify(
         token,
-        new Buffer(config.auth.secret, 'base64'), 
+        new Buffer(config.auth.secret, 'base64'),
         { audience: config.auth.audience }, (err, payload) => {
           if (err) {
             return reject(err)
@@ -45,13 +45,13 @@ class AuthService {
       return null
     }
     const iat = Math.floor(Date.now() / 1000)
-    const exp = iat + config.auth.expirySeconds
+    const exp = iat + JSON.parse(config.auth.expirySeconds)
     const token = jwt.sign(
       { code: uid,
         iat,
         exp
       },
-      new Buffer(config.auth.secret, 'base64'), 
+      new Buffer(config.auth.secret, 'base64'),
       { audience: config.auth.audience }
     )
     return {

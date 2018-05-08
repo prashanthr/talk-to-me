@@ -15,7 +15,7 @@ const debug = _debug('server')
 const app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json({limit: '0.5mb'}))
+app.use(bodyParser.json({ limit: '0.5mb' }))
 app.use(express.static(path.join(__dirname, '/../../build')))
 app.use('/', publicRouter)
 

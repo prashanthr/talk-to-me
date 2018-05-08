@@ -12,10 +12,11 @@ function* authenticate (action) {
     const response = yield call(() => axios.post('/api/authenticate', {
       code: action.inviteCode
     }))
+    console.log('response', response.data)
     const auth = response.data.auth
     const code = response.data.code || action.code
     setLocalStorage('auth', auth)
-    setLocalStorage('invite-code', auth)
+    setLocalStorage('invite-code', code)
     yield put({
       type: AUTHENTICATE_SUCCESS,
       code,

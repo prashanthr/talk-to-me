@@ -26,10 +26,9 @@ Protected.propTypes = {
 }
 
 const mapStateToProps = state => {
-  console.log('isAuthValid', isAuthValid(state), isAuthValid(state) || false)
-  return ({
+  return {
     isAuthValid: isAuthValid(state) || false
-  })
+  }
 }
 
 const ProtectedRoute = withRouter(

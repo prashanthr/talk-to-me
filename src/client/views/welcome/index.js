@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import JoinOrCreateRoom from '../../ui-components/join-or-create-room'
 import { Row, Col, Grid, Jumbotron } from 'react-bootstrap'
+import './index.css'
 
 class Welcome extends Component {
   componentWillMount () {
@@ -9,7 +10,7 @@ class Welcome extends Component {
   render () {
     return (
       <Grid fluid>
-        <Jumbotron>
+        <Jumbotron className='welcome'>
           <Row>
             <Col md={12}>
               <h1>Hello internet-loving-friend!</h1>
@@ -26,7 +27,8 @@ class Welcome extends Component {
               </p>
               <p>
               There are a few rules though.
-              
+              </p>
+              <div>
               <ol>
                 <li> You don't talk about it. (Just like Fight Club)
                   <br />- The moment something good exists out there, evil corporations want to shut it down. So please keep the chatter to a minimum. The less people know about it, the better. But if you know people that you trust who are cool, then feel free to share your invite code with them.
@@ -35,9 +37,9 @@ class Welcome extends Component {
                  <br />- If you like it, let me know. If you hate it, let me know. If you want something improved, let me know. Let's aim to improve
                 </li>
               </ol>
-              
+              </div>
+              <p>
               That's it. Happy chatting!
-              
               </p>
             </Col>
           </Row>

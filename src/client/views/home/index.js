@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import InviteWrapper from '../../ui-components/invite-code/invite-wrapper'
+import { goToUrl } from '../../utils/window'
+import { isAuthValid } from '../../redux/selectors/auth'
+import { connect } from 'react-redux'
 import Logo from '../../ui-components/logo'
 import { injectGlobal } from 'styled-components'
 import { getThemeCSS } from '../../utils/theme'
@@ -14,7 +18,13 @@ body {
 }
 `
 
-export default class Home extends Component {
+class Home extends Component {
+  componentWillMount () {
+    if (this.props.isAuthValid) {
+      goToUrl('/welcome')
+    }
+  }
+
   render () {
     return (
       <div className='home'>
@@ -26,3 +36,15 @@ export default class Home extends Component {
     )
   }
 }
+
+Home.propTypes = {
+  isAuthValid: PropTypes.bool
+}
+
+function mapStateToProps (state) {
+  return ({
+    isAuthValid: isAuthValid(state) || false
+  })
+}
+
+export default connect(mapStateToProps, {})(Home)

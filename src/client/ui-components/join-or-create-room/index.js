@@ -35,9 +35,9 @@ export default class JoinOrCreateRoom extends Component {
         >
           Create New Room
         </Button>
-        <br />
+        <br /><br />
         - OR -
-        <br />
+        <br /><br />
         <Form inline>
           <FormGroup controlId='room-name'>
             <FormControl type='text' size={30} placeholder={generateName(false)} onChange={this.onRoomNameChanged} />

@@ -12,7 +12,6 @@ function* authenticate (action) {
     const response = yield call(() => axios.post('/api/authenticate', {
       code: action.inviteCode
     }))
-    console.log('response', response.data)
     const auth = response.data.auth
     const code = response.data.code || action.code
     setLocalStorage('auth', auth)

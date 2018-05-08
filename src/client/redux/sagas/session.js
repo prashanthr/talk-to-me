@@ -13,10 +13,12 @@ function* authenticate (action) {
       code: action.inviteCode
     }))
     const auth = response.data.auth
+    const code = response.data.code || action.code
     setLocalStorage('auth', auth)
+    setLocalStorage('invite-code', auth)
     yield put({
       type: AUTHENTICATE_SUCCESS,
-      code: response.data.code || action.code,
+      code,
       auth
     })
     goToUrl('/welcome', 'Welcome')

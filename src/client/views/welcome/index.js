@@ -3,6 +3,9 @@ import JoinOrCreateRoom from '../../ui-components/join-or-create-room'
 import { Row, Col, Grid, Jumbotron } from 'react-bootstrap'
 
 class Welcome extends Component {
+  componentWillMount () {
+    console.log('cwm', this.props.isAuthValid)
+  }
   render () {
     return (
       <Grid fluid>

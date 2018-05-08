@@ -48,7 +48,7 @@ export default class JoinOrCreateRoom extends Component {
                 type='text'
                 bsSize='large'
                 className={this.props.error ? 'error' : ''}
-                size={25}
+                size={32}
                 placeholder='Enter your invite code'
               />
             </OverlayTrigger>

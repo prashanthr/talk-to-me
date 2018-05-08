@@ -26,15 +26,18 @@ class Welcome extends Component {
               </p>
               <p>
               There are a few rules though.
+              
               <ol>
                 <li> You don't talk about it. (Just like Fight Club)
-                  <br />- The moment something good exists out there, evil corporations want to shut it down. So please keep the chatter to a minimum. The less people know about it, the better. But if you know people that you trust who are cool, then feel free to share the information with them.
+                  <br />- The moment something good exists out there, evil corporations want to shut it down. So please keep the chatter to a minimum. The less people know about it, the better. But if you know people that you trust who are cool, then feel free to share your invite code with them.
                 </li>
                 <li> Feedback.
                  <br />- If you like it, let me know. If you hate it, let me know. If you want something improved, let me know. Let's aim to improve
                 </li>
               </ol>
+              
               That's it. Happy chatting!
+              
               </p>
             </Col>
           </Row>

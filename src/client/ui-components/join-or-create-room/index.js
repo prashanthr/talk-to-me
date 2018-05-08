@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { generateName, urlSafe } from '../../utils/room'
 import { goToUrl } from '../../utils/window'
+import './index.css'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -35,18 +36,19 @@ export default class JoinOrCreateRoom extends Component {
           Create Room
         </Button>
         <br />
-        OR
+        - OR -
         <br />
         <Form inline>
           <FormGroup controlId='room-name'>
-            <ControlLabel>https://talktome.space/room/</ControlLabel>{' '}
-            <FormControl type='text' size={30} placeholder='fluffy-guy' onChange={this.onRoomNameChanged} />
+            <FormControl type='text' size={30} placeholder={generateName(false)} onChange={this.onRoomNameChanged} />
           </FormGroup>{' '}
           <Button
             bsStyle='warning'
             onClick={event => {
               event.preventDefault()
-              this.gotoRoom(urlSafe(this.state.roomName))
+              if (this.state.roomName) {
+                this.gotoRoom(urlSafe(this.state.roomName))
+              }
             }}>
             Join Room
           </Button>

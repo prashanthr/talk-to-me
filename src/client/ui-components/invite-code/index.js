@@ -68,7 +68,7 @@ export default class JoinOrCreateRoom extends Component {
         </Form>
         <br />
         <div>
-          Don't have one? <a href='#'>Request an invite</a>
+          Don't have one? <Button bsSize='large' bsStyle='link' href='#'>Request an invite</Button>
         </div>
       </div>
     )

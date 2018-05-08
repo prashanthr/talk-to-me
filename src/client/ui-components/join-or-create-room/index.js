@@ -33,7 +33,7 @@ export default class JoinOrCreateRoom extends Component {
             this.gotoRoom(generateName())
           }}
         >
-          Create Room
+          Create New Room
         </Button>
         <br />
         - OR -

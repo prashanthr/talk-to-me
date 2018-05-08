@@ -45,7 +45,7 @@ class AuthService {
       return null
     }
     const iat = Math.floor(Date.now() / 1000)
-    const exp = iat + JSON.parse(config.auth.expirySeconds)
+    const exp = iat + config.auth.expirySeconds
     const token = jwt.sign(
       { code: uid,
         iat,

@@ -10,13 +10,9 @@ export const themes = {
     color1: '#06beb6',
     color2: '#48b1bf'
   },
-  crimsonTide: {
-    color1: '#642b73',
-    color2: '#C6426E'
-  },
-  scooter: {
-    color1: '#C6426E',
-    color2: '#C6426E'
+  politics: {
+    color1: '#2196f3',
+    color2: '#f44336'
   },
   relay: {
     color1: '#C6426E',

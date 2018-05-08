@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
 import './index.css'
 
 export default class JoinOrCreateRoom extends Component {
@@ -13,7 +13,7 @@ export default class JoinOrCreateRoom extends Component {
     }
   }
   validate () {
-    if (this.props.error) return 'warning'
+    if (this.props.error) return 'error'
     return 'success'
   }
   onInviteCodeChanged (event) {
@@ -29,22 +29,35 @@ export default class JoinOrCreateRoom extends Component {
           <FormGroup
             controlId='invite-id'
             onChange={this.onInviteCodeChanged}
-            validationState={this.validate}
           >
-            <FormControl
-              type='text'
-              bsSize='large'
-              size={25}
-              placeholder='Enter your invite code'
-            />
-            <FormControl.Feedback />
-            <span className='error'>{' '}{this.props.error}</span>
+            <OverlayTrigger
+              trigger={['hover', 'focus']}
+              placement='top'
+              overlay={(
+                <Popover
+                  id='invite-code-popover-error'
+                  title='Info'
+                >
+                  <div className={this.props.error ? 'error' : ''}>
+                    {this.props.error || 'Please enter your invite code'}
+                  </div>
+                </Popover>
+                )}
+            >
+              <FormControl
+                type='text'
+                bsSize='large'
+                className={this.props.error ? 'error' : ''}
+                size={25}
+                placeholder='Enter your invite code'
+              />
+            </OverlayTrigger>
           </FormGroup>{' '}
           <Button
+            type='submit'
             bsStyle='warning'
             bsSize='large'
             onClick={event => {
-              console.log('here', this.state.inviteCode)
               event.preventDefault()
               if (this.state.inviteCode) {
                 this.props.onAuthenticate(this.state.inviteCode)
@@ -53,6 +66,7 @@ export default class JoinOrCreateRoom extends Component {
             Go
           </Button>
         </Form>
+        <br />
         <div>
           Don't have one? <a href='#'>Request an invite</a>
         </div>

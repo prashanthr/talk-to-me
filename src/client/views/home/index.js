@@ -20,7 +20,6 @@ export default class App extends Component {
       <div className='home'>
         <Logo />
         <div className='splash'>
-          {'Welcome'}
           <InviteWrapper />
         </div>
       </div>

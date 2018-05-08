@@ -14,7 +14,7 @@ body {
 }
 `
 
-export default class App extends Component {
+export default class Home extends Component {
   render () {
     return (
       <div className='home'>

@@ -25,6 +25,8 @@ class SoundcheckWrapper extends Component {
         <Modal.Body>
           <Soundcheck
             devices={this.props.devices}
+            videoEnabled={this.props.videoEnabled}
+            audioEnabled={this.props.audioEnabled}
             videoInput={this.props.videoInput}
             audioInput={this.props.audioInput}
             audioOutput={this.props.audioOutput}
@@ -42,6 +44,8 @@ SoundcheckWrapper.propTypes = {
   show: PropTypes.bool,
   initializeSoundcheck: PropTypes.func,
   devices: PropTypes.object,
+  videoEnabled: PropTypes.bool,
+  audioEnabled: PropTypes.bool,
   videoInput: PropTypes.object,
   audioInput: PropTypes.object,
   audioOutput: PropTypes.object,
@@ -51,6 +55,8 @@ SoundcheckWrapper.propTypes = {
 function mapStateToProps (state) {
   return {
     devices: state.soundcheck.devices,
+    videoEnabled: state.soundcheck.videoEnabled,
+    audioEnabled: state.soundcheck.audioEnabled,
     videoInput: {
       id: state.soundcheck.defaultVideoInputId,
       label: state.soundcheck.devices[state.soundcheck.defaultVideoInputId]

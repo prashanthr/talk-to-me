@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ToggleButton from '../toggle-button'
 import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
 import { map, filter, values } from 'lodash'
 
@@ -16,7 +17,9 @@ class Soundcheck extends Component {
     this.state = {
       videoInput: null,
       audioInput: null,
-      audioOutput: null
+      audioOutput: null,
+      audioEnabled: this.props.audioEnabled,
+      videoEnabled: this.props.videoEnabled
     }
   }
 
@@ -31,7 +34,11 @@ class Soundcheck extends Component {
     event.preventDefault()
     console.log('device changes', this.state)
     if (filter(values(this.state), value => value !== null).length > 0) {
-      this.props.onSoundcheckUpdate(this.state)
+      this.props.onSoundcheckUpdate({
+        ...this.state,
+        audioEnabled: this.state.audioEnabled !== undefined ? this.state.audioEnabled : this.props.audioEnabled,
+        videoEnabled: this.state.audioEnabled !== undefined ? this.state.videoEnabled : this.props.videoEnabled,
+      })
     }
     this.props.onClose()
   }
@@ -65,10 +72,10 @@ class Soundcheck extends Component {
     return (
       <div>
         <Row>
-          <Col md={6}>
-            Video Source
+          <Col md={5}>
+            Video Input Source
           </Col>
-          <Col md={6}>
+          <Col md={5}>
             {this.renderDropdownMenu(
               map(getVideoInputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
@@ -78,12 +85,23 @@ class Soundcheck extends Component {
               event => this.onDeviceChanged('videoInput', event)
             )}
           </Col>
+          <Col md={2}>
+            <ToggleButton 
+              enabled={this.state.videoEnabled} 
+              onChange={event => {
+                if (event && event.target.checked !== undefined) {
+                  this.setState({
+                    videoEnabled: event.target.checked
+                  })
+                }
+              }} />
+          </Col>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={5}>
             Audio Input Source
           </Col>
-          <Col md={6}>
+          <Col md={5}>
             {this.renderDropdownMenu(
               map(getAudioInputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
@@ -93,12 +111,24 @@ class Soundcheck extends Component {
               event => this.onDeviceChanged('audioInput', event)
             )}
           </Col>
+          <Col md={2}>
+            <ToggleButton 
+              enabled={this.state.audioEnabled} 
+              onChange={event => {
+                if (event && event.target.checked !== undefined) {
+                  this.setState({
+                    audioEnabled: event.target.checked
+                  })
+                }
+              }}
+            />
+          </Col>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col md={5}>
             Audio Output Source
           </Col>
-          <Col md={6}>
+          <Col md={5}>
             {this.renderDropdownMenu(
               map(getAudioOutputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
@@ -108,16 +138,18 @@ class Soundcheck extends Component {
               event => this.onDeviceChanged('audioOutput', event)
             )}
           </Col>
+          <Col md={2} />
         </Row>
         <Row>
-            <Col md={6} />
-            <Col md={6}>
+            <Col md={5} />
+            <Col md={5} />
+            <Col md={2}>
               <Button
                 bsStyle='primary'
                 onClick={this.onSoundcheckSave}
               >
                 Save
-              </Button>
+              </Button>            
             </Col>
         </Row>
       </div>
@@ -130,6 +162,8 @@ Soundcheck.propTypes = {
   audioInput: PropTypes.object,
   audioOutput: PropTypes.object,
   videoInput: PropTypes.object,
+  videoEnabled: PropTypes.bool,
+  audioEnabled: PropTypes.bool,
   onSoundcheckUpdate: PropTypes.func,
   onClose: PropTypes.func
 }

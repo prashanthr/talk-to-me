@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/prashanthr/talk-to-me/compare/v1.2.6...v1.3.0) (2018-05-10)
+
+
+### Features
+
+* **soudcheck:** Allow toggle for devices, add local storage support ([4f61690](https://github.com/prashanthr/talk-to-me/commit/4f61690))
+* **video-controls:** Add video controls overlay ([57496d8](https://github.com/prashanthr/talk-to-me/commit/57496d8))
+
+
+
 <a name="1.2.6"></a>
 ## [1.2.6](https://github.com/prashanthr/talk-to-me/compare/v1.2.5...v1.2.6) (2018-05-08)
 

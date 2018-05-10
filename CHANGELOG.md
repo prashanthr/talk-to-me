@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/prashanthr/talk-to-me/compare/v1.3.0...v1.3.1) (2018-05-10)
+
+
+### Bug Fixes
+
+* **soundcheck): Fixes on devices change (refresh), \nfeat(routing:** Add next support ([5cae79a](https://github.com/prashanthr/talk-to-me/commit/5cae79a))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/prashanthr/talk-to-me/compare/v1.2.6...v1.3.0) (2018-05-10)
 

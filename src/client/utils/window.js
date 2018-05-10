@@ -1,3 +1,10 @@
+import { parse } from 'query-string'
+export const getNextUrl = () => {
+  const urlSearch = parse(window.location.search)
+  return urlSearch && urlSearch.next
+    ? `?next=${encodeURIComponent(urlSearch.next)}`
+    : null
+}
 export const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key) || null)
 export const setLocalStorage = (key, val) => window.localStorage.setItem(key, JSON.stringify(val))
 export const existsInLocalStorage = (key) => window.localStorage.getItem(key) !== undefined

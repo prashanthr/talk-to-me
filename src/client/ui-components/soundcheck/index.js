@@ -11,6 +11,7 @@ const getDevices = (devices, kind) => filter(devices, (device, deviceId) => devi
 const getVideoInputDevices = devices => getDevices(devices, 'videoinput')
 const getAudioInputDevices = devices => getDevices(devices, 'audioinput')
 const getAudioOutputDevices = devices => getDevices(devices, 'audiooutput')
+const Emoji = ({ emoji, label }) => <span role='img' aria-label={label}>{emoji}</span>
 
 class Soundcheck extends Component {
   constructor (props) {
@@ -108,7 +109,7 @@ class Soundcheck extends Component {
         <br />
         <Row>
           <Col md={5}>
-            Video Input 🎥
+            Video Input <Emoji emoji='🎥' label='camera' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -134,7 +135,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Input 🎙️
+            Audio Input <Emoji emoji='🎙️' label='microphone' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -161,7 +162,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Output 🔈
+            Audio Output <Emoji emoji='🔈' label='speaker' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(

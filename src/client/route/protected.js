@@ -9,9 +9,13 @@ const Protected = ({ component: Component, exact = false, path, isAuthValid, rou
     exact={exact}
     path={path}
     render={props => {
+      const pathname = props.location.pathname
+      const nextUrl = pathname && pathname !== '/'
+        ? `/?next=${encodeURIComponent(pathname)}`
+        : '/'
       return isAuthValid
         ? <Component {...props} routes={routes} />
-        : <Redirect to={'/'} />
+        : <Redirect to={nextUrl} />
     }}
   />
 )

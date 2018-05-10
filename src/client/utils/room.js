@@ -22,3 +22,13 @@ export const getRandomAvatarUrl = (
   }
   return `${AVATAR_URL_PREFIX}/avatars/face/${features.eyes}/${features.nose}/${features.mouth}/${features.color || 'eeee'}`
 }
+
+export const parseRoomIdFromNextUrl = (nextUrl) => {
+  return nextUrl
+    ? decodeURIComponent(
+        nextUrl
+          .replace('?next=', '')
+      )
+        .replace('/room/', '')
+    : null
+}

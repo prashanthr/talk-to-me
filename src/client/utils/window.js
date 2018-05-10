@@ -7,3 +7,4 @@ export const goToUrl = (path, title) => {
   window.history.pushState(currentHistoryState, title, path)
   window.location.replace(path)
 }
+export const reload = () => window.location.reload()

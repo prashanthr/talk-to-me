@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ToggleButton from '../toggle-button'
 import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
 import { map, filter, values } from 'lodash'
+import './index.css'
 
 const getDevices = (devices, kind) => filter(devices, (device, deviceId) => device.kind === kind)
 const getVideoInputDevices = devices => getDevices(devices, 'videoinput')
@@ -100,7 +101,7 @@ class Soundcheck extends Component {
         <br />
         <Row>
           <Col md={5}>
-            Video Input Source
+            Video Input 🎥
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -126,7 +127,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Input Source
+            Audio Input 🎙️
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -153,7 +154,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Output Source
+            Audio Output 🔈
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -168,7 +169,9 @@ class Soundcheck extends Component {
           <Col md={2} />
         </Row>
         <Row>
-            <Col md={5} />
+            <Col md={5} className='foot-note'>
+              Note: Your page will reload after save
+            </Col>
             <Col md={5} />
             <Col md={2}>
               <Button

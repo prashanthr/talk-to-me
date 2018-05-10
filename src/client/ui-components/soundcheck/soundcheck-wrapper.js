@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal } from 'react-bootstrap'
+import Modal from '../modal'
 import Soundcheck from './index'
 import { connect } from 'react-redux'
 import { initializeSoundcheck, onSoundcheckUpdate } from '../../redux/ducks/soundcheck'
@@ -17,12 +17,9 @@ class SoundcheckWrapper extends Component {
     return (
       <Modal
         show={this.props.show}
-        onHide={this.props.onClose}
-      >
-        <Modal.Header closeButton>
-          Audio / Video Settings
-        </Modal.Header>
-        <Modal.Body>
+        onClose={this.props.onClose}
+        header={`Settings - Audio & Video`}
+        content={
           <Soundcheck
             devices={this.props.devices}
             videoEnabled={this.props.videoEnabled}
@@ -33,8 +30,7 @@ class SoundcheckWrapper extends Component {
             onSoundcheckUpdate={this.props.onSoundcheckUpdate}
             onClose={this.props.onClose}
           />
-        </Modal.Body>
-      </Modal>
+        } />
     )
   }
 }

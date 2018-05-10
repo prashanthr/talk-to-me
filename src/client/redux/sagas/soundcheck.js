@@ -9,7 +9,7 @@ import {
 } from '../ducks/soundcheck'
 import { INITIALIZE_SUCCESS } from '../ducks/room'
 import { getDevices, getUserMedia } from '../../utils/navigator'
-import { setLocalStorage, getLocalStorage } from '../../utils/window'
+import { setLocalStorage, getLocalStorage, reload } from '../../utils/window'
 import config from '../../config'
 
 function* soundcheckInitialize () {
@@ -88,7 +88,8 @@ function* soundcheckUpdate ({ audioInput, audioOutput, videoInput, audioEnabled,
       roomId,
       stream
     })
-    // @todo: TODO: Pass stream updates to all users
+    // reload to refresh stream updates
+    reload()
   } catch (err) {
     console.log('Error initializing soundcheck')
     console.error(err)

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import JoinOrCreateRoom from '../../ui-components/join-or-create-room'
 import { Row, Col, Grid, Jumbotron } from 'react-bootstrap'
+import { getNextUrl } from '../../utils/window'
+import { parseRoomIdFromNextUrl } from '../../utils/room'
 import './index.css'
 
 class Welcome extends Component {
   render () {
+    const next = getNextUrl()
+    const roomId = parseRoomIdFromNextUrl(next)
     return (
       <Grid fluid>
         <Jumbotron className='welcome'>
@@ -43,7 +47,9 @@ class Welcome extends Component {
           <br />
           <Row>
             <Col md={12}>
-              <JoinOrCreateRoom />
+              <JoinOrCreateRoom
+                roomId={roomId}
+              />
             </Col>
           </Row>
         </Jumbotron>

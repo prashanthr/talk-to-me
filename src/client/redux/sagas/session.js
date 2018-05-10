@@ -6,7 +6,7 @@ import {
 } from '../ducks/session'
 import axios from 'axios'
 import config from '../../config'
-import { goToUrl, setLocalStorage } from '../../utils/window'
+import { goToUrl, setLocalStorage, getNextUrl } from '../../utils/window'
 
 function* authenticate (action) {
   try {
@@ -22,7 +22,9 @@ function* authenticate (action) {
       code,
       auth
     })
-    goToUrl('/welcome', 'Welcome')
+    const next = getNextUrl()
+    const nextUrl = `/welcome${next || ''}`
+    goToUrl(nextUrl, 'Welcome')
   } catch (error) {
     console.log('Error authenticating')
     console.error(error)

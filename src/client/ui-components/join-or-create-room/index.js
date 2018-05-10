@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { generateName, urlSafe } from '../../utils/room'
 import { goToUrl } from '../../utils/window'
@@ -24,36 +25,56 @@ export default class JoinOrCreateRoom extends Component {
     goToUrl(path, title)
   }
   render () {
-    return (
-      <div>
-        <Button
-          bsStyle='primary'
-          onClick={event => {
-            event.preventDefault()
-            this.gotoRoom(generateName())
-          }}
-        >
-          Create New Room
-        </Button>
-        <br /><br />
-        - OR -
-        <br /><br />
-        <Form inline>
-          <FormGroup controlId='room-name'>
-            <FormControl type='text' size={30} placeholder={generateName(false)} onChange={this.onRoomNameChanged} />
-          </FormGroup>{' '}
+    return this.props.roomId
+      ? (
+        <div>
+          Join room
+          &nbsp;
           <Button
-            bsStyle='warning'
+            bsStyle={'primary'}
             onClick={event => {
               event.preventDefault()
-              if (this.state.roomName) {
-                this.gotoRoom(urlSafe(this.state.roomName))
-              }
-            }}>
-            Join Room
+              this.gotoRoom(this.props.roomId)
+            }}
+          >
+            {this.props.roomId}
           </Button>
-        </Form>
-      </div>
-    )
+        </div>
+        )
+      : (
+        <div>
+          <Button
+            bsStyle='primary'
+            onClick={event => {
+              event.preventDefault()
+              this.gotoRoom(generateName())
+            }}
+          >
+            Create New Room
+          </Button>
+          <br /><br />
+          - OR -
+          <br /><br />
+          <Form inline>
+            <FormGroup controlId='room-name'>
+              <FormControl type='text' size={30} placeholder={generateName(false)} onChange={this.onRoomNameChanged} />
+            </FormGroup>{' '}
+            <Button
+              bsStyle='warning'
+              onClick={event => {
+                event.preventDefault()
+                if (this.state.roomName) {
+                  this.gotoRoom(urlSafe(this.state.roomName))
+                }
+              }}>
+              Join Room
+            </Button>
+          </Form>
+        </div>
+      )
   }
+}
+
+JoinOrCreateRoom.propTypes = {
+  roomId: PropTypes.string
 }

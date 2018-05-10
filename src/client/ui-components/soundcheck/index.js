@@ -3,17 +3,22 @@ import PropTypes from 'prop-types'
 import ToggleButton from '../toggle-button'
 import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
 import { map, filter, values } from 'lodash'
+import { setLocalStorage } from '../../utils/window'
+import config from '../../config'
+import './index.css'
 
 const getDevices = (devices, kind) => filter(devices, (device, deviceId) => device.kind === kind)
 const getVideoInputDevices = devices => getDevices(devices, 'videoinput')
 const getAudioInputDevices = devices => getDevices(devices, 'audioinput')
 const getAudioOutputDevices = devices => getDevices(devices, 'audiooutput')
+const Emoji = ({ emoji, label }) => <span role='img' aria-label={label}>{emoji}</span>
 
 class Soundcheck extends Component {
   constructor (props) {
     super(props)
     this.onDeviceChanged = this.onDeviceChanged.bind(this)
     this.onSoundcheckSave = this.onSoundcheckSave.bind(this)
+    this.onClearSoundcheckCache = this.onClearSoundcheckCache.bind(this)
     this.state = {
       videoInput: null,
       audioInput: null,
@@ -43,6 +48,10 @@ class Soundcheck extends Component {
     this.setState({
       [stateProperty]: event.target.value
     })
+  }
+
+  onClearSoundcheckCache () {
+    setLocalStorage(config.localStorage.gumConstraints, null)
   }
 
   onSoundcheckSave (event) {
@@ -100,7 +109,7 @@ class Soundcheck extends Component {
         <br />
         <Row>
           <Col md={5}>
-            Video Input Source
+            Video Input <Emoji emoji='🎥' label='camera' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -126,7 +135,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Input Source
+            Audio Input <Emoji emoji='🎙️' label='microphone' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -153,7 +162,7 @@ class Soundcheck extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            Audio Output Source
+            Audio Output <Emoji emoji='🔈' label='speaker' />
           </Col>
           <Col md={5}>
             {this.renderDropdownMenu(
@@ -168,8 +177,16 @@ class Soundcheck extends Component {
           <Col md={2} />
         </Row>
         <Row>
-            <Col md={5} />
-            <Col md={5} />
+            <Col md={5}>
+              <Button
+                onClick={this.onClearSoundcheckCache}
+              >
+                Clear cache
+              </Button>
+            </Col>
+            <Col md={5} className='foot-note'>
+              Note: Your page will reload after save
+            </Col>
             <Col md={2}>
               <Button
                 bsStyle='primary'

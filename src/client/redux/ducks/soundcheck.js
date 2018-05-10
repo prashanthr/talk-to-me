@@ -45,7 +45,9 @@ const soundcheckReducer = (state = initialState, action) => {
         devices: keyBy(action.devices, device => `${device.kind}-${device.deviceId}`),
         defaultAudioInputId: findDefaultDevice('audioinput', action.devices),
         defaultVideoInputId: findDefaultDevice('videoinput', action.devices),
-        defaultAudioOutputId: findDefaultDevice('audiooutput', action.devices)
+        defaultAudioOutputId: findDefaultDevice('audiooutput', action.devices),
+        audioEnabled: action.audioEnabled,
+        videoEnabled: action.videoEnabled
       }
     case UPDATE_SOUNDCHECK_SUCCESS:
       return {

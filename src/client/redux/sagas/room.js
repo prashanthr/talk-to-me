@@ -2,10 +2,18 @@ import { call, put, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED, SHUTDOWN } from '../ducks/room'
 import { SOCKET_INITIALIZE, SOCKET_DESTROY } from '../ducks/socket'
 import { getUserMedia } from '../../utils/navigator'
+import { getLocalStorage } from '../../utils/window'
+import config from '../../config'
 
 function* initialize (action) {
   try {
-    const stream = yield call(getUserMedia)
+    const constraints = getLocalStorage(config.localStorage.gumConstraints)
+    let stream
+    if (constraints) {
+      stream = yield call(getUserMedia, constraints)
+    } else {
+      stream = yield call(getUserMedia)
+    }
     yield put({
       type: INITIALIZE_SUCCESS,
       roomId: action.roomId,

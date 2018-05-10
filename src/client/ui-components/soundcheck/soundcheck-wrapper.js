@@ -20,7 +20,7 @@ class SoundcheckWrapper extends Component {
         onHide={this.props.onClose}
       >
         <Modal.Header closeButton>
-          Soundcheck
+          Audio / Video Settings
         </Modal.Header>
         <Modal.Body>
           <Soundcheck

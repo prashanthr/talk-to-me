@@ -23,6 +23,21 @@ class Soundcheck extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props !== nextProps) {
+      if (this.state.audioEnabled !== nextProps.audioEnabled) {
+        this.setState({
+          audioEnabled: nextProps.audioEnabled
+        })
+      }
+      if (this.state.videoEnabled !== nextProps.videoEnabled) {
+        this.setState({
+          videoEnabled: nextProps.videoEnabled
+        })
+      }
+    }
+  }
+
   onDeviceChanged (stateProperty, event) {
     event.preventDefault()
     this.setState({
@@ -47,8 +62,8 @@ class Soundcheck extends Component {
     return (
       <FormGroup>
         <FormControl 
-          componentClass="select" 
-          placeholder="Select source"
+          componentClass='select' 
+          placeholder='Select source'
           selected={selectedKey}
           onChange={onChange}
         >
@@ -71,6 +86,18 @@ class Soundcheck extends Component {
     if (!this.props.devices) return null
     return (
       <div>
+        <Row>
+          <Col md={5}>
+            Media Type
+          </Col>
+          <Col md={5}>
+            Device
+          </Col>
+          <Col md={2}>
+            On / Off
+          </Col>
+        </Row>
+        <br />
         <Row>
           <Col md={5}>
             Video Input Source

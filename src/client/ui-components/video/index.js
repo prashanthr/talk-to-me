@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonGroup } from 'react-bootstrap'
+import { getRandomAvatarUrl } from '../../utils/room'
 import './index.css'
 
 class VideoPlayer extends Component {
@@ -44,6 +45,7 @@ class VideoPlayer extends Component {
           </span>
         }
         <video
+          poster={getRandomAvatarUrl()}
           className='video'
           ref={el => { this.videoRef = el }}
           muted={this.props.muted}

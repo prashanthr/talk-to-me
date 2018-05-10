@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import ToggleButton from '../toggle-button'
 import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
 import { map, filter, values } from 'lodash'
+import { setLocalStorage } from '../../utils/window'
+import config from '../../config'
 import './index.css'
 
 const getDevices = (devices, kind) => filter(devices, (device, deviceId) => device.kind === kind)
@@ -15,6 +17,7 @@ class Soundcheck extends Component {
     super(props)
     this.onDeviceChanged = this.onDeviceChanged.bind(this)
     this.onSoundcheckSave = this.onSoundcheckSave.bind(this)
+    this.onClearSoundcheckCache = this.onClearSoundcheckCache.bind(this)
     this.state = {
       videoInput: null,
       audioInput: null,
@@ -44,6 +47,10 @@ class Soundcheck extends Component {
     this.setState({
       [stateProperty]: event.target.value
     })
+  }
+
+  onClearSoundcheckCache () {
+    setLocalStorage(config.localStorage.gumConstraints, null)
   }
 
   onSoundcheckSave (event) {
@@ -169,10 +176,16 @@ class Soundcheck extends Component {
           <Col md={2} />
         </Row>
         <Row>
+            <Col md={5}>
+              <Button
+                onClick={this.onClearSoundcheckCache}
+              >
+                Clear cache
+              </Button>
+            </Col>
             <Col md={5} className='foot-note'>
               Note: Your page will reload after save
             </Col>
-            <Col md={5} />
             <Col md={2}>
               <Button
                 bsStyle='primary'

@@ -11,15 +11,19 @@ export const initializeSoundcheck = () => ({
   type: INITIALIZE_SOUNDCHECK
 })
 
-export const onSoundcheckUpdate = ({ audioInput, audioOutput, videoInput }) => ({
+export const onSoundcheckUpdate = ({ audioInput, audioOutput, videoInput, audioEnabled, videoEnabled }) => ({
   type: UPDATE_SOUNDCHECK,
   audioInput,
   audioOutput,
-  videoInput
+  videoInput,
+  audioEnabled,
+  videoEnabled
 })
 
 const initialState = {
   devices: {},
+  videoEnabled: true,
+  audioEnabled: true,
   defaultVideoInputId: null,
   defaultAudioOutputId: null,
   defaultAudioInputId: null
@@ -41,7 +45,14 @@ const soundcheckReducer = (state = initialState, action) => {
         devices: keyBy(action.devices, device => `${device.kind}-${device.deviceId}`),
         defaultAudioInputId: findDefaultDevice('audioinput', action.devices),
         defaultVideoInputId: findDefaultDevice('videoinput', action.devices),
-        defaultAudioOutputId: findDefaultDevice('audiooutput', action.devices)
+        defaultAudioOutputId: findDefaultDevice('audiooutput', action.devices),
+        audioEnabled: action.audioEnabled,
+        videoEnabled: action.videoEnabled
+      }
+    case UPDATE_SOUNDCHECK_SUCCESS:
+      return {
+        ...state,
+        ...action.data
       }
     default:
       return state

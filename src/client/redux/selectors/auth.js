@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import { isTokenValid } from '../../utils/jwt'
 import { getLocalStorage } from '../../utils/window'
+import config from '../../config'
 
 const authSelector = state => state.session && state.session.auth
 
@@ -9,7 +10,7 @@ export const getAuth = createSelector(
   auth => {
     if (auth) return auth
     try {
-      return JSON.parse(getLocalStorage('auth') || null)
+      return getLocalStorage(config.localStorage.auth)
     } catch (error) {
       console.error(error)
     }

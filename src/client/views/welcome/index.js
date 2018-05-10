@@ -4,9 +4,6 @@ import { Row, Col, Grid, Jumbotron } from 'react-bootstrap'
 import './index.css'
 
 class Welcome extends Component {
-  componentWillMount () {
-    console.log('cwm', this.props.isAuthValid)
-  }
   render () {
     return (
       <Grid fluid>

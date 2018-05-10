@@ -5,6 +5,7 @@ import {
   AUTHENTICATE_FAILED
 } from '../ducks/session'
 import axios from 'axios'
+import config from '../../config'
 import { goToUrl, setLocalStorage } from '../../utils/window'
 
 function* authenticate (action) {
@@ -14,8 +15,8 @@ function* authenticate (action) {
     }))
     const auth = response.data.auth
     const code = response.data.code || action.code
-    setLocalStorage('auth', auth)
-    setLocalStorage('invite-code', code)
+    setLocalStorage(config.localStorage.auth, auth)
+    setLocalStorage(config.localStorage.code, code)
     yield put({
       type: AUTHENTICATE_SUCCESS,
       code,

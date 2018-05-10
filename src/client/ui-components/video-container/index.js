@@ -15,10 +15,6 @@ class VideoContainer extends Component {
     this.playStream = this.playStream.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    // console.log('new', nextProps)
-  }
-
   playStream (event) {
     event.preventDefault()
     event.target.play()
@@ -49,6 +45,7 @@ class VideoContainer extends Component {
                     }}
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
+                    height={750}
                   />
                 </Col>
               ))}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonGroup } from 'react-bootstrap'
+import { getRandomAvatarUrl } from '../../utils/room'
 import './index.css'
 
 class VideoPlayer extends Component {
@@ -38,12 +39,25 @@ class VideoPlayer extends Component {
     // }
     return (
       <div>
-        {this.props.showDebugInfo &&
-          <span>
-            {`${JSON.stringify(this.props.metadata, null, 2)}`}
-          </span>
-        }
+        <div className={this.props.disableMute ? '' : 'video-controls-overlay'}>
+          {!this.props.disableMute &&
+            <div className='video-controls'>
+              <ButtonGroup vertical block>
+                <Button onClick={this.props.onMute}>
+                  {this.props.muted ? 'Unmute 🔈' : 'Mute 🔇'}
+                </Button>
+              </ButtonGroup>
+            </div>
+          }
+        </div>
+        <div className='video-info-overlay'>
+          {this.props.metadata.socketId
+            ? `${this.props.metadata.socketId.substring(0, 5)}...${this.props.metadata.socketId.substring(this.props.metadata.socketId.length - 5, this.props.metadata.socketId.length)}`
+            : ''
+          }
+        </div>
         <video
+          poster={getRandomAvatarUrl()}
           className='video'
           ref={el => { this.videoRef = el }}
           muted={this.props.muted}
@@ -55,15 +69,13 @@ class VideoPlayer extends Component {
           {...height}
           {...width}
         />
-        {!this.props.disableMute &&
-          <div className='video-controls'>
-            <ButtonGroup vertical block>
-              <Button onClick={this.props.onMute}>
-                {this.props.muted ? 'Unmute 🔈' : 'Mute 🔇'}
-              </Button>
-            </ButtonGroup>
-          </div>
-        }
+        <div className='video-debug'>
+          {this.props.showDebugInfo &&
+            <span>
+              {`${JSON.stringify(this.props.metadata, null, 2)}`}
+            </span>
+          }
+        </div>
       </div>
     )
   }

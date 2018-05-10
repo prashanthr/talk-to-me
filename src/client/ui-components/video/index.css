@@ -4,7 +4,33 @@
   transform: scaleX(-1);
 }
 
-.video-controls {
+.video-debug {
   width: 100%;
   position: relative;
+}
+
+.video-controls-overlay {
+  position: absolute;
+  right: 10px;
+  bottom: 40px;
+  margin: 10px;
+  padding: 5px 5px;
+  font-size: 20px;
+  font-family: Helvetica;
+  color: #FFF;
+  background-color: rgba(50, 50, 50, 0.3);
+  z-index: 1000;
+}
+
+.video-info-overlay {
+  position: absolute;
+  left: 10px;
+  top: 40px;
+  margin: 10px;
+  padding: 5px 5px;
+  font-size: 20px;
+  font-family: Helvetica;
+  color: #FFF;
+  background-color: rgba(50, 50, 50, 0.3);
+  z-index: 1000;
 }

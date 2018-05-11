@@ -61,6 +61,7 @@ export default class JoinOrCreateRoom extends Component {
             </FormGroup>{' '}
             <Button
               bsStyle='warning'
+              disabled={!this.state.roomName}
               onClick={event => {
                 event.preventDefault()
                 if (this.state.roomName) {

@@ -2,9 +2,9 @@
 const stunServers = [
   'stun:stun.l.google.com:19302',
   // '23.21.150.121:3478'
-  'stun:iphone-stun.strato-iphone.de:3478',
+  // 'stun:iphone-stun.strato-iphone.de:3478',
   'stun:numb.viagenie.ca:3478',
-  'stun:s1.taraba.net:3478',
+// 'stun:s1.taraba.net:3478',
 // 's2.taraba.net:3478',
 // 'stun.12connect.com:3478',
 // 'stun.12voip.com:3478',
@@ -234,17 +234,17 @@ const stunServers = [
 // 'stun.voipbuster.com:3478',
 // 'stun.voipbusterpro.com:3478',
 // 'stun.voipcheap.co.uk:3478',
-'stun:stun.voipcheap.com:3478',
-'stun:stun.voipfibre.com:3478',
-'stun:stun.voipgain.com:3478',
-'stun:stun.voipgate.com:3478',
+  'stun:stun.voipcheap.com:3478',
+  'stun:stun.voipfibre.com:3478',
+  'stun:stun.voipgain.com:3478',
+  'stun:stun.voipgate.com:3478',
 // 'stun.voipinfocenter.com:3478',
 // 'stun.voipplanet.nl:3478',
 // 'stun.voippro.com:3478',
 // 'stun.voipraider.com:3478',
 // 'stun.voipstunt.com:3478',
-'stun:stun.voipwise.com:3478',
-'stun:stun.voipzoom.com:3478',
+  'stun:stun.voipwise.com:3478',
+  'stun:stun.voipzoom.com:3478',
 // 'stun.vopium.com:3478',
 // 'stun.voxgratia.org:3478',
 // 'stun.voxox.com:3478',
@@ -270,4 +270,30 @@ const stunServers = [
   'stun:stunserver.org:3478'
 ]
 
-export default stunServers
+const googleStunServers = [
+  'stun:stun.l.google.com:19302',
+  'stun:stun1.l.google.com:19302',
+  'stun:stun2.l.google.com:19302',
+  'stun:stun3.l.google.com:19302',
+  'stun:stun4.l.google.com:19302'
+]
+
+export const primaryStunServers = [
+  ...googleStunServers
+]
+
+export const secondaryStunServers = [
+  'stun:stun.barracuda.com:3478',
+  'stun:stun.2talk.com:3478',
+  'stun:numb.viagenie.ca:3478',
+  'stun:stun.budgetphone.nl:3478'
+]
+
+export const ternaryStunServers = [
+  'stun:stun.2talk.co.nz:3478',
+  'stun:stun.freecall.com:3478'
+]
+
+export const buildStunServers = (servers) => servers.map(url => ({ urls: url }))
+
+// https://appear.in/, { iceServers: [turn:turnserver.appearin.net:443?transport=udp, turn:turnserver.appearin.net:443?transport=tcp, turns:turnserver.appearin.net:443?transport=tcp], iceTransportPolicy: all, bundlePolicy: balanced, rtcpMuxPolicy: require, iceCandidatePoolSize: 0 }, {advanced: [{googCpuOveruseDetection: {exact: true}}]}

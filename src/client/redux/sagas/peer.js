@@ -55,7 +55,7 @@ const createPeer = ({
     const peer = new Peer({
       initiator: isInitiator,
       config: {
-        iceServers: config.iceServers
+        iceServers: config.stunServers.primary
       },
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95

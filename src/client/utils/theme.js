@@ -22,10 +22,6 @@ export const themes = {
   blueSkies: {
     color1: '#56CCF2',
     color2: '#2F80ED'
-  },
-  rainyAshville: {
-    color1: '#fbc2eb',
-    color2: '#a6c1ee'
   }
 }
 

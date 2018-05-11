@@ -9,7 +9,8 @@ const config = {
     gumConstraints: 'gum',
     auth: 'auth',
     code: 'code'
-  }
+  },
+  inviteUrl: 'https://goo.gl/forms/gd3nPeuDWbhghGzY2'
 }
 
 export default config

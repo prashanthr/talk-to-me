@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
+import config from '../../config'
 import './index.css'
 
 export default class JoinOrCreateRoom extends Component {
@@ -68,7 +69,7 @@ export default class JoinOrCreateRoom extends Component {
         </Form>
         <br />
         <div>
-          Don't have one? <Button bsSize='large' bsStyle='link' href='#'>Request an invite</Button>
+          Don't have one? <Button bsSize='large' bsStyle='link' href={config.inviteUrl}>Request an invite</Button>
         </div>
       </div>
     )

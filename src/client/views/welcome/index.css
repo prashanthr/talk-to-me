@@ -1,3 +1,8 @@
 .welcome ol {
   font-weight: 200;
 }
+
+.join-or-create-room {
+  padding-top: 100px;
+  padding-left: 50px;
+}

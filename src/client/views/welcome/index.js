@@ -13,8 +13,8 @@ class Welcome extends Component {
       <Grid fluid>
         <Jumbotron className='welcome'>
           <Row>
-            <Col md={12}>
-              <h1>Hello internet-loving-friend!</h1>
+            <Col md={7}>
+              <h2>Hello internet-loving-friend! 🙌🏽 </h2>
               <p>
               Welcome to Talk to Me. I built this application using the latest technologies,
               to provide an easy means of communication (audio and video) for the unhappy. 
@@ -31,25 +31,28 @@ class Welcome extends Component {
               </p>
               <div>
               <ol>
-                <li> You don't talk about it. (Just like Fight Club)
+                <li> You don't talk about it. (Just like Fight Club) 🤐
                   <br />- The moment something good exists out there, evil corporations want to shut it down. So please keep the chatter to a minimum. The less people know about it, the better. But if you know people that you trust who are cool, then feel free to share your invite code with them.
                 </li>
-                <li> Feedback.
+                <li> Feedback. ✍️
                  <br />- If you like it, let me know. If you hate it, let me know. If you want something improved, let me know. Let's aim to improve
                 </li>
               </ol>
               </div>
+              <br />
               <p>
-              That's it. Happy chatting!
+                That's it. Happy chatting!
+                <br />
+                Get started by creating or joining a room on the right ↗️
               </p>
             </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col md={12}>
-              <JoinOrCreateRoom
-                roomId={roomId}
-              />
+            <br />
+            <Col md={5}>
+              <div className='join-or-create-room'>
+                <JoinOrCreateRoom
+                  roomId={roomId}
+                />
+              </div>
             </Col>
           </Row>
         </Jumbotron>

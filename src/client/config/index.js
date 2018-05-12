@@ -13,13 +13,13 @@ const config = {
   },
   analytics: {
     google: {
-      propertyId: 'UA-117106220-2'
+      propertyId: ''
     }
   },
   log: {
     sentry: {
       enabled: true,
-      dsn: 'https://e49bb58cac3e47a6b80f1619d8a20391@sentry.io/1205381',
+      dsn: '',
       captureUnhandledRejections: true,
       autoBreadcrumbs: true,
       tags: {

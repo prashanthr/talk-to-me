@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/prashanthr/talk-to-me/compare/v1.3.2...v1.4.0) (2018-05-12)
+
+
+### Features
+
+* **analytics:** Add google analytics ([#23](https://github.com/prashanthr/talk-to-me/issues/23)) ([c311ad9](https://github.com/prashanthr/talk-to-me/commit/c311ad9))
+* **sentry:** Add sentry logging and stun server fallback ([#24](https://github.com/prashanthr/talk-to-me/issues/24)) ([a4e825a](https://github.com/prashanthr/talk-to-me/commit/a4e825a))
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/prashanthr/talk-to-me/compare/v1.3.1...v1.3.2) (2018-05-11)
 

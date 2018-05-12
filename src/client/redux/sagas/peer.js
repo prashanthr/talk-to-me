@@ -5,10 +5,21 @@ import { forEach, filter, keys } from 'lodash'
 import Peer from 'simple-peer'
 import { store } from '../../index'
 import config from '../../config'
+import { setLocalStorage, getLocalStorage, getUserInfo } from '../../utils/window'
 
 // Peer event handlers
 const peerEventError = (err) => {
-  console.error('Peer event error', err)
+  console.error('Peer event error', err.code, err)
+  window.captureBreadcrumb(getUserInfo())
+  window.captureException(err)
+  if (err.code === 'ERR_ICE_CONNECTION_FAILURE') {
+    const currentIce = getLocalStorage(config.localStorage.ice)
+    setLocalStorage(config.localStorage.ice, {
+      code: err.code,
+      error: err,
+      stunServerKey: currentIce.stunServerKey
+    })
+  }
 }
 
 const peerEventSignal = ({
@@ -52,10 +63,26 @@ const createPeer = ({
 }) => {
   return new Promise((resolve, reject) => {
     const isInitiator = socket.id === initiator
+    const stunServerKeys = ['primary', 'secondary', 'ternary']
+    const localIce = getLocalStorage(config.localStorage.ice)
+    let iceServers
+    if (localIce && localIce.error && localIce.stunServerKey) {
+      console.info('encountered error with ice server previously')
+      const currentIndex = stunServerKeys.indexOf(localIce.stunServerKey)
+      if (currentIndex && currentIndex < stunServerKeys.length - 1) {
+        const newIceKey = stunServerKeys[currentIndex] + 1
+        console.info(`using ${newIceKey} stun`)
+        iceServers = config.stunServers[newIceKey]
+      }
+    } else {
+      console.info('using primary stun')
+      setLocalStorage(config.localStorage.ice, { stunServerKey: 'primary' })
+      iceServers = config.stunServers.primary
+    }
     const peer = new Peer({
       initiator: isInitiator,
       config: {
-        iceServers: config.stunServers.primary
+        iceServers
       },
       // Allow the peer to receive video, even if it's not sending stream:
       // https://github.com/feross/simple-peer/issues/95

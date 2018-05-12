@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ToggleButton from '../toggle-button'
 import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
+import Emoji from '../emoji'
 import { map, filter, values } from 'lodash'
 import { setLocalStorage } from '../../utils/window'
 import config from '../../config'
@@ -11,7 +12,6 @@ const getDevices = (devices, kind) => filter(devices, (device, deviceId) => devi
 const getVideoInputDevices = devices => getDevices(devices, 'videoinput')
 const getAudioInputDevices = devices => getDevices(devices, 'audioinput')
 const getAudioOutputDevices = devices => getDevices(devices, 'audiooutput')
-const Emoji = ({ emoji, label }) => <span role='img' aria-label={label}>{emoji}</span>
 
 class Soundcheck extends Component {
   constructor (props) {

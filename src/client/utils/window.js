@@ -15,3 +15,15 @@ export const goToUrl = (path, title) => {
   window.location.replace(path)
 }
 export const reload = () => window.location.reload()
+export const getUserInfo = () => ({
+  screen: {
+    width: window.screen ? window.screen.width : null,
+    height: window.screen ? window.screen.height : null
+  },
+  winSize: {
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight
+  },
+  platform: navigator.platform || navigator.oscpu,
+  href: window.location.href
+})

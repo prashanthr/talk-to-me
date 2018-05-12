@@ -1,8 +1,10 @@
+import config from '../../config'
+
 const analytics = () => {
   window.dataLayer = window.dataLayer || []
   function gtag () { window.dataLayer.push(arguments) }
   gtag('js', new Date())
-  gtag('config', 'UA-117106220-2')
+  gtag('config', config.analytics.google.propertyId)
 }
 
 export default analytics

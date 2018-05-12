@@ -29,6 +29,7 @@
     "peerjs": "^0.3.14",
     "prop-types": "^15.6.0",
     "query-string": "^5.0.1",
+    "raven-js": "^3.25.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",

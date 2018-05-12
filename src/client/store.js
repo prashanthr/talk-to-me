@@ -7,7 +7,9 @@ import reducers from './redux/ducks/reducers'
 import sagas from './redux/sagas'
 
 export default function configureStore (history) {
-  const sagaMiddleware = createSagaMiddleware()
+  const sagaMiddleware = createSagaMiddleware({
+    onError: window.captureException
+  })
   let middleware = applyMiddleware(
     sagaMiddleware,
     routerMiddleware(history),

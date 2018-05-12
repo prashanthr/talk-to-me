@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import Logo from '../../ui-components/logo'
 import { injectGlobal } from 'styled-components'
 import { getThemeCSS } from '../../utils/theme'
-import analytics from '../../analytics'
+import analytics from '../../third-party/google/analytics'
+import sentry from '../../third-party/sentry'
 import './index.css'
 // eslint-disable-next-line
 injectGlobal`
@@ -21,7 +22,9 @@ body {
 
 class Home extends Component {
   componentWillMount () {
+    // load third-party services
     analytics()
+    sentry()
     if (this.props.isAuthValid) {
       goToUrl('/welcome')
     }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // https://gist.github.com/mondain/b0ec1cf5f60ae726202e
 const stunServers = [
   'stun:stun.l.google.com:19302',

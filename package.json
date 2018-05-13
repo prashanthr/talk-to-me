@@ -64,7 +64,7 @@
     "ship-prod": "yarn ship-prod-client && yarn ship-prod-server",
     "ship-prod-client": "scp  -i ~/.ssh/do -r build/*  root@45.55.194.231:/var/www/current/build/",
     "ship-prod-server": "pm2 deploy ecosystem.json production",
-    "copy-config-prod": "scp -r -i ~/.ssh/do ./config/secrets/ root@45.55.194.231:/var/www/current/config/secrets/",
+    "copy-config-prod": "scp -i ~/.ssh/do ./config/secrets/invite-codes.json root@45.55.194.231:/var/www/current/config/secrets/ && scp -i ~/.ssh/do ./config/secrets/config/default.json root@45.55.194.231:/var/www/current/config/",
     "update-config-prod": "ssh -i ~/.ssh/do root@45.55.194.231 \"cd /var/www/current; bash; yarn update-config\""
   },
   "repository": {

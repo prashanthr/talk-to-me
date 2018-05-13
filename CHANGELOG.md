@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/prashanthr/talk-to-me/compare/v1.5.0...v1.5.1) (2018-05-13)
+
+
+### Bug Fixes
+
+* **video:** Fixed mirroring for user other than self ([c0cb1aa](https://github.com/prashanthr/talk-to-me/commit/c0cb1aa))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/prashanthr/talk-to-me/compare/v1.4.1...v1.5.0) (2018-05-13)
 

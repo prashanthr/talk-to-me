@@ -1,5 +1,8 @@
 .video {
   width: 100%;
+}
+
+.video-mirror {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }

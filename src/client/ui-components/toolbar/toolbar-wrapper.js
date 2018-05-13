@@ -80,7 +80,7 @@ class ToolbarWrapper extends Component {
       onClick: this.onRoomNameClick
     },{
       key: 'setting',
-      label: ' Settings',
+      label: 'Settings',
       icon: 'cog',
       onClick: this.onSettingsClick
     }, {

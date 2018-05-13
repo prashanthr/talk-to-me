@@ -28,6 +28,11 @@ const sentry = () => {
     window.captureMessage = (message, options) => {
       raven.captureMessage(message, options)
     }
+    window.showErrorDialog = eventId => {
+      raven.showReportDialog({
+        eventId
+      })
+    }
   } else {
     console.log('Sentry is disabled')
     window.captureException = err => {}
@@ -35,4 +40,14 @@ const sentry = () => {
     window.captureMessage = (message, options) => {}
   }
 }
+
+export const showErrorDialog = () => {
+  if (raven.isSetup() && raven.lastEventId()) {
+    raven.showReportDialog({
+      eventId: raven.lastEventId(),
+      dsn: sentryConfig.dsn
+    })
+  }
+}
+
 export default sentry

@@ -74,7 +74,9 @@ export default class JoinOrCreateRoom extends Component {
             <label>Settings</label>
             <Row>
               <Col md={6}>
-                Device Options
+                <span style={{ fontSize: '16px' }}>
+                  Device Options
+                </span>
               </Col>
               <Col md={6}>
                 <DropdownMenu

@@ -45,6 +45,7 @@ class VideoContainer extends Component {
                     }}
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
+                    mirror={this.props.users[userId].mirror}
                   />
                 </Col>
               ))}
@@ -81,7 +82,8 @@ function mapStateToProps (state, ownProps) {
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: state.user.socket.id,
         muted: true,
-        disableMute: true
+        disableMute: true,
+        mirror: true
       }
     }
   }

@@ -58,7 +58,7 @@ class VideoPlayer extends Component {
         </div>
         <video
           poster={getRandomAvatarUrl()}
-          className='video'
+          className={`video ${this.props.mirror ? 'video-mirror' : ''}`}
           ref={el => { this.videoRef = el }}
           muted={this.props.muted}
           onClick={this.props.onClick}
@@ -94,7 +94,8 @@ VideoPlayer.propTypes = {
   onLoadedMetadata: PropTypes.func,
   showDebugInfo: PropTypes.bool,
   metadata: PropTypes.any,
-  disableMute: PropTypes.bool
+  disableMute: PropTypes.bool,
+  mirror: PropTypes.bool
 }
 
 VideoPlayer.defaultProps = {
@@ -104,7 +105,8 @@ VideoPlayer.defaultProps = {
   autoPlay: true,
   muted: false,
   showDebugInfo: false,
-  disableMute: false
+  disableMute: false,
+  mirror: false
 }
 
 export default VideoPlayer

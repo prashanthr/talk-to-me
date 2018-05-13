@@ -10,9 +10,18 @@ import { setLocalStorage, getLocalStorage, getUserInfo } from '../../utils/windo
 // Peer event handlers
 const peerEventError = (err) => {
   console.error('Peer event error', err.code, err)
-  window.captureBreadcrumb(getUserInfo())
+  if (window.captureBreadcrumb) {
+    window.captureBreadcrumb(getUserInfo())
+  }
   window.captureException(err)
-  if (err.code === 'ERR_ICE_CONNECTION_FAILURE') {
+  if (err.code === 'ERR_ICE_CONNECTION_FAILURE' ||
+      (err.message &&
+        (
+          err.message === 'Ice connection failed' ||
+          err.message.toLowerCase().includes('ice')
+        )
+      )
+    ) {
     const currentIce = getLocalStorage(config.localStorage.ice)
     setLocalStorage(config.localStorage.ice, {
       code: err.code,

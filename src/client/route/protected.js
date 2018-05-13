@@ -10,7 +10,7 @@ const Protected = ({ component: Component, exact = false, path, isAuthValid, rou
     path={path}
     render={props => {
       const pathname = props.location.pathname
-      const nextUrl = pathname && pathname !== '/'
+      const nextUrl = pathname && !['/', '/welcome'].includes(pathname)
         ? `/?next=${encodeURIComponent(pathname)}`
         : '/'
       return isAuthValid

@@ -19,7 +19,7 @@ body {
   ${getThemeCSS()}
 }
 `
-
+const APP_VERSION = process.env.APP_VERSION
 class Home extends Component {
   componentWillMount () {
     // load third-party services
@@ -37,6 +37,10 @@ class Home extends Component {
         <div className='splash'>
           <InviteWrapper />
         </div>
+        <footer className='footer'>
+          Copyright © Prashanth R. {`${new Date().getFullYear()}`}
+          {`${APP_VERSION ? `v${APP_VERSION}` : ''}`}
+        </footer>
       </div>
     )
   }

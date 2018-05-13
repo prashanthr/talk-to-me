@@ -1,6 +1,6 @@
 {
   "name": "talk-to-me",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Chat using Web RTC",
   "main": "index.js",
   "private": true,

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/prashanthr/talk-to-me/compare/v1.4.1...v1.5.0) (2018-05-13)
+
+
+### Bug Fixes
+
+* **welcome:** ui-fixes and gum on start ([8e43484](https://github.com/prashanthr/talk-to-me/commit/8e43484))
+
+
+### Features
+
+* **footer:** Add footer ([c144561](https://github.com/prashanthr/talk-to-me/commit/c144561))
+* **share:** Add share room capability ([1d88530](https://github.com/prashanthr/talk-to-me/commit/1d88530))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/prashanthr/talk-to-me/compare/v1.4.0...v1.4.1) (2018-05-12)
 

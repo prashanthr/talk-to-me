@@ -44,7 +44,7 @@ class Welcome extends Component {
               <p>
                 That's it. Happy chatting!
                 <br />
-                Get started by creating or joining a room on the right ↗️
+                <b>Get started</b> by creating or joining a room
               </p>
             </Col>
             <br />

@@ -22,8 +22,8 @@ const sentry = () => {
         raven.captureException(err)
       }
     }
-    window.captureBreadcrumb = breadcrumb => {
-      raven.captureBreadcrumb(breadcrumb)
+    window.captureBreadcrumb = crumb => {
+      raven.captureBreadcrumb(crumb)
     }
     window.captureMessage = (message, options) => {
       raven.captureMessage(message, options)
@@ -31,7 +31,7 @@ const sentry = () => {
   } else {
     console.log('Sentry is disabled')
     window.captureException = err => {}
-    window.captureBreadcrumb = breadcrumb => {}
+    window.captureBreadcrumb = crumb => {}
     window.captureMessage = (message, options) => {}
   }
 }

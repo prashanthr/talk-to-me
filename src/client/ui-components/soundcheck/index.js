@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ToggleButton from '../toggle-button'
-import { Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
+import DropdownMenu from '../dropdown-menu'
 import Emoji from '../emoji'
 import { map, filter, values } from 'lodash'
 import { setLocalStorage } from '../../utils/window'
@@ -51,6 +52,10 @@ class Soundcheck extends Component {
   }
 
   onClearSoundcheckCache () {
+    this.setState({
+      audioEnabled: true,
+      videoEnabled: true
+    })
     setLocalStorage(config.localStorage.gumConstraints, null)
   }
 
@@ -65,30 +70,6 @@ class Soundcheck extends Component {
       })
     }
     this.props.onClose()
-  }
-
-  renderDropdownMenu = (items, selectedKey, onChange) => {
-    return (
-      <FormGroup>
-        <FormControl 
-          componentClass='select' 
-          placeholder='Select source'
-          selected={selectedKey}
-          onChange={onChange}
-        >
-          {
-            map(items, item => (
-              <option 
-                key={item.key}
-                value={item.key}
-              >
-                {item.label}
-              </option>
-            ))
-          }
-        </FormControl>
-      </FormGroup>
-    )
   }
 
   render () {
@@ -112,18 +93,19 @@ class Soundcheck extends Component {
             Video Input <Emoji emoji='🎥' label='camera' />
           </Col>
           <Col md={5}>
-            {this.renderDropdownMenu(
-              map(getVideoInputDevices(this.props.devices), device => ({
+            {<DropdownMenu
+              items={map(getVideoInputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
                 label: device.label
-              })),
-              this.props.videoInput.id,
-              event => this.onDeviceChanged('videoInput', event)
-            )}
+              }))}
+              selectedKey={this.props.videoInput.id}
+              onChange={event => this.onDeviceChanged('videoInput', event)}
+              />
+            }
           </Col>
           <Col md={2}>
-            <ToggleButton 
-              enabled={this.state.videoEnabled} 
+            <ToggleButton
+              enabled={this.state.videoEnabled}
               onChange={event => {
                 if (event && event.target.checked !== undefined) {
                   this.setState({
@@ -138,18 +120,19 @@ class Soundcheck extends Component {
             Audio Input <Emoji emoji='🎙️' label='microphone' />
           </Col>
           <Col md={5}>
-            {this.renderDropdownMenu(
-              map(getAudioInputDevices(this.props.devices), device => ({
+            {<DropdownMenu
+              items={map(getAudioInputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
                 label: device.label
-              })),
-              this.props.audioInput.id,
-              event => this.onDeviceChanged('audioInput', event)
-            )}
+              }))}
+              selectedKey={this.props.audioInput.id}
+              onChange={event => this.onDeviceChanged('audioInput', event)}
+              />
+            }
           </Col>
           <Col md={2}>
-            <ToggleButton 
-              enabled={this.state.audioEnabled} 
+            <ToggleButton
+              enabled={this.state.audioEnabled}
               onChange={event => {
                 if (event && event.target.checked !== undefined) {
                   this.setState({
@@ -165,36 +148,37 @@ class Soundcheck extends Component {
             Audio Output <Emoji emoji='🔈' label='speaker' />
           </Col>
           <Col md={5}>
-            {this.renderDropdownMenu(
-              map(getAudioOutputDevices(this.props.devices), device => ({
+            {<DropdownMenu
+              items={map(getAudioOutputDevices(this.props.devices), device => ({
                 key: `${device.kind}-${device.deviceId}`,
                 label: device.label
-              })),
-              this.props.audioOutput.id,
-              event => this.onDeviceChanged('audioOutput', event)
-            )}
+              }))}
+              selectedKey={this.props.audioOutput.id}
+              onChange={event => this.onDeviceChanged('audioOutput', event)}
+              />
+            }
           </Col>
           <Col md={2} />
         </Row>
         <Row>
-            <Col md={5}>
-              <Button
-                onClick={this.onClearSoundcheckCache}
-              >
-                Clear cache
-              </Button>
-            </Col>
-            <Col md={5} className='foot-note'>
-              Note: Your page will reload after save
-            </Col>
-            <Col md={2}>
-              <Button
-                bsStyle='primary'
-                onClick={this.onSoundcheckSave}
-              >
-                Save
-              </Button>            
-            </Col>
+          <Col md={5}>
+            <Button
+              onClick={this.onClearSoundcheckCache}
+            >
+              Reset to defaults
+            </Button>
+          </Col>
+          <Col md={5} className='foot-note'>
+            Note: Your page will reload after save
+          </Col>
+          <Col md={2}>
+            <Button
+              bsStyle='primary'
+              onClick={this.onSoundcheckSave}
+            >
+              Save
+            </Button>
+          </Col>
         </Row>
       </div>
     )

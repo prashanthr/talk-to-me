@@ -274,9 +274,8 @@ const stunServers = [
 const googleStunServers = [
   'stun:stun.l.google.com:19302',
   'stun:stun1.l.google.com:19302',
-  'stun:stun2.l.google.com:19302',
-  'stun:stun3.l.google.com:19302',
-  'stun:stun4.l.google.com:19302'
+  'stun:104.131.31.167',
+  'stun:stun2.l.google.com:19302'
 ]
 
 export const primaryStunServers = [
@@ -284,13 +283,15 @@ export const primaryStunServers = [
 ]
 
 export const secondaryStunServers = [
+  'stun:stun3.l.google.com:19302',
+  'stun:stun4.l.google.com:19302',
   'stun:stun.barracuda.com:3478',
-  'stun:stun.2talk.com:3478',
-  'stun:numb.viagenie.ca:3478',
-  'stun:stun.budgetphone.nl:3478'
+  'stun:stun.2talk.com:3478'
 ]
 
 export const ternaryStunServers = [
+  'stun:numb.viagenie.ca:3478',
+  'stun:stun.budgetphone.nl:3478',
   'stun:stun.2talk.co.nz:3478',
   'stun:stun.freecall.com:3478'
 ]

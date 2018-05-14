@@ -60,7 +60,7 @@
     "release": "standard-version",
     "update-config": "./bin/update-config.sh",
     "takeoff": "echo 'Taking off...' && yarn build-prod && yarn ship-prod && yarn copy-config-prod",
-    "build-prod": "cp ./config/secrets/src/client/config/index.js ./src/client/config/ && yarn && NODE_ENV=production react-scripts build && git checkout .",
+    "build-prod": "cp ./config/secrets/src/client/config/index.js ./src/client/config/ && yarn && APP_ENV=production bin/client.sh && git checkout .",
     "ship-prod": "yarn ship-prod-client && yarn ship-prod-server",
     "ship-prod-client": "scp  -i ~/.ssh/do -r build/*  root@45.55.194.231:/var/www/current/build/",
     "ship-prod-server": "pm2 deploy ecosystem.json production",

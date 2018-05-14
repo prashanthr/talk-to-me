@@ -38,7 +38,7 @@ class Home extends Component {
           <InviteWrapper />
         </div>
         <footer className='footer'>
-          Copyright © Prashanth R. {`${new Date().getFullYear()}`}
+          Copyright © PR. {`${new Date().getFullYear()}`}
           {`${APP_VERSION ? `v${APP_VERSION}` : ''}`}
         </footer>
       </div>

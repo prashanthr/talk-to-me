@@ -59,13 +59,13 @@ export default class JoinOrCreateRoom extends Component {
   render () {
     const mediaSourceOptions = [{
       key: 'av',
-      label: `Default (Audio 🎙 + Video 📹)`
+      label: `Audio & Video (Default)`
     }, {
       key: 'a',
-      label: `Audio only 🎙️`
+      label: `Audio only`
     }, {
       key: 'v',
-      label: `Video only 📹`
+      label: `Video only`
     }]
     return (
       <div>
@@ -97,7 +97,6 @@ export default class JoinOrCreateRoom extends Component {
                   Join Room
                   &nbsp;
                   <Button
-                    bsSize='small'
                     bsStyle={'primary'}
                     onClick={event => {
                       event.preventDefault()
@@ -110,40 +109,55 @@ export default class JoinOrCreateRoom extends Component {
                 )
               : (
                 <div>
-                  <Button
-                    bsStyle='primary'
-                    onClick={event => {
-                      event.preventDefault()
-                      this.gotoRoom(generateName())
-                    }}
-                  >
-                    Create New Room {emojiLightBulb}
-                  </Button>
-                  &nbsp;&nbsp; OR &nbsp;&nbsp;
-                  <Button bsSize='small' onClick={this.onCustomizeRoom}>
-                    Customize Room {emojiGenie}
-                  </Button>
-                  {this.state.showCustomRoomOptions &&
-                    <div>
-                      <br />
-                      <Form inline>
-                        <FormGroup controlId='room-name'>
-                          <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
-                        </FormGroup>{' '}
-                        <Button
-                          bsStyle='warning'
-                          disabled={!this.state.roomName}
-                          onClick={event => {
-                            event.preventDefault()
-                            if (this.state.roomName) {
-                              this.gotoRoom(urlSafe(this.state.roomName))
-                            }
-                          }}>
-                          Join Room
-                        </Button>
-                      </Form>
-                    </div>
-                  }
+                  <Row>
+                    <Col md={5}>
+                      <Button
+                        bsStyle='primary'
+                        onClick={event => {
+                          event.preventDefault()
+                          this.gotoRoom(generateName())
+                        }}
+                      >
+                        Create New Room {emojiLightBulb}
+                      </Button>
+                    </Col>
+                    <Col md={2}>
+                      OR
+                    </Col>
+                    <Col md={5}>
+                      <Button
+                        onClick={this.onCustomizeRoom}
+                      >
+                        Customize Room {emojiGenie}
+                      </Button>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={12}>
+                      {this.state.showCustomRoomOptions &&
+                      <div>
+                        <br />
+                        <Form inline>
+                          <FormGroup controlId='room-name'>
+                            <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
+                          </FormGroup>{' '}
+                          <Button
+                            bsStyle='warning'
+                            disabled={!this.state.roomName}
+                            onClick={event => {
+                              event.preventDefault()
+                              if (this.state.roomName) {
+                                this.gotoRoom(urlSafe(this.state.roomName))
+                              }
+                            }}>
+                            Join Room
+                          </Button>
+                        </Form>
+                      </div>
+                    }
+                    </Col>
+                  </Row>
+                  <br />
                 </div>
               )
             }

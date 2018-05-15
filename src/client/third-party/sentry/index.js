@@ -4,8 +4,8 @@ import raven from 'raven-js'
 
 const sentryConfig = config.log.sentry
 const sentry = () => {
-  if (sentryConfig.enabled) {
-    console.log('Sentry is enabled')
+  if (sentryConfig.enabled && sentryConfig.dsn) {
+    console.log('Logging is enabled')
     raven.config(sentryConfig.dsn, {
       environment: process.env.NODE_ENV || 'development',
       release: process.env.APP_VERSION,
@@ -34,7 +34,7 @@ const sentry = () => {
       })
     }
   } else {
-    console.log('Sentry is disabled')
+    console.log('Logging is disabled')
     window.captureException = err => {}
     window.captureBreadcrumb = crumb => {}
     window.captureMessage = (message, options) => {}

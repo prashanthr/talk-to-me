@@ -1,8 +1,37 @@
+.welcome {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 18px;
+}
+
 .welcome ol {
   font-weight: 200;
 }
 
-.join-or-create-room {
-  padding-top: 100px;
-  padding-left: 50px;
+.welcome .btn:active:focus, .btn:focus {
+  outline: none;
+}
+
+.platform-logo {
+  height: 20px;
+}
+
+.platform-logo-chrome-android {
+  padding-top: 2px;
+}
+
+.platform-logo-android {
+  height: 26px;
+  padding-bottom: 5px;
+}
+
+.platform-logo-android {
+  background-image: url('../../assets/img/platform-logos/android.png')
+}
+
+@media (min-width:990px) {
+  .join-or-create-room {
+    padding-top: 100px;
+    padding-left: 50px;
+  }
 }

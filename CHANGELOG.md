@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/prashanthr/talk-to-me/compare/v1.5.2...v1.6.0) (2018-05-15)
+
+
+### Bug Fixes
+
+* **ui:** change copy on welcome, reorder things, add faq ([268e4d6](https://github.com/prashanthr/talk-to-me/commit/268e4d6))
+
+
+### Features
+
+* **user-report:** Add user report feedback/bug feature ([88df405](https://github.com/prashanthr/talk-to-me/commit/88df405))
+
+
+
 <a name="1.5.2"></a>
 ## [1.5.2](https://github.com/prashanthr/talk-to-me/compare/v1.5.1...v1.5.2) (2018-05-14)
 

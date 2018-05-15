@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { map } from 'lodash'
+import './index.css'
 
 class Toolbar extends Component {
   renderMenuItem = (item) => (
@@ -9,7 +10,7 @@ class Toolbar extends Component {
       active={item.active !== false}
       key={item.key}
       onClick={item.onClick}>
-      {item.icon && <Glyphicon glyph={item.icon} />}
+      {item.icon && <Glyphicon glyph={item.icon} className='toolbar-icon' />}
       {item.label || item.key}
     </Button>
   )

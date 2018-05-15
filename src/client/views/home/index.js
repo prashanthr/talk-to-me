@@ -25,6 +25,7 @@ class Home extends Component {
     // load third-party services
     analytics()
     sentry()
+    // Check auth
     if (this.props.isAuthValid) {
       goToUrl('/welcome')
     }

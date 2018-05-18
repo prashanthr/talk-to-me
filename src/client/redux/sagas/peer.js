@@ -6,14 +6,13 @@ import Peer from 'simple-peer'
 import { store } from '../../index'
 import config from '../../config'
 import { setLocalStorage, getLocalStorage, getUserInfo } from '../../utils/window'
+import { captureBreadcrumb, captureException } from '../../third-party/sentry'
 
 // Peer event handlers
 const peerEventError = (err) => {
   console.error('Peer event error', err.code, err)
-  if (window.captureBreadcrumb) {
-    window.captureBreadcrumb(getUserInfo())
-  }
-  window.captureException(err)
+  captureBreadcrumb(getUserInfo())
+  captureException(err)
   if (err.code === 'ERR_ICE_CONNECTION_FAILURE' ||
       (err.message &&
         (

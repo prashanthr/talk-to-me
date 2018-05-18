@@ -10,10 +10,6 @@ export const themes = {
     color1: '#06beb6',
     color2: '#48b1bf'
   },
-  politics: {
-    color1: '#2196f3',
-    color2: '#f44336'
-  },
   relay: {
     color1: '#C6426E',
     color2: '#D76D77',

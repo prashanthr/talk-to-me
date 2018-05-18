@@ -50,4 +50,20 @@ export const showErrorDialog = () => {
   }
 }
 
+export const captureException = (err, context) => {
+  if (context) {
+    raven.captureException(err, { extra: context })
+  } else {
+    raven.captureException(err)
+  }
+}
+
+export const captureBreadcrumb = crumb => {
+  raven.captureBreadcrumb(crumb)
+}
+
+export const captureMessage = (message, options) => {
+  raven.captureMessage(message, options)
+}
+
 export default sentry

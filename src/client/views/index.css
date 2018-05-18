@@ -24,16 +24,6 @@ button, select {
   position: absolute;
 }
 
-.footer {
-  position:absolute;
-  bottom:0;
-  width:100%;
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
-  line-height: 30px;
-}
-
 .btn-primary {
   color: #fff;
   background-color: #325D88;

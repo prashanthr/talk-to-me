@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.css'
 
 const APP_VERSION = process.env.APP_VERSION
 

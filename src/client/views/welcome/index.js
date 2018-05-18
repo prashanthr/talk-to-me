@@ -28,8 +28,8 @@ class Welcome extends Component {
     const next = getNextUrl()
     const roomId = parseRoomIdFromNextUrl(next)
     return (
-      <Grid fluid>
-        <Jumbotron className='welcome'>
+      <Grid fluid className='welcome'>
+        <Jumbotron>
           <Row>
             <Col md={7}>
               <h2>Hello internet-loving-friend! <Emoji emoji={'🙌🏽'} label='wohoo' /></h2>

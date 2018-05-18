@@ -29,7 +29,7 @@ class Welcome extends Component {
     const roomId = parseRoomIdFromNextUrl(next)
     return (
       <Grid fluid className='welcome'>
-        <Jumbotron>
+        <div>
           <Row>
             <Col md={7}>
               <h2>Hello internet-loving-friend! <Emoji emoji={'🙌🏽'} label='wohoo' /></h2>
@@ -118,7 +118,7 @@ class Welcome extends Component {
               </div>
             </Col>
           </Row>
-        </Jumbotron>
+        </div>
       </Grid>
     )
   }

@@ -2,11 +2,12 @@
   padding-top: 40px;
   padding-bottom: 0px;
   font-size: 18px;
+  color: #323232;
 }
 
-.welcome ol {
+/* .welcome ol {
   font-weight: 200;
-}
+} */
 
 .welcome .btn:active:focus, .btn:focus {
   outline: none;

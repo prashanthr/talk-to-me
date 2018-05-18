@@ -22,6 +22,7 @@ class VideoContainer extends Component {
 
   render () {
     const rowSets = chunk(keys(this.props.users), this.props.usersPerRow)
+    const height = keys(this.props.users).length === 1 ? { height: 600 } : {}
     return (
       <Grid fluid>
         {
@@ -46,6 +47,7 @@ class VideoContainer extends Component {
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
                     mirror={this.props.users[userId].mirror}
+                    {...height}
                   />
                 </Col>
               ))}

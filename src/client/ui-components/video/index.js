@@ -17,12 +17,6 @@ class VideoPlayer extends Component {
       this.props !== nextProps &&
       nextProps.srcObject
     ) {
-      // console.log('resetting', nextProps.srcObject)
-      // if (this.videoRef.srcObject && this.props.srcObject) {
-      //   const videoTracks = this.props.srcObject.getVideoTracks()
-      //   console.log('video tracks', videoTracks)
-      //   videoTracks.forEach(track => track.stop())
-      // }
       this.setSrcObject(nextProps.srcObject)
     }
   }
@@ -30,13 +24,6 @@ class VideoPlayer extends Component {
     const height = this.props.height ? { height: this.props.height } : {}
     const width = this.props.width ? { width: this.props.width } : { }
     let source = {}
-    // if (this.props.srcObject && this.videoRef && !this.videoRef.srcObject) {
-    //   console.log('srcObject', this.props.srcObject, this.videoRef)
-    //   this.setSrcObject(this.props.srcObject)
-    // } else {
-    //   console.info('src-check', this.props)
-    //   // source = { src: this.props.src }
-    // }
     return (
       <div>
         <div className={this.props.disableMute ? '' : 'video-controls-overlay'}>
@@ -60,7 +47,7 @@ class VideoPlayer extends Component {
           poster={getRandomAvatarUrl()}
           className={`video ${this.props.mirror ? 'video-mirror' : ''}`}
           ref={el => { this.videoRef = el }}
-          muted={this.props.muted}
+          muted={this.props.forceMute || this.props.muted}
           onClick={this.props.onClick}
           autoPlay={this.props.autoPlay}
           playsInline={this.props.playsInline}
@@ -95,7 +82,8 @@ VideoPlayer.propTypes = {
   showDebugInfo: PropTypes.bool,
   metadata: PropTypes.any,
   disableMute: PropTypes.bool,
-  mirror: PropTypes.bool
+  mirror: PropTypes.bool,
+  forceMute: PropTypes.bool
 }
 
 VideoPlayer.defaultProps = {

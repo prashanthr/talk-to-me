@@ -6,9 +6,10 @@ export const INITIALIZE_FAILED = 'INITIALIZE_FAILED'
 export const SHUTDOWN = 'SHUTDOWN'
 export const VIDEO_MUTE = 'VIDEO_MUTE'
 
-export const onMute = (peerId) => ({
+export const onMute = ({ peerId, muted }) => ({
   type: VIDEO_MUTE,
-  peerId
+  peerId,
+  muted
 })
 
 export const initialize = (roomId) => ({

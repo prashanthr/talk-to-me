@@ -42,8 +42,12 @@ class VideoContainer extends Component {
                     onLoadedMetadata={this.playStream}
                     onMute={event => {
                       event.preventDefault()
-                      this.props.onMute(userId)
+                      this.props.onMute({
+                        userId,
+                        muted: !this.props.users[userId].muted
+                      })
                     }}
+                    forceMute={this.props.users[userId].forceMute}
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
                     mirror={this.props.users[userId].mirror}
@@ -83,8 +87,9 @@ function mapStateToProps (state, ownProps) {
         stream: state.user ? state.user.stream : null,
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: state.user.socket.id,
-        muted: true,
-        disableMute: true,
+        disableMute: state.user.disableMute,
+        muted: state.user.muted,
+        forceMute: true,
         mirror: true
       }
     }

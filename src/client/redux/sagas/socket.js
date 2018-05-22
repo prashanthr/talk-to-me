@@ -8,6 +8,9 @@ import {
   JOIN_ROOM_SUCCESS,
   SOCKET_DESTROY
 } from '../ducks/socket'
+import {
+  VIDEO_MUTE
+} from '../ducks/room'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
   return new Promise((resolve, reject) => {
@@ -19,9 +22,20 @@ const handleSocketSignal = async ({ peer, peerId, signal }) => {
   })
 }
 
-const handleSocketUsers = async ({ initiator, peers }) => {
+const handleSocketUsers = async ({ initiator, peers, socket }) => {
   // already done in peer sagas
 }
+
+const handleSocketMute = async ({ peerId, muted, socket }) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('mute', {
+      peerId,
+      muted
+    })
+    return resolve()
+  })
+}
+
 const setup = async (socket, roomId) => {
   return new Promise((resolve, reject) => {
     // connection is already done in socket/index.js but just in case
@@ -64,6 +78,15 @@ function* socketSignal (action) {
   }
 }
 
+function* socketMute (action) {
+  try {
+    const { peerId, muted } = action
+    yield handleSocketMute({ peerId, muted, socket: clientSocket })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 function* socketUsers (action) {
   yield handleSocketUsers({ initiator: action.initiator, peers: action.peers })
 }
@@ -83,9 +106,14 @@ function* socketDestroyFlow () {
   yield takeLatest(SOCKET_DESTROY, socketDestroy)
 }
 
+function* socketMuteFlow () {
+  yield takeLatest(VIDEO_MUTE, socketMute)
+}
+
 export default [
   fork(socketInitializeFlow),
   fork(socketSignalFlow),
   fork(socketUsersFlow),
-  fork(socketDestroyFlow)
+  fork(socketDestroyFlow),
+  fork(socketMuteFlow)
 ]

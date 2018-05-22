@@ -50,7 +50,7 @@
   },
   "proxy": "http://localhost:9095",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5000 react-scripts start",
     "start-server": "bin/server.sh",
     "start-server-dev": "pm2 startOrRestart ecosystem.json --only talk --env development",
     "start-server-prod": "pm2 startOrRestart ecosystem.json --only talk --env production",

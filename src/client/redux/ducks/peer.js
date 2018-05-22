@@ -1,6 +1,5 @@
-import { SOCKET_STREAM } from './socket'
+import { SOCKET_STREAM, SOCKET_MUTE } from './socket'
 import createObjectUrl from '../../utils/create-object-url'
-import { VIDEO_MUTE } from './room'
 export const PEER_ADD = 'PEER_ADD'
 export const PEER_REMOVE = 'PEER_REMOVE'
 
@@ -22,7 +21,8 @@ const peerReducer = (state = initialState, action) => {
         [action.peerId]: {
           channel: action.channel,
           socketId: action.peerId,
-          muted: false
+          muted: false,
+          disableMute: true
         }
       }
     case PEER_REMOVE:
@@ -42,13 +42,17 @@ const peerReducer = (state = initialState, action) => {
           streamUrl: createObjectUrl(action.stream)
         }
       }
-    case VIDEO_MUTE:
-      return {
-        ...state,
-        [action.peerId]: {
-          ...state[action.peerId],
-          muted: !state[action.peerId].muted
+    case SOCKET_MUTE:
+      if (state[action.peerId]) {
+        return {
+          ...state,
+          [action.peerId]: {
+            ...state[action.peerId],
+            muted: action.muted
+          }
         }
+      } else {
+        return state
       }
     default:
       return state

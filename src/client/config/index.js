@@ -9,7 +9,8 @@ const config = {
     gumConstraints: 'gum',
     auth: 'auth',
     code: 'code',
-    ice: 'ice'
+    ice: 'ice',
+    nickname: 'nickname'
   },
   analytics: {
     google: {

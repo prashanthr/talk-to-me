@@ -32,3 +32,10 @@ export const parseRoomIdFromNextUrl = (nextUrl) => {
         .replace('/room/', '')
     : null
 }
+
+export const generateNickname = (seedString) => {
+  const slug = seedString
+    ? `${seedString.substring(0, 4)}${seedString.substring(seedString.length - 4, seedString.length)}`
+    : cuid.slug()
+  return `User - ${slug}`
+}

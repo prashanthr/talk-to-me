@@ -1,5 +1,6 @@
-import { SOCKET_STREAM, SOCKET_MUTE } from './socket'
+import { SOCKET_STREAM, SOCKET_MUTE, SOCKET_NICKNAME } from './socket'
 import createObjectUrl from '../../utils/create-object-url'
+import { getRandomAvatarUrl, generateNickname } from '../../utils/room'
 export const PEER_ADD = 'PEER_ADD'
 export const PEER_REMOVE = 'PEER_REMOVE'
 
@@ -8,7 +9,9 @@ let initialState = {
     'peer-x': {
       socketId: null,
       channel: null,
-      muted: false
+      muted: false,
+      disableMute: true,
+      avatarUrl: null
     }
   */
 }
@@ -22,7 +25,9 @@ const peerReducer = (state = initialState, action) => {
           channel: action.channel,
           socketId: action.peerId,
           muted: false,
-          disableMute: true
+          disableMute: true,
+          avatarUrl: getRandomAvatarUrl(),
+          nickname: action.nickname || generateNickname(action.peerId)
         }
       }
     case PEER_REMOVE:
@@ -49,6 +54,18 @@ const peerReducer = (state = initialState, action) => {
           [action.peerId]: {
             ...state[action.peerId],
             muted: action.muted
+          }
+        }
+      } else {
+        return state
+      }
+    case SOCKET_NICKNAME:
+      if (state[action.peerId]) {
+        return {
+          ...state,
+          [action.peerId]: {
+            ...state[action.peerId],
+            nickname: action.nickname
           }
         }
       } else {

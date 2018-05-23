@@ -11,6 +11,9 @@ import {
 import {
   VIDEO_MUTE
 } from '../ducks/room'
+import {
+   NICKNAME_CHANGED
+} from '../ducks/user'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
   return new Promise((resolve, reject) => {
@@ -31,6 +34,16 @@ const handleSocketMute = async ({ peerId, muted, socket }) => {
     socket.emit('mute', {
       peerId,
       muted
+    })
+    return resolve()
+  })
+}
+
+const handleSocketNickname = async ({ peerId, nickname, socket }) => {
+  return new Promise((resolve, reject) => {
+    socket.emit('nickname', {
+      peerId,
+      nickname
     })
     return resolve()
   })
@@ -81,7 +94,19 @@ function* socketSignal (action) {
 function* socketMute (action) {
   try {
     const { peerId, muted } = action
+    console.log('socket mute saga', peerId)
     yield handleSocketMute({ peerId, muted, socket: clientSocket })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+function* socketNickname (action) {
+  try {
+    const { nickname } = action
+    const userId = yield select(state => state.user.socket.id)
+    console.log('scoket nickname saga', userId)
+    yield handleSocketNickname({ peerId: userId, nickname, socket: clientSocket })
   } catch (err) {
     console.error(err)
   }
@@ -110,10 +135,15 @@ function* socketMuteFlow () {
   yield takeLatest(VIDEO_MUTE, socketMute)
 }
 
+function* socketNicknameFlow () {
+  yield takeLatest(NICKNAME_CHANGED, socketNickname)
+}
+
 export default [
   fork(socketInitializeFlow),
   fork(socketSignalFlow),
   fork(socketUsersFlow),
   fork(socketDestroyFlow),
-  fork(socketMuteFlow)
+  fork(socketMuteFlow),
+  fork(socketNicknameFlow)
 ]

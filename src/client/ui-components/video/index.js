@@ -1,13 +1,40 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonGroup } from 'react-bootstrap'
-import { getRandomAvatarUrl } from '../../utils/room'
 import './index.css'
 
 class VideoPlayer extends Component {
   constructor (props) {
     super(props)
     this.videoRef = null
+    this.onNicknameEdit = this.onNicknameEdit.bind(this)
+    this.onNicknameChange = this.onNicknameChange.bind(this)
+    this.onNicknameSave = this.onNicknameSave.bind(this)
+    this.state = {
+      nickname: null,
+      nicknameInEdit: false
+    }
+  }
+  onNicknameEdit (event) {
+    event.preventDefault()
+    this.setState({
+      nicknameInEdit: !this.state.nicknameInEdit
+    })
+  }
+  onNicknameChange (event) {
+    event.preventDefault()
+    this.setState({
+      nickname: event.target.value
+    })
+  }
+  onNicknameSave (event) {
+    event.preventDefault()
+    if (event.keyCode === 13) {
+      this.props.onNicknameChanged({ nickname: this.state.nickname })
+      this.setState({
+        nicknameInEdit: false
+      })
+    }
   }
   setSrcObject (srcObject) {
     this.videoRef.srcObject = srcObject
@@ -38,13 +65,24 @@ class VideoPlayer extends Component {
           }
         </div>
         <div className='video-info-overlay'>
-          {this.props.metadata.socketId
-            ? `${this.props.metadata.socketId.substring(0, 5)}...${this.props.metadata.socketId.substring(this.props.metadata.socketId.length - 5, this.props.metadata.socketId.length)}`
-            : ''
+          {this.state.nicknameInEdit
+            ? (
+              <input
+                type={'text'}
+                style={{ color: 'black' }}
+                value={this.state.nickname || this.props.nickname}
+                onChange={this.onNicknameChange}
+                onKeyUp={this.onNicknameSave} />
+              )
+            : (
+              <span onClick={this.onNicknameEdit}>
+                {`${this.props.nickname}${this.props.mirror ? ' (You)' : ''}`}
+              </span>
+            )
           }
         </div>
         <video
-          poster={getRandomAvatarUrl()}
+          poster={this.props.poster}
           className={`video ${this.props.mirror ? 'video-mirror' : ''}`}
           ref={el => { this.videoRef = el }}
           muted={this.props.forceMute || this.props.muted}
@@ -69,6 +107,7 @@ class VideoPlayer extends Component {
 }
 
 VideoPlayer.propTypes = {
+  poster: PropTypes.string,
   height: PropTypes.number,
   width: PropTypes.number,
   src: PropTypes.string,
@@ -83,7 +122,9 @@ VideoPlayer.propTypes = {
   metadata: PropTypes.any,
   disableMute: PropTypes.bool,
   mirror: PropTypes.bool,
-  forceMute: PropTypes.bool
+  forceMute: PropTypes.bool,
+  nickname: PropTypes.string,
+  onNicknameChanged: PropTypes.func
 }
 
 VideoPlayer.defaultProps = {

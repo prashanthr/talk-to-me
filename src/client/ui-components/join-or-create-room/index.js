@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import DropdownMenu from '../dropdown-menu'
 import Emoji from '../emoji'
-import { generateName, urlSafe } from '../../utils/room'
+import { generateName, urlSafe, generateNickname } from '../../utils/room'
 import { goToUrl, setLocalStorage } from '../../utils/window'
 import config from '../../config'
 import './index.css'
@@ -17,10 +17,12 @@ export default class JoinOrCreateRoom extends Component {
     this.onRoomNameChanged = this.onRoomNameChanged.bind(this)
     this.onCustomizeRoom = this.onCustomizeRoom.bind(this)
     this.onMediaSourceChanged = this.onMediaSourceChanged.bind(this)
+    this.onNicknameChanged = this.onNicknameChanged.bind(this)
     this.state = {
       showCustomRoomOptions: false,
       roomNamePlaceholder: generateName(false),
       roomName: null,
+      nickname: null,
       constraints: { audio: true, video: true }
     }
   }
@@ -51,9 +53,16 @@ export default class JoinOrCreateRoom extends Component {
       roomName: event.target.value
     })
   }
+  onNicknameChanged (event) {
+    event.preventDefault()
+    this.setState({
+      nickname: event.target.value
+    })
+  }
   gotoRoom (roomName) {
     const path = `/room/${roomName}`
     const title = `Room - ${roomName}`
+    setLocalStorage(config.localStorage.nickname, this.state.nickname || generateNickname())
     goToUrl(path, title)
   }
   render () {
@@ -84,6 +93,20 @@ export default class JoinOrCreateRoom extends Component {
                   selectedKey={mediaSourceOptions[0].key}
                   onChange={this.onMediaSourceChanged}
                 />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <span style={{ fontSize: '16px' }}>
+                  Nickname
+                </span>
+              </Col>
+              <Col md={6}>
+                <Form inline>
+                  <FormGroup controlId='room-name'>
+                    <FormControl type='text' size={30} placeholder={'(Optional)'} onChange={this.onNicknameChanged} />
+                  </FormGroup>{' '}
+                </Form>
               </Col>
             </Row>
           </Col>

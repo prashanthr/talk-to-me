@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { onMute } from '../../redux/ducks/room'
+import { onNicknameChanged } from '../../redux/ducks/user'
 import { map, keys, chunk } from 'lodash'
 import createObjectUrl from '../../utils/create-object-url'
 import './index.css'
@@ -22,7 +23,7 @@ class VideoContainer extends Component {
 
   render () {
     const rowSets = chunk(keys(this.props.users), this.props.usersPerRow)
-    const height = keys(this.props.users).length === 1 ? { height: 600 } : {}
+    const height = keys(this.props.users).length === 1 ? { height: 650 } : {}
     return (
       <Grid fluid>
         {
@@ -31,6 +32,9 @@ class VideoContainer extends Component {
               {map(rowUsers, userId => (
                 <Col md={12 / rowUsers.length} key={`col-${index}-${userId}`} className='video-col'>
                   <VideoPlayer
+                    poster={this.props.users[userId].avatarUrl}
+                    nickname={this.props.users[userId].nickname}
+                    onNicknameChanged={this.props.onNicknameChanged}
                     metadata={{
                       socketId: this.props.users[userId].socketId,
                       isMuted: this.props.users[userId].muted,
@@ -71,7 +75,8 @@ VideoContainer.propTypes = {
   peer: PropTypes.object,
   users: PropTypes.object,
   usersPerRow: PropTypes.number,
-  onMute: PropTypes.func
+  onMute: PropTypes.func,
+  onNicknameChanged: PropTypes.func
 }
 
 VideoContainer.defaultProps = {
@@ -84,6 +89,8 @@ function mapStateToProps (state, ownProps) {
     users: {
       ...state.peer,
       [state.user.socket.id]: {
+        nickname: state.user.nickname,
+        avatarUrl: state.user.avatarUrl,
         stream: state.user ? state.user.stream : null,
         streamUrl: state.user ? state.user.streamUrl : null,
         socketId: state.user.socket.id,
@@ -96,4 +103,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, { onMute })(VideoContainer)
+export default connect(mapStateToProps, { onMute, onNicknameChanged })(VideoContainer)

@@ -69,6 +69,17 @@ const setup = io => {
       })
     })
 
+    socket.on('nickname', payload => {
+      debug('mute: %s, payload: %o', socket.id, payload)
+      broadcast({
+        roomId: payload.peerId,
+        payload: buildReduxPayload('SOCKET_NICKNAME', {
+          peerId: socket.id,
+          nickname: payload.nickname
+        })
+      })
+    })
+
     // join room for receiving messages of that room
     socket.on('join', roomId => {
       debug(`received request to join room: ${roomId}. Current rooms: ${socket.rooms}, via adapter ${getRooms()}`)

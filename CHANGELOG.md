@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/prashanthr/talk-to-me/compare/v1.6.4...v1.7.0) (2018-05-24)
+
+
+### Features
+
+* **mute:** Add self muting capability ([#29](https://github.com/prashanthr/talk-to-me/issues/29)) ([1deef92](https://github.com/prashanthr/talk-to-me/commit/1deef92))
+
+
+
 <a name="1.6.4"></a>
 ## [1.6.4](https://github.com/prashanthr/talk-to-me/compare/v1.6.3...v1.6.4) (2018-05-18)
 

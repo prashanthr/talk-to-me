@@ -53,8 +53,18 @@ const setup = io => {
         roomId: payload.peerId,
         payload: buildReduxPayload('SOCKET_STREAM', {
           peerId: socket.id,
-          // peer: payload.peer,
           stream: payload.stream
+        })
+      })
+    })
+
+    socket.on('mute', payload => {
+      debug('mute: %s, payload: %o', socket.id, payload)
+      broadcast({
+        roomId: payload.peerId,
+        payload: buildReduxPayload('SOCKET_MUTE', {
+          peerId: socket.id,
+          muted: payload.muted
         })
       })
     })

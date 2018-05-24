@@ -1,7 +1,7 @@
 import cuid from 'cuid'
 import { INITIALIZE_SUCCESS } from './room'
 import createObjectUrl from '../../utils/create-object-url'
-import { SOCKET_INITIALIZE_SUCCESS } from './socket'
+import { SOCKET_INITIALIZE_SUCCESS, SOCKET_MUTE } from './socket'
 
 let initialState = {
   id: null, // not used right now
@@ -16,6 +16,7 @@ const roomReducer = (state = initialState, action) => {
       return {
         ...state,
         id: cuid(),
+        disableMute: false,
         stream: action.stream,
         streamUrl: createObjectUrl(action.stream)
       }
@@ -24,6 +25,16 @@ const roomReducer = (state = initialState, action) => {
         ...state,
         socket: action.socket
       }
+    case SOCKET_MUTE: {
+      if (state.socket && state.socket.id === action.peerId) {
+        return {
+          ...state,
+          muted: action.muted
+        }
+      } else {
+        return state
+      }
+    }
     default:
       return state
   }

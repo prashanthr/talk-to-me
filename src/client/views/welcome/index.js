@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import JoinOrCreateRoom from '../../ui-components/join-or-create-room'
-import { Row, Col, Grid, Jumbotron, Button } from 'react-bootstrap'
+import { Row, Col, Grid, Button } from 'react-bootstrap'
 import Modal from '../../ui-components/modal'
 import Emoji from '../../ui-components/emoji'
 import { getNextUrl } from '../../utils/window'

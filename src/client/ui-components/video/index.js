@@ -11,7 +11,7 @@ class VideoPlayer extends Component {
     this.onNicknameChange = this.onNicknameChange.bind(this)
     this.onNicknameSave = this.onNicknameSave.bind(this)
     this.state = {
-      nickname: null,
+      nickname: props.nickname,
       nicknameInEdit: false
     }
   }
@@ -41,10 +41,16 @@ class VideoPlayer extends Component {
   }
   componentWillReceiveProps (nextProps) {
     if (
-      this.props !== nextProps &&
-      nextProps.srcObject
+      this.props !== nextProps
     ) {
-      this.setSrcObject(nextProps.srcObject)
+      if (nextProps.srcObject) {
+        this.setSrcObject(nextProps.srcObject)
+      }
+      if (this.props.nickname !== nextProps.nickname) {
+        this.setState({
+          nickname: nextProps.nickname
+        })
+      }
     }
   }
   render () {
@@ -70,7 +76,7 @@ class VideoPlayer extends Component {
               <input
                 type={'text'}
                 style={{ color: 'black' }}
-                value={this.state.nickname || this.props.nickname}
+                value={this.state.nickname}
                 onChange={this.onNicknameChange}
                 onKeyUp={this.onNicknameSave} />
               )

@@ -71,6 +71,7 @@ const setup = io => {
 
     socket.on('nickname', payload => {
       debug('mute: %s, payload: %o', socket.id, payload)
+      socket.nickname = payload.nickname
       broadcast({
         roomId: payload.peerId,
         payload: buildReduxPayload('SOCKET_NICKNAME', {

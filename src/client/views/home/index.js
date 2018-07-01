@@ -30,6 +30,8 @@ class Home extends Component {
     return (
       <div className='home'>
         <div className='splash'>
+          <h2>Video / Audio chat made super simple.</h2> 
+          <br />
           <InviteWrapper />
         </div>
       </div>

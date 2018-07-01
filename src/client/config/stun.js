@@ -273,7 +273,7 @@ const stunServers = [
 
 const googleStunServers = [
   'stun:stun.l.google.com:19302',
-  'stun:104.131.31.167:3478',
+  // 'stun:104.131.31.167:3478',
   'stun:stun1.l.google.com:19302',
   'stun:stun2.l.google.com:19302'
 ]

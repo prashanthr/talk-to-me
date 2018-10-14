@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/prashanthr/talk-to-me/compare/v1.8.1...v1.9.0) (2018-10-14)
+
+
+### Bug Fixes
+
+* **stream:** Removed deprecated use of streamUrl and replace with srcObject. Fixes [#37](https://github.com/prashanthr/talk-to-me/issues/37). ([#40](https://github.com/prashanthr/talk-to-me/issues/40)) ([f96ddc8](https://github.com/prashanthr/talk-to-me/commit/f96ddc8))
+* **welcome:** Fixed copy on welcome and faq. Fixes [#33](https://github.com/prashanthr/talk-to-me/issues/33). ([#38](https://github.com/prashanthr/talk-to-me/issues/38)) ([5c2a9f8](https://github.com/prashanthr/talk-to-me/commit/5c2a9f8))
+
+
+### Features
+
+* **invite-code:** Add invite code to homepage ([7d0d1b7](https://github.com/prashanthr/talk-to-me/commit/7d0d1b7))
+* **join-create-room:**  Change behavior of create and join room. Fixes [#34](https://github.com/prashanthr/talk-to-me/issues/34). ([#39](https://github.com/prashanthr/talk-to-me/issues/39)) ([5428bf8](https://github.com/prashanthr/talk-to-me/commit/5428bf8))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/prashanthr/talk-to-me/compare/v1.8.0...v1.8.1) (2018-07-29)
 

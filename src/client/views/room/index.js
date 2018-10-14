@@ -35,7 +35,7 @@ class Room extends Component {
               {this.props.error
                 ? 'Encountered an error getting streams'
                 : (
-                  this.props.user && this.props.user.streamUrl
+                  this.props.user && this.props.user.stream
                   ? <VideoContainer />
                   : 'Initializing streams...'
                 )

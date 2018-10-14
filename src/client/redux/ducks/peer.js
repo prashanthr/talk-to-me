@@ -1,5 +1,4 @@
 import { SOCKET_STREAM, SOCKET_MUTE } from './socket'
-import createObjectUrl from '../../utils/create-object-url'
 export const PEER_ADD = 'PEER_ADD'
 export const PEER_REMOVE = 'PEER_REMOVE'
 
@@ -39,7 +38,7 @@ const peerReducer = (state = initialState, action) => {
         [action.peerId]: {
           ...state[action.peerId],
           stream: action.stream,
-          streamUrl: createObjectUrl(action.stream)
+          // streamUrl: createObjectUrl(action.stream)
         }
       }
     case SOCKET_MUTE:

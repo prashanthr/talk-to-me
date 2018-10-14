@@ -17,7 +17,7 @@ Submit any feedback or contact me about this project [here](https://goo.gl/forms
 
 ## Bugs
 
-Report any bugs [here](https://github.com/prashanthr/talk-to-me/issues/new)
+Report any bugs [here](https://github.com/prashanthr/talk-to-me/issues)
 
 ## Technology
 

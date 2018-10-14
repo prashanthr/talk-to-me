@@ -9,16 +9,14 @@ export default class JoinOrCreateRoom extends Component {
     super(props)
     this.onInviteCodeChanged = this.onInviteCodeChanged.bind(this)
     this.validate = this.validate.bind(this)
-    this.onGenerateCode = this.onGenerateCode.bind(this)
     this.state = {
       inviteCode: null,
       generatedCode: null
     }
   }
 
-  onGenerateCode (event) {
+  onGenerateCode () {
     console.log('here', this.state.generatedCode)
-    event.preventDefault()
     if (!this.state.generatedCode) {
       this.setState({
         generatedCode: config.inviteCode

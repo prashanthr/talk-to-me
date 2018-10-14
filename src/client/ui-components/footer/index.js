@@ -10,8 +10,8 @@ const Footer = () => (
     {`${APP_VERSION ? `v${APP_VERSION}. ` : ''}`}
     Made with 💛
     <br />
-    <a href={config.bugUrl}>Report an issue. </a>
-    <a href={config.contactUrl}>Contact creator</a>
+    <a href={config.contactUrl}>Feedback/Contact. </a>
+    <a href={config.bugUrl}>Report an issue</a>
   </footer>
 )
 

@@ -14,7 +14,6 @@ class ToolbarWrapper extends Component {
     this.onRoomNameClick = this.onRoomNameClick.bind(this)
     this.showModal = this.showModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
-    this.onFeedbackClick = this.onFeedbackClick.bind(this)
     this.state = {
       showSettingsModal: false,
       modal: {
@@ -40,19 +39,15 @@ class ToolbarWrapper extends Component {
     goToUrl('/', 'Talk to Me')
   }
 
-  onFeedbackClick (event) {
-    event.preventDefault()
-    // show modal from user-report
-    window._urq.push(['Feedback_Open'])
-  }
-
   onRoomNameClick (event) {
     event.preventDefault()
     const url = window.location.href
     this.showModal({
       header: `Share Room - ${this.props.roomId}`,
-      content: <ShareRoom
-        url={url} />
+      content: (
+        <ShareRoom
+          url={url} />
+      )
     })
   }
 
@@ -91,11 +86,6 @@ class ToolbarWrapper extends Component {
       icon: 'cog',
       onClick: this.onSettingsClick
     }, {
-      key: 'feedback-bug',
-      label: 'Feedback',
-      icon: 'comment',
-      onClick: this.onFeedbackClick
-    },{
       key: 'exit',
       label: 'Exit',
       icon: 'remove-circle',

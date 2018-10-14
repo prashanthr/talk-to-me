@@ -5,8 +5,3 @@
 .generated-invite-code {
   color: green;
 }
-
-.generate-code-link {
-  text-transform: capitalize;
-  cursor: pointer; 
-}

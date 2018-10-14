@@ -11,17 +11,7 @@ export default class JoinOrCreateRoom extends Component {
     this.validate = this.validate.bind(this)
     this.state = {
       inviteCode: null,
-      generatedCode: null
-    }
-  }
-
-  onGenerateCode () {
-    console.log('here', this.state.generatedCode)
-    if (!this.state.generatedCode) {
-      this.setState({
-        generatedCode: config.inviteCode
-      })
-      console.log('Generated', this.state.generatedCode)
+      generatedCode: config.inviteCode
     }
   }
 
@@ -82,20 +72,10 @@ export default class JoinOrCreateRoom extends Component {
         </Form>
         <br />
         <div>
-          {this.state.generatedCode 
-            ? (
-              <span>
-                Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>
-              </span>
-            )
-            : (
-            <a
-              className='generate-code-link'
-              onClick={this.onGenerateCode}
-            >
-              Don't have one? 
-            </a>
-          )}
+          Don't have one?
+          <span>
+            &nbsp; Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>
+          </span>
         </div>
       </div>
     )

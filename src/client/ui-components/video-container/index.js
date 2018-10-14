@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { onMute } from '../../redux/ducks/room'
 import { map, keys, chunk } from 'lodash'
-import createObjectUrl from '../../utils/create-object-url'
+// import createObjectUrl from '../../utils/create-object-url'
 import './index.css'
 
 class VideoContainer extends Component {
@@ -37,7 +37,7 @@ class VideoContainer extends Component {
                       disableMute: this.props.users[userId].disableMute
                     }}
                     srcObject={this.props.users[userId].stream}
-                    src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : null)}
+                    //src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : null)}
                     key={`video-${userId}`}
                     onLoadedMetadata={this.playStream}
                     onMute={event => {

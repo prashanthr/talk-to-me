@@ -9,20 +9,21 @@ export default class JoinOrCreateRoom extends Component {
     super(props)
     this.onInviteCodeChanged = this.onInviteCodeChanged.bind(this)
     this.validate = this.validate.bind(this)
-    this.generateCode = this.generateCode.bind(this)
+    this.onGenerateCode = this.onGenerateCode.bind(this)
     this.state = {
       inviteCode: null,
       generatedCode: null
     }
   }
 
-  generateCode (event) {
+  onGenerateCode (event) {
     console.log('here', this.state.generatedCode)
     event.preventDefault()
     if (!this.state.generatedCode) {
       this.setState({
         generatedCode: config.inviteCode
       })
+      console.log('Generated', this.state.generatedCode)
     }
   }
 
@@ -90,15 +91,12 @@ export default class JoinOrCreateRoom extends Component {
               </span>
             )
             : (
-            <span>
+            <a
+              className='generate-code-link'
+              onClick={this.onGenerateCode}
+            >
               Don't have one? 
-              <a
-                className='generate-code-link'
-                onClick={this.generateCode}
-              >
-                Generate code
-              </a>
-            </span>
+            </a>
           )}
         </div>
       </div>

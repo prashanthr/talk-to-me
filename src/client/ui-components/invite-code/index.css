@@ -7,5 +7,6 @@
 }
 
 .generate-code-link {
-  text-transform: capitalize; 
+  text-transform: capitalize;
+  cursor: pointer; 
 }

@@ -3,6 +3,8 @@ import config from '../../config'
 import './index.css'
 
 const APP_VERSION = process.env.APP_VERSION
+const FEEDBACK_URL = config.contactUrl
+const BUG_URL = config.bugUrl
 
 const Footer = () => (
   <footer className='footer'>
@@ -10,8 +12,8 @@ const Footer = () => (
     {`${APP_VERSION ? `v${APP_VERSION}. ` : ''}`}
     Made with 💛
     <br />
-    <a href={config.contactUrl}>Feedback/Contact. </a>
-    <a href={config.bugUrl}>Report an issue</a>
+    <a href={FEEDBACK_URL}>Feedback/Contact. </a>
+    <a href={BUG_URL}>Report an issue</a>
   </footer>
 )
 

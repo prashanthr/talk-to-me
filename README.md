@@ -24,3 +24,6 @@ Report any bugs [here](https://github.com/prashanthr/talk-to-me/issues/new)
 - Chat using Web RTC powered by [Simple Peer](https://github.com/feross/simple-peer)
 - Uses react, redux, node and sockets
 
+## Changelog
+
+View the Changelog [here](./CHANGELOG.md)

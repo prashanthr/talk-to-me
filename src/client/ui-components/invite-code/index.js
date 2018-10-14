@@ -4,6 +4,8 @@ import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'r
 import config from '../../config'
 import './index.css'
 
+const SAMPLE_INVITE_CODE = config.inviteCode
+
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
     super(props)
@@ -11,7 +13,7 @@ export default class JoinOrCreateRoom extends Component {
     this.validate = this.validate.bind(this)
     this.state = {
       inviteCode: null,
-      generatedCode: config.inviteCode
+      generatedCode: SAMPLE_INVITE_CODE
     }
   }
 

@@ -27,6 +27,7 @@ const config = {
       }
     }
   },
+  inviteCode: 'ilovetheinternet',
   inviteUrl: 'https://goo.gl/forms/gd3nPeuDWbhghGzY2'
 }
 

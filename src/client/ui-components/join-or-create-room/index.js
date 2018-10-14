@@ -17,6 +17,8 @@ export default class JoinOrCreateRoom extends Component {
     this.onRoomNameChanged = this.onRoomNameChanged.bind(this)
     this.onCustomizeRoom = this.onCustomizeRoom.bind(this)
     this.onMediaSourceChanged = this.onMediaSourceChanged.bind(this)
+    this.getRoomDisplayName = this.getRoomDisplayName.bind(this)
+    this.gotoCustomRoom = this.gotoCustomRoom.bind(this)
     this.state = {
       showCustomRoomOptions: false,
       roomNamePlaceholder: generateName(false),
@@ -56,6 +58,23 @@ export default class JoinOrCreateRoom extends Component {
     const title = `Room - ${roomName}`
     goToUrl(path, title)
   }
+  getRoomDisplayName (roomId) {
+    let roomName
+    if (roomId.length > 25) {
+      roomName = `${roomId.substring(0, 25)}...`
+    } else {
+      roomName = roomId
+    }
+    return `Join Room ${roomName}`
+  }
+
+  gotoCustomRoom (event) {
+    event.preventDefault()
+    if (this.state.roomName) {
+      this.gotoRoom(urlSafe(this.state.roomName))
+    }
+  }
+
   render () {
     const mediaSourceOptions = [{
       key: 'av',
@@ -94,7 +113,6 @@ export default class JoinOrCreateRoom extends Component {
             {this.props.roomId
               ? (
                 <div>
-                  Join Room
                   &nbsp;
                   <Button
                     bsStyle={'primary'}
@@ -103,7 +121,7 @@ export default class JoinOrCreateRoom extends Component {
                       this.gotoRoom(this.props.roomId)
                     }}
                   >
-                    {`${this.props.roomId}`}
+                    {this.getRoomDisplayName(this.props.roomId)}
                   </Button>
                 </div>
                 )
@@ -137,19 +155,18 @@ export default class JoinOrCreateRoom extends Component {
                       {this.state.showCustomRoomOptions &&
                       <div>
                         <br />
-                        <Form inline>
+                        <Form 
+                          inline
+                          onSubmit={this.gotoCustomRoom}
+                        >
                           <FormGroup controlId='room-name'>
                             <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
                           </FormGroup>{' '}
                           <Button
                             bsStyle='warning'
                             disabled={!this.state.roomName}
-                            onClick={event => {
-                              event.preventDefault()
-                              if (this.state.roomName) {
-                                this.gotoRoom(urlSafe(this.state.roomName))
-                              }
-                            }}>
+                            onClick={this.gotoCustomRoom}
+                          >
                             Join Room
                           </Button>
                         </Form>

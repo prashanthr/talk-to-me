@@ -16,7 +16,9 @@ export default class JoinOrCreateRoom extends Component {
     }
   }
 
-  generateCode () {
+  generateCode (event) {
+    console.log('here', this.state.generatedCode)
+    event.preventDefault()
     if (!this.state.generatedCode) {
       this.setState({
         generatedCode: config.inviteCode
@@ -90,14 +92,12 @@ export default class JoinOrCreateRoom extends Component {
             : (
             <span>
               Don't have one? 
-              <Button 
-                bsSize='large' 
-                bsStyle='link'
+              <a
                 className='generate-code-link'
                 onClick={this.generateCode}
               >
                 Generate code
-              </Button>
+              </a>
             </span>
           )}
         </div>

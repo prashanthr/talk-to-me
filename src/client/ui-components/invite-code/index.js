@@ -9,10 +9,21 @@ export default class JoinOrCreateRoom extends Component {
     super(props)
     this.onInviteCodeChanged = this.onInviteCodeChanged.bind(this)
     this.validate = this.validate.bind(this)
+    this.generateCode = this.generateCode.bind(this)
     this.state = {
-      inviteCode: null
+      inviteCode: null,
+      generatedCode: null
     }
   }
+
+  generateCode () {
+    if (!this.state.generatedCode) {
+      this.setState({
+        generatedCode: config.inviteCode
+      })
+    }
+  }
+
   validate () {
     if (this.props.error) return 'error'
     return 'success'
@@ -58,6 +69,7 @@ export default class JoinOrCreateRoom extends Component {
             type='submit'
             bsStyle='warning'
             bsSize='large'
+            disabled={!this.state.inviteCode}
             onClick={event => {
               event.preventDefault()
               if (this.state.inviteCode) {
@@ -69,7 +81,25 @@ export default class JoinOrCreateRoom extends Component {
         </Form>
         <br />
         <div>
-          Don't have one? <Button bsSize='large' bsStyle='link' href={config.inviteUrl}>Request an invite</Button>
+          {this.state.generatedCode 
+            ? (
+              <span>
+                Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>
+              </span>
+            )
+            : (
+            <span>
+              Don't have one? 
+              <Button 
+                bsSize='large' 
+                bsStyle='link'
+                className='generate-code-link'
+                onClick={this.generateCode}
+              >
+                Generate code
+              </Button>
+            </span>
+          )}
         </div>
       </div>
     )

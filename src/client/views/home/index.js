@@ -31,6 +31,7 @@ class Home extends Component {
       <div className='home'>
         <div className='splash'>
           <h2>Video / Audio chat made super simple.</h2> 
+          <h4>Tired of using Skype? Hate call drops? Try me instead.</h4>
           <br />
           <InviteWrapper />
         </div>

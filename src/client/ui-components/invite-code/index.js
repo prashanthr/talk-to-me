@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
-import config from '../../config'
+import { default as config } from '../../config'
 import './index.css'
 
 const SAMPLE_INVITE_CODE = config.inviteCode
@@ -28,6 +28,7 @@ export default class JoinOrCreateRoom extends Component {
     })
   }
   render () {
+    console.log('SAMPLE_INVITE_CODE', SAMPLE_INVITE_CODE, 'config', config)
     return (
       <div>
         <Form inline>

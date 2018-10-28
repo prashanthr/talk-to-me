@@ -42,8 +42,9 @@ const peerEventConnect = () => {
   console.info('Peer connect')
 }
 
-const peerEventData = (data) => {
+const peerEventData = ({ peerId, socket, data }) => {
   console.info('Peer event data', data)
+  socket.emilt('chat', { peerId, message: data })
 }
 
 const peerEventStream = ({ peerId, socket, stream }) => {
@@ -105,7 +106,7 @@ const createPeer = ({
     peer.once('close', () => peerEventClose(peerId))
     peer.on('signal', signal => peerEventSignal({ signal, socket, peerId }))
     peer.on('stream', stream => peerEventStream({ stream, socket, peerId }))
-    peer.on('data', peerEventData)
+    peer.on('data', data => peerEventData({ data, socket, peerId }))
     return resolve({
       channel: peer,
       peerId

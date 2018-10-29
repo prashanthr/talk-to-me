@@ -6,7 +6,8 @@ import {
 
 function* sendChat (action) {
   try {
-    const state = 
+    const user = yield select(state => state.peer)
+    const peer = peers[action.peerId].channel
    
   } catch (error) {
     console.log('Error sending chat')

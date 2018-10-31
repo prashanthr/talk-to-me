@@ -44,7 +44,7 @@ const peerEventConnect = () => {
 
 const peerEventData = ({ peerId, socket, data }) => {
   console.info('Peer event data', data)
-  socket.emilt('chat', { peerId, message: data })
+  // socket.emit('chat', { peerId, message: data })
 }
 
 const peerEventStream = ({ peerId, socket, stream }) => {

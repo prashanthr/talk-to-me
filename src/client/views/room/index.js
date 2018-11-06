@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VideoContainer from '../../ui-components/video-container'
 import ToolbarWrapper from '../../ui-components/toolbar/toolbar-wrapper'
+import Chat from '../../ui-components/chat'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
+import { sendChat } from '../../redux/ducks/chat'
 import './index.css'
 
 class Room extends Component {
@@ -42,6 +44,14 @@ class Room extends Component {
               }
             </Col>
           </Row>
+          <Row>
+            <Col md={12} xs={12}>
+              <Chat
+                messages={this.props.chatMessages} 
+                onSendChat={this.props.sendChat}
+              />
+            </Col>
+          </Row>
         </Grid>
       </div>
     )
@@ -60,8 +70,9 @@ function mapStateToProps (state, ownProps) {
   return {
     roomId: ownProps && ownProps.match ? ownProps.match.params.id : null,
     error: state.room.error,
-    user: state.user
+    user: state.user,
+    chatMessages: state.chat.messages || []
   }
 }
 
-export default connect(mapStateToProps, { initialize, shutdown })(Room)
+export default connect(mapStateToProps, { initialize, shutdown, sendChat })(Room)

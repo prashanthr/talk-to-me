@@ -1,6 +1,11 @@
 
 import { SOCKET_CHAT, SOCKET_CHAT_SEND } from './socket'
 
+export const sendChat = (message) => ({
+  type: SOCKET_CHAT_SEND,
+  message
+})
+
 const initialState = {
   loading: false,
   messages: [],

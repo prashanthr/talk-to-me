@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
-
+import { slide as Menu } from 'react-burger-menu'
+import isValidUrl from '../../utils/is-valid-url'
 class Chat extends Component {
   constructor (props) {
     super(props)
@@ -38,30 +39,42 @@ class Chat extends Component {
   }
   render () {
     return (
-      <div>
-        {this.props.messages.map((message, index) => (
-          <Fragment key={index}>
-            <span>
-              {message}
-            </span>
-            <br />
-          </Fragment>
-        ))}
-        <Form
-          inline
-          onSubmit={this.onSendChat}
-        >
-          <FormGroup controlId='chat'>
-            <FormControl ref={el => { this.chatForm = el }} type='text' size={30} placeholder={'Message...'} onChange={this.onChatMessageChange} />
-          </FormGroup>{' '}
-          <Button
-            bsStyle='warning'
-            onClick={this.onSendChat}
+      <Menu
+        right
+        isOpen
+        width={'20%'}
+        pageWrapId='room-wrapper'
+      >
+        <div>
+          {this.props.messages.map((message, index) => {
+            return (
+              <Fragment key={index}>
+                <span>
+                  {isValidUrl(message)
+                    ? (<a target='_blank' href={encodeURIComponent(message)}>{message}</a>)
+                    : (message)
+                  }
+                </span>
+                <br />
+              </Fragment>
+            )
+          })}
+          <Form
+            inline
+            onSubmit={this.onSendChat}
           >
-            Send 💬
-          </Button>
-        </Form>
-      </div>
+            <FormGroup controlId='chat'>
+              <FormControl ref={el => { this.chatForm = el }} type='text' size={30} placeholder={'Message...'} onChange={this.onChatMessageChange} />
+            </FormGroup>{' '}
+            <Button
+              bsStyle='warning'
+              onClick={this.onSendChat}
+            >
+              Send 💬
+            </Button>
+          </Form>
+        </div>
+      </Menu>
     )
   }
 }

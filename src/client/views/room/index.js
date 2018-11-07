@@ -21,7 +21,7 @@ class Room extends Component {
   }
   render () {
     return (
-      <div>
+      <div id='room-wrapper'>
         <Grid fluid>
           <Row className='show-grid'>
             <Col md={12} xs={12} className='room-toolbar'>

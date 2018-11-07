@@ -6,7 +6,7 @@ import Chat from '../../ui-components/chat'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
-import { sendChat } from '../../redux/ducks/chat'
+import { onSendChat } from '../../redux/ducks/chat'
 import './index.css'
 
 class Room extends Component {
@@ -34,21 +34,21 @@ class Room extends Component {
           </Row>
           <Row>
             <Col md={12} xs={12}>
-              {this.props.error
+              {/* {this.props.error
                 ? 'Encountered an error getting streams'
                 : (
                   this.props.user && this.props.user.stream
                   ? <VideoContainer />
                   : 'Initializing streams...'
                 )
-              }
+              } */}
             </Col>
           </Row>
           <Row>
             <Col md={12} xs={12}>
               <Chat
                 messages={this.props.chatMessages} 
-                onSendChat={this.props.sendChat}
+                onSendChat={this.props.onSendChat}
               />
             </Col>
           </Row>
@@ -63,7 +63,8 @@ Room.propTypes = {
   user: PropTypes.object,
   error: PropTypes.any,
   initialize: PropTypes.func,
-  shutdown: PropTypes.func
+  shutdown: PropTypes.func,
+  onSendChat: PropTypes.func
 }
 
 function mapStateToProps (state, ownProps) {
@@ -75,4 +76,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, { initialize, shutdown, sendChat })(Room)
+export default connect(mapStateToProps, { initialize, shutdown, onSendChat })(Room)

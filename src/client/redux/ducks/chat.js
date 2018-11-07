@@ -1,7 +1,7 @@
 
 import { SOCKET_CHAT, SOCKET_CHAT_SEND } from './socket'
 
-export const sendChat = (message) => ({
+export const onSendChat = (message) => ({
   type: SOCKET_CHAT_SEND,
   message
 })
@@ -16,8 +16,7 @@ const chatReducer = (state = initialState, action) => {
     case SOCKET_CHAT: 
       return {
         ...state,
-        messages: [action.message, ...state.messages],
-        lastMessageId: action.message.id
+        messages: [...state.messages, action.message],
       }
     case SOCKET_CHAT_SEND:
     default:

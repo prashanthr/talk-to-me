@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
 
 class Chat extends Component {
   constructor (props) {
@@ -8,11 +9,24 @@ class Chat extends Component {
     this.state = {
       message: null
     }
+    this.chatForm = null
     this.onSendChat = this.onSendChat.bind(this)
     this.onChatMessageChange = this.onChatMessageChange.bind(this)
+    this.clearInput = this.clearInput.bind(this)
   }
-  onSendChat () {
+  clearInput (ref) {
+    const el = ReactDOM.findDOMNode(ref)
+    if (el) {
+      el.value = ''
+    }
+  }
+  onSendChat (event) {
+    event.preventDefault()
+    this.clearInput(this.chatForm)
     this.props.onSendChat(this.state.message)
+    this.setState({
+      message: null
+    })
   }
   onChatMessageChange (event) {
     event.preventDefault()
@@ -26,21 +40,27 @@ class Chat extends Component {
     return (
       <div>
         {this.props.messages.map((message, index) => (
-          <span key={index}>
-            {message}
-          </span>
+          <Fragment key={index}>
+            <span>
+              {message}
+            </span>
+            <br />
+          </Fragment>
         ))}
-        <input type='text' onChange={this.onChatMessageChange} />
-        <Button
-            type='submit'
+        <Form
+          inline
+          onSubmit={this.onSendChat}
+        >
+          <FormGroup controlId='chat'>
+            <FormControl ref={el => { this.chatForm = el }} type='text' size={30} placeholder={'Message...'} onChange={this.onChatMessageChange} />
+          </FormGroup>{' '}
+          <Button
             bsStyle='warning'
-            bsSize='small'
-            onClick={event => {
-              event.preventDefault()
-              this.onSendChat()
-            }}>
-            Go
+            onClick={this.onSendChat}
+          >
+            Send 💬
           </Button>
+        </Form>
       </div>
     )
   }

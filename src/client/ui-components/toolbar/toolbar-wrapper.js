@@ -34,9 +34,12 @@ class ToolbarWrapper extends Component {
   }
 
   onExitRoom () {
-    this.props.onLeaveRoom()
-    // @todo: Move to router history
-    goToUrl('/', 'Talk to Me')
+    const force = window.confirm('Are you sure you want to leave the room?') 
+    if (force) {
+      this.props.onLeaveRoom()
+      // @todo: Move to router history
+      goToUrl('/', 'Talk to Me')
+    }
   }
 
   onRoomNameClick (event) {
@@ -76,6 +79,11 @@ class ToolbarWrapper extends Component {
 
   render () {
     const menuItems = [{
+      key: 'exit',
+      label: 'Exit',
+      icon: 'remove-circle',
+      onClick: this.onExitRoom
+    },{
       key: 'room',
       icon: 'share-alt',
       label: `Share`,
@@ -86,10 +94,10 @@ class ToolbarWrapper extends Component {
       icon: 'cog',
       onClick: this.onSettingsClick
     }, {
-      key: 'exit',
-      label: 'Exit',
-      icon: 'remove-circle',
-      onClick: this.onExitRoom
+      key: 'chat',
+      label: 'Chat',
+      icon: 'chat',
+      onClick: this.props.onToggleChat
     }]
     return (
       <div>
@@ -115,6 +123,7 @@ class ToolbarWrapper extends Component {
 ToolbarWrapper.propTypes = {
   roomId: PropTypes.string,
   onLeaveRoom: PropTypes.func,
+  onToggleChat: PropTypes.func,
   history: PropTypes.any
 }
 

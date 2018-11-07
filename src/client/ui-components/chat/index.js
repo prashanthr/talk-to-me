@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
-import { slide as Menu } from 'react-burger-menu'
 import isValidUrl from '../../utils/is-valid-url'
+import './index.css'
 class Chat extends Component {
   constructor (props) {
     super(props)
@@ -39,27 +39,24 @@ class Chat extends Component {
   }
   render () {
     return (
-      <Menu
-        right
-        isOpen
-        width={'20%'}
-        pageWrapId='room-wrapper'
-      >
         <div>
-          {this.props.messages.map((message, index) => {
-            return (
-              <Fragment key={index}>
-                <span>
-                  {isValidUrl(message)
-                    ? (<a target='_blank' href={encodeURIComponent(message)}>{message}</a>)
-                    : (message)
-                  }
-                </span>
-                <br />
-              </Fragment>
-            )
-          })}
+          <div className='chat-message-list'>
+            {this.props.messages.map((message, index) => {
+              return (
+                <Fragment key={index}>
+                  <span>
+                    {isValidUrl(message)
+                      ? (<a target='_blank' href={encodeURIComponent(message)}>{message}</a>)
+                      : (message)
+                    }
+                  </span>
+                  <br />
+                </Fragment>
+              )
+            })}
+          </div>
           <Form
+            className='chat-form'
             inline
             onSubmit={this.onSendChat}
           >
@@ -68,13 +65,13 @@ class Chat extends Component {
             </FormGroup>{' '}
             <Button
               bsStyle='warning'
+              disabled={!this.state.message}
               onClick={this.onSendChat}
             >
               Send 💬
             </Button>
           </Form>
         </div>
-      </Menu>
     )
   }
 }

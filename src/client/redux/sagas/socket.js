@@ -5,6 +5,7 @@ import {
   SOCKET_INITIALIZE_SUCCESS,
   SOCKET_INITIALIZE_FAILED,
   SOCKET_SIGNAL,
+  SOCKET_CHAT_SEND,
   JOIN_ROOM_SUCCESS,
   SOCKET_DESTROY
 } from '../ducks/socket'
@@ -18,6 +19,20 @@ const handleSocketSignal = async ({ peer, peerId, signal }) => {
       return reject(`Peer unknown ${peerId} ${peer}`)
     }
     peer.signal(signal)
+    return resolve()
+  })
+}
+
+const handleSocketChat = async ({ /*peer,*/ peerId, message, socket }) => {
+  return new Promise((resolve, reject) => {
+    // if (!peer) {
+    //   return reject(`Peer unknown ${peerId} ${peer}`)
+    // }
+    // peer.send(message)
+    socket.emit('chat', {
+      peerId,
+      message
+    })
     return resolve()
   })
 }
@@ -40,7 +55,7 @@ const setup = async (socket, roomId) => {
   return new Promise((resolve, reject) => {
     // connection is already done in socket/index.js but just in case
     socket.once('connect', () => {
-      console.info('<>Reconnecting to server once<>')
+      console.info('//Reconnecting to server once//')
     })
     socket.emit('join', roomId)
     return resolve(socket)
@@ -78,6 +93,16 @@ function* socketSignal (action) {
   }
 }
 
+function* socketChat (action) {
+  try {
+    // const peers = yield select(state => state.peer)
+    // const peer = peers[action.peerId].channel
+    yield handleSocketChat({ /* peer,*/ peerId: action.peerId, message: action.message, socket: clientSocket })
+  } catch (err) {
+    console.error('oops', err)
+  }
+}
+
 function* socketMute (action) {
   try {
     const { peerId, muted } = action
@@ -98,6 +123,10 @@ function* socketSignalFlow () {
   yield takeEvery(SOCKET_SIGNAL, socketSignal)
 }
 
+function* socketChatFlow () {
+  yield takeEvery(SOCKET_CHAT_SEND, socketChat)
+}
+
 function* socketUsersFlow () {
   yield takeEvery(JOIN_ROOM_SUCCESS, socketUsers)
 }
@@ -115,5 +144,6 @@ export default [
   fork(socketSignalFlow),
   fork(socketUsersFlow),
   fork(socketDestroyFlow),
-  fork(socketMuteFlow)
+  fork(socketMuteFlow),
+  fork(socketChatFlow),
 ]

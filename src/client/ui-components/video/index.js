@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ButtonGroup } from 'react-bootstrap'
-import { getRandomAvatarUrl } from '../../utils/room'
 import './index.css'
 
 class VideoPlayer extends Component {
@@ -44,7 +43,7 @@ class VideoPlayer extends Component {
           }
         </div>
         <video
-          poster={getRandomAvatarUrl()}
+          poster={this.props.poster}
           className={`video ${this.props.mirror ? 'video-mirror' : ''}`}
           ref={el => { this.videoRef = el }}
           muted={this.props.forceMute || this.props.muted}
@@ -83,10 +82,12 @@ VideoPlayer.propTypes = {
   metadata: PropTypes.any,
   disableMute: PropTypes.bool,
   mirror: PropTypes.bool,
-  forceMute: PropTypes.bool
+  forceMute: PropTypes.bool,
+  poster: PropTypes.string
 }
 
 VideoPlayer.defaultProps = {
+  poster: null,
   height: null,
   width: null,
   playsInline: true,

@@ -1,0 +1,23 @@
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  opacity: .7;
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 40px;
+  height: 30px;
+  right: 36px;
+  top: 36px;
+  cursor: pointer;
+}
+
+.bm-cross-button {
+  height: 30px;
+  width: 30px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}

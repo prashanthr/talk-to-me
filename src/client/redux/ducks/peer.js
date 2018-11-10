@@ -7,6 +7,8 @@ let initialState = {
     'peer-x': {
       socketId: null,
       channel: null,
+      stream: {},
+      streamUrl: '', // deprecated
       muted: false
     }
   */

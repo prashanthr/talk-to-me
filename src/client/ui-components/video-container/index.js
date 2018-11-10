@@ -51,6 +51,7 @@ class VideoContainer extends Component {
                     disableMute={this.props.users[userId].disableMute}
                     muted={this.props.users[userId].muted}
                     mirror={this.props.users[userId].mirror}
+                    poster={this.props.users[userId].poster}
                     {...height}
                   />
                 </Col>
@@ -90,7 +91,8 @@ function mapStateToProps (state, ownProps) {
         disableMute: state.user.disableMute,
         muted: state.user.muted,
         forceMute: true,
-        mirror: true
+        mirror: true,
+        poster: state.user ? state.user.poster : null
       }
     }
   }

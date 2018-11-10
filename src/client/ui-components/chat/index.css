@@ -1,0 +1,22 @@
+.chat-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-bottom: 20px;
+  z-index: 999;
+}
+
+.chat-message-list {
+  padding-bottom: 20px;
+  color: white;
+  max-height: 80vh;
+  overflow-y: auto;
+  white-space: wrap;
+  font-size: 16px;
+}
+
+.chat-message {
+  line-height: 1.5;
+}

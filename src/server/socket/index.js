@@ -86,6 +86,17 @@ const setup = io => {
       })
     })
 
+    socket.on('chat', payload => {
+      debug('signal: %s, payload: %o', socket.id, payload)
+      broadcast({
+        roomId: payload.peerId,
+        payload: buildReduxPayload('SOCKET_CHAT', {
+          peerId: socket.id,
+          message: payload.message
+        })
+      })
+    })
+
     // leave room for not receiving messages of that room
     socket.on('leave', function (roomId) {
       debug(`received request to leave room: ${roomId}. Current rooms: ${socket.rooms}`)

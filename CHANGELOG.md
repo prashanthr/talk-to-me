@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/prashanthr/talk-to-me/compare/v1.9.3...v1.10.0) (2018-11-10)
+
+
+### Features
+
+* **chat:** Add chat functionality ([#43](https://github.com/prashanthr/talk-to-me/issues/43)) ([9e5f885](https://github.com/prashanthr/talk-to-me/commit/9e5f885))
+
+
+
 <a name="1.9.3"></a>
 ## [1.9.3](https://github.com/prashanthr/talk-to-me/compare/v1.9.2...v1.9.3) (2018-10-14)
 

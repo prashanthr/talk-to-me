@@ -1,12 +1,14 @@
 import cuid from 'cuid'
 import { INITIALIZE_SUCCESS } from './room'
 import { SOCKET_INITIALIZE_SUCCESS, SOCKET_MUTE } from './socket'
+import { getRandomAvatarUrl } from '../../utils/room'
 
 let initialState = {
   id: null, // not used right now
   stream: null,
   streamUrl: null,
-  socket: null
+  socket: null,
+  poster: null
 }
 
 const roomReducer = (state = initialState, action) => {
@@ -17,6 +19,7 @@ const roomReducer = (state = initialState, action) => {
         id: cuid(),
         disableMute: false,
         stream: action.stream,
+        poster: getRandomAvatarUrl()
         // streamUrl: createObjectUrl(action.stream)
       }
     case SOCKET_INITIALIZE_SUCCESS:

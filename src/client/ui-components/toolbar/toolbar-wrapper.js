@@ -95,8 +95,8 @@ class ToolbarWrapper extends Component {
       onClick: this.onSettingsClick
     }, {
       key: 'chat',
-      label: 'Chat',
-      icon: 'chat',
+      label: this.props.chatLabel,
+      icon: 'comment',
       onClick: this.props.onToggleChat
     }]
     return (
@@ -123,6 +123,7 @@ class ToolbarWrapper extends Component {
 ToolbarWrapper.propTypes = {
   roomId: PropTypes.string,
   onLeaveRoom: PropTypes.func,
+  chatLabel: PropTypes.string,
   onToggleChat: PropTypes.func,
   history: PropTypes.any
 }

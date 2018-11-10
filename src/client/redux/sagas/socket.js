@@ -95,7 +95,6 @@ function* socketSignal (action) {
 
 function* socketChat (action) {
   try {
-    console.log('here', action)
     // const peers = yield select(state => state.peer)
     // const peer = peers[action.peerId].channel
     yield handleSocketChat({ /* peer,*/ peerId: action.peerId, message: action.message, socket: clientSocket })

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
+import { Button, Form, FormGroup, FormControl, Glyphicon } from 'react-bootstrap'
 import isValidUrl from '../../utils/is-valid-url'
 import './index.css'
 class Chat extends Component {
@@ -44,7 +44,7 @@ class Chat extends Component {
             {this.props.messages.map((message, index) => {
               return (
                 <Fragment key={index}>
-                  <span>
+                  <span className='chat-message'>
                     {isValidUrl(message)
                       ? (<a target='_blank' href={encodeURIComponent(message)}>{message}</a>)
                       : (message)
@@ -68,7 +68,7 @@ class Chat extends Component {
               disabled={!this.state.message}
               onClick={this.onSendChat}
             >
-              Send 💬
+              Send <Glyphicon glyph='send' />
             </Button>
           </Form>
         </div>

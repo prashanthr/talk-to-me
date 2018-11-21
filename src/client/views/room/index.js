@@ -28,8 +28,6 @@ class Room extends Component {
             <Col md={12} xs={12} className='room-toolbar'>
               <br />
               <ToolbarWrapper
-                chatLabel={this.props.chatLabel}
-                onToggleChat={this.props.onToggleChat}
                 roomId={this.props.roomId}
                 onLeaveRoom={this.props.shutdown}
               />

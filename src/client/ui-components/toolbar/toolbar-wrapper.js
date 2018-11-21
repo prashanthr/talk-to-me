@@ -38,7 +38,7 @@ class ToolbarWrapper extends Component {
     if (force) {
       this.props.onLeaveRoom()
       // @todo: Move to router history
-      goToUrl('/', 'Talk to Me')
+      goToUrl(`/welcome?next=${encodeURIComponent(`/room/${this.props.roomId}`)}`, 'Talk to Me')
     }
   }
 
@@ -93,11 +93,6 @@ class ToolbarWrapper extends Component {
       label: 'Settings',
       icon: 'cog',
       onClick: this.onSettingsClick
-    }, {
-      key: 'chat',
-      label: this.props.chatLabel,
-      icon: 'comment',
-      onClick: this.props.onToggleChat
     }]
     return (
       <div>
@@ -123,8 +118,6 @@ class ToolbarWrapper extends Component {
 ToolbarWrapper.propTypes = {
   roomId: PropTypes.string,
   onLeaveRoom: PropTypes.func,
-  chatLabel: PropTypes.string,
-  onToggleChat: PropTypes.func,
   history: PropTypes.any
 }
 

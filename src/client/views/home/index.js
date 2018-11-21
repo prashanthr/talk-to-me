@@ -9,10 +9,21 @@ import { getThemeCSS } from '../../utils/theme'
 import analytics from '../../third-party/google/analytics'
 import sentry from '../../third-party/sentry'
 import './index.css'
+
+const themeCSS = getThemeCSS()
 // eslint-disable-next-line
 injectGlobal`
 body {
-  ${getThemeCSS()}
+  ${themeCSS.body}
+}
+.sc-launcher {
+  background-color: ${themeCSS.primaryColor} !important;
+}
+.sc-header {
+  background: ${themeCSS.primaryColor} !important;
+}
+.sc-header--close-button:hover {
+  background: ${themeCSS.primaryColor} !important;
 }
 `
 class Home extends Component {

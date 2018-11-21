@@ -1,5 +1,5 @@
 
-import { SOCKET_CHAT, SOCKET_CHAT_SEND } from './socket'
+import { SOCKET_CHAT, SOCKET_CHAT_SEND, SOCKET_INITIALIZE_SUCCESS } from './socket'
 
 export const TOGGLE_CHAT = 'TOGGLE_CHAT' 
 
@@ -17,13 +17,26 @@ const initialState = {
   showChat: false,
   messages: [],
   lastMessageId: null,
+  hostId: null
 }
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SOCKET_CHAT: 
+    case SOCKET_INITIALIZE_SUCCESS: 
       return {
         ...state,
-        messages: [...state.messages, action.message],
+        hostId: action.socket.id
+      }
+    case SOCKET_CHAT: 
+      console.log('action', action)
+      return {
+        ...state,
+        messages: [
+          ...state.messages, { 
+            author: action.peerId === state.hostId ? 'me' : 'them',
+            type: 'text',
+            data: { text: action.message }
+          }
+        ],
         showChat: true
       }
     case TOGGLE_CHAT:

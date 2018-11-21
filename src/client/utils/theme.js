@@ -47,5 +47,8 @@ const getRandomThemeColors = () => {
 // get CSS For Random Theme
 export function getThemeCSS () {
   const themeColors = getRandomThemeColors()
-  return getBackgroundCSS(themeColors)
+  return { 
+    body: getBackgroundCSS(themeColors), 
+    primaryColor: themeColors.color1 
+  }
 }

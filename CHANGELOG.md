@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/prashanthr/talk-to-me/compare/v1.10.0...v1.11.0) (2018-11-21)
+
+
+### Bug Fixes
+
+* **chat:** Fixed chat hyperlinks ([#44](https://github.com/prashanthr/talk-to-me/issues/44)) ([d24fdad](https://github.com/prashanthr/talk-to-me/commit/d24fdad))
+
+
+### Features
+
+* **chat:** Upgrade chat using react-chat-window ([#45](https://github.com/prashanthr/talk-to-me/issues/45)) ([fe0b2c5](https://github.com/prashanthr/talk-to-me/commit/fe0b2c5))
+
+
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/prashanthr/talk-to-me/compare/v1.9.3...v1.10.0) (2018-11-10)
 

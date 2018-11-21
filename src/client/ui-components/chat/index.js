@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Launcher } from 'react-chat-window'
+import './index.css'
 
 const Chat = ({ header, showChat, messages, onSendChat, onToggleChat }) => (
   <Launcher

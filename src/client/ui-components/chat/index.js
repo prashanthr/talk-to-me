@@ -46,7 +46,7 @@ class Chat extends Component {
                 <Fragment key={index}>
                   <span className='chat-message'>
                     {isValidUrl(message)
-                      ? (<a target='_blank' href={encodeURIComponent(message)}>{message}</a>)
+                      ? (<a target='_blank' href={message}>{message}</a>)
                       : (message)
                     }
                   </span>

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/prashanthr/talk-to-me/compare/v1.11.1...v1.12.0) (2019-03-13)
+
+
+### Features
+
+* **welcome:** Fix welcome copy, add more themes, bug fixes ([#47](https://github.com/prashanthr/talk-to-me/issues/47)) ([de4d066](https://github.com/prashanthr/talk-to-me/commit/de4d066))
+
+
+
 <a name="1.11.1"></a>
 ## [1.11.1](https://github.com/prashanthr/talk-to-me/compare/v1.11.0...v1.11.1) (2019-03-12)
 

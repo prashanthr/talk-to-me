@@ -17,7 +17,7 @@ export default function configureStore (history) {
   )
 
   if (process.env.NODE_ENV !== 'production') {
-    const devToolsExtension = window.devToolsExtension
+    const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__ || window.devToolsExtension
     if (typeof devToolsExtension === 'function') {
       middleware = compose(middleware, devToolsExtension())
     }

@@ -25,6 +25,10 @@ body {
 .sc-header--close-button:hover {
   background: ${themeCSS.primaryColor} !important;
 }
+.btn-primary:hover {
+  background-color: ${themeCSS.primaryColor};
+  border-color: ${themeCSS.primaryColor};
+}
 `
 class Home extends Component {
   componentWillMount () {

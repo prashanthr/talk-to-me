@@ -57,7 +57,7 @@ class Welcome extends Component {
               />
             </div>
             <p>
-              Thanks for checking this out! You're pretty cool 😎
+              Thanks for checking this out! You're pretty cool <Emoji emoji={'😎'} label='cool' />
             </p>
             <br />
           </Col>

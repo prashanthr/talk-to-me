@@ -34,7 +34,8 @@ class VideoContainer extends Component {
                     metadata={{
                       socketId: this.props.users[userId].socketId,
                       isMuted: this.props.users[userId].muted,
-                      disableMute: this.props.users[userId].disableMute
+                      disableMute: this.props.users[userId].disableMute,
+                      userName: `user-${index + 1}`
                     }}
                     srcObject={this.props.users[userId].stream}
                     //src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : null)}

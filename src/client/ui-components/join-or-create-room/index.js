@@ -8,7 +8,6 @@ import { goToUrl, setLocalStorage } from '../../utils/window'
 import config from '../../config'
 import './index.css'
 
-const emojiGenie = <Emoji emoji={'🧞'} label='genie' />
 const emojiLightBulb = <Emoji emoji={'💡'} label='genie' />
 const emojiSparkle = <Emoji emoji={'✨'} label='sparkle' />
 
@@ -171,54 +170,6 @@ export default class JoinOrCreateRoom extends Component {
                       </Button>
                     </Col>
                   </Row>
-                  {/* <Row>
-                    <Col md={5}>
-                      <Button
-                        bsStyle='primary'
-                        onClick={event => {
-                          event.preventDefault()
-                          this.gotoRoom(generateName())
-                        }}
-                      >
-                        Create New Room {emojiLightBulb}
-                      </Button>
-                    </Col>
-                    <Col md={2}>
-                      OR
-                    </Col>
-                    <Col md={5}>
-                      <Button
-                        onClick={this.onCustomizeRoom}
-                      >
-                        Customize Room {emojiGenie}
-                      </Button>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={12}>
-                      {this.state.showCustomRoomOptions &&
-                      <div>
-                        <br />
-                        <Form 
-                          inline
-                          onSubmit={this.gotoCustomRoom}
-                        >
-                          <FormGroup controlId='room-name'>
-                            <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
-                          </FormGroup>{' '}
-                          <Button
-                            bsStyle='warning'
-                            disabled={!this.state.roomName}
-                            onClick={this.gotoCustomRoom}
-                          >
-                            Join Room
-                          </Button>
-                        </Form>
-                      </div>
-                    }
-                    </Col>
-                  </Row>
-                  <br /> */}
                 </div>
               )
             }

@@ -74,7 +74,7 @@ class Soundcheck extends Component {
   render () {
     if (!this.props.devices) return null
     return (
-      <div>
+      <div className='soundcheck'>
         <Row>
           <Col md={5}>
             Media Type

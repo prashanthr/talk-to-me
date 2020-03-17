@@ -57,8 +57,8 @@ class Home extends Component {
     return (
       <div className='home'>
         <div className='splash'>
-          <h2>Video / Audio chat made super simple.</h2> 
-          <h4>Tired of using Skype? Hate call drops? Try me instead.</h4>
+          <h2>Group chat made super simple.</h2> 
+          <h4 className='home-sub-header'>Tired of using Skype? Hate call drops? Try me instead.</h4>
           <br />
           <InviteWrapper />
         </div>

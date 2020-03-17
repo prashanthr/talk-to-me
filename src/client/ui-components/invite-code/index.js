@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
 import { default as config } from '../../config'
 import './index.css'
+import Emoji from '../emoji'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -27,13 +28,13 @@ export default class JoinOrCreateRoom extends Component {
   }
   render () {
     return (
-      <div>
+      <div className='invite-code-form-wrap'>
         <Form inline>
           <FormGroup
             controlId='invite-id'
             onChange={this.onInviteCodeChanged}
           >
-            <OverlayTrigger
+            {this.props.error && <OverlayTrigger
               trigger={['hover', 'focus']}
               placement='top'
               overlay={(
@@ -67,11 +68,11 @@ export default class JoinOrCreateRoom extends Component {
                 this.props.onAuthenticate(this.state.inviteCode)
               }
             }}>
-            Go
+            Go <Emoji emoji={'🚀'} label='rocket' />
           </Button>
         </Form>
         <br />
-        <div>
+        <div className='code-msg'>
           Don't have one?
           <span>
             &nbsp; Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>

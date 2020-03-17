@@ -30,7 +30,7 @@ const config = {
   inviteCode: 'ilovetheinternet',
   inviteUrl: 'https://goo.gl/forms/gd3nPeuDWbhghGzY2',
   contactUrl: 'https://goo.gl/forms/NRyqULBDE4sT5EN33',
-  bugUrl: 'https://github.com/prashanthr/talk-to-me/issues'
+  bugUrl: 'https://forms.gle/LzjbDPqZpU5aUGzR9'
 }
 
 export default config

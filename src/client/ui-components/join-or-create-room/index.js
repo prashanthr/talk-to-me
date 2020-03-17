@@ -94,7 +94,7 @@ export default class JoinOrCreateRoom extends Component {
             <Row>
               <Col md={3}>
                 <span style={{ fontSize: '16px' }}>
-                  Device Options
+                  Device Options <br />(You can change this later)
                 </span>
               </Col>
               <Col md={9}>
@@ -107,6 +107,7 @@ export default class JoinOrCreateRoom extends Component {
             </Row>
           </Col>
         </Row>
+        <br />
         <Row>
           <Col md={12}>
             <label>ROOM</label>

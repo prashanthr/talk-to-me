@@ -15,6 +15,7 @@ const themeCSS = getThemeCSS()
 injectGlobal`
 body {
   ${themeCSS.body}
+  color: white;
 }
 .sc-launcher {
   background-color: ${themeCSS.primaryColor} !important;

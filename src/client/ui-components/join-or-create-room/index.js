@@ -10,6 +10,7 @@ import './index.css'
 
 const emojiGenie = <Emoji emoji={'🧞'} label='genie' />
 const emojiLightBulb = <Emoji emoji={'💡'} label='genie' />
+const emojiSparkle = <Emoji emoji={'✨'} label='sparkle' />
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -21,7 +22,7 @@ export default class JoinOrCreateRoom extends Component {
     this.gotoCustomRoom = this.gotoCustomRoom.bind(this)
     this.state = {
       showCustomRoomOptions: false,
-      roomNamePlaceholder: generateName(false),
+      roomNamePlaceholder: generateName(true),
       roomName: null,
       constraints: { audio: true, video: true }
     }
@@ -92,12 +93,12 @@ export default class JoinOrCreateRoom extends Component {
           <Col md={12}>
             <label>Settings</label>
             <Row>
-              <Col md={6}>
+              <Col md={3}>
                 <span style={{ fontSize: '16px' }}>
                   Device Options
                 </span>
               </Col>
-              <Col md={6}>
+              <Col md={9}>
                 <DropdownMenu
                   items={mediaSourceOptions}
                   selectedKey={mediaSourceOptions[0].key}
@@ -109,13 +110,13 @@ export default class JoinOrCreateRoom extends Component {
         </Row>
         <Row>
           <Col md={12}>
-            <label>Ready?</label>
+            <label>ROOM</label>
             {this.props.roomId
               ? (
                 <div>
                   &nbsp;
                   <Button
-                    bsStyle={'primary'}
+                    bsStyle={'success'}
                     onClick={event => {
                       event.preventDefault()
                       this.gotoRoom(this.props.roomId)
@@ -128,6 +129,49 @@ export default class JoinOrCreateRoom extends Component {
               : (
                 <div>
                   <Row>
+                    <Col md={12}>
+                      <div>
+                        <br />
+                        <label>Create your own</label>
+                        <Form 
+                          inline
+                          onSubmit={this.gotoCustomRoom}
+                        >
+                          <FormGroup controlId='room-name'>
+                            <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
+                          </FormGroup>{' '}
+                          <Button
+                            bsStyle='warning'
+                            disabled={!this.state.roomName}
+                            onClick={this.gotoCustomRoom}
+                          >
+                            Create Room {emojiLightBulb}
+                          </Button>
+                        </Form>
+                      </div>
+                    </Col>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Col md={12}>
+                      OR
+                    </Col>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Col md={12}>
+                      <Button
+                        bsStyle='success'
+                        onClick={event => {
+                          event.preventDefault()
+                          this.gotoRoom(generateName())
+                        }}
+                      >
+                        Create Random Room {emojiSparkle}
+                      </Button>
+                    </Col>
+                  </Row>
+                  {/* <Row>
                     <Col md={5}>
                       <Button
                         bsStyle='primary'
@@ -174,7 +218,7 @@ export default class JoinOrCreateRoom extends Component {
                     }
                     </Col>
                   </Row>
-                  <br />
+                  <br /> */}
                 </div>
               )
             }

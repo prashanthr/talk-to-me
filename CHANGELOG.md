@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/prashanthr/talk-to-me/compare/v1.12.0...v1.13.0) (2020-03-17)
+
+
+### Features
+
+* **updates:** 2020, reskin and for covid19 ([#48](https://github.com/prashanthr/talk-to-me/issues/48)) ([7970f07](https://github.com/prashanthr/talk-to-me/commit/7970f07))
+
+
+
 <a name="1.12.0"></a>
 # [1.12.0](https://github.com/prashanthr/talk-to-me/compare/v1.11.1...v1.12.0) (2019-03-13)
 

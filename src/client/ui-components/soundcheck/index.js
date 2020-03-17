@@ -61,7 +61,6 @@ class Soundcheck extends Component {
 
   onSoundcheckSave (event) {
     event.preventDefault()
-    console.log('device changes', this.state)
     if (filter(values(this.state), value => value !== null).length > 0) {
       this.props.onSoundcheckUpdate({
         ...this.state,

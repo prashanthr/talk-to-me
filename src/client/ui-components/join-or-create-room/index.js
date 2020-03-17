@@ -107,12 +107,11 @@ export default class JoinOrCreateRoom extends Component {
             </Row>
           </Col>
         </Row>
-        <br />
+        <hr />
         <Row>
           <Col md={12}>
             <label>ROOM</label>
-            {this.props.roomId
-              ? (
+            {this.props.roomId && (
                 <div>
                   &nbsp;
                   <Button
@@ -124,24 +123,25 @@ export default class JoinOrCreateRoom extends Component {
                   >
                     {this.getRoomDisplayName(this.props.roomId)}
                   </Button>
+                  <hr />
+                  OR
                 </div>
-                )
-              : (
+            )}
                 <div>
                   <Row>
                     <Col md={12}>
                       <div>
-                        <br />
-                        <label>Create your own</label>
-                        <Form 
+                        
+                        <Form
                           inline
                           onSubmit={this.gotoCustomRoom}
                         >
+                          <span>Create your own:</span>&nbsp;&nbsp;
                           <FormGroup controlId='room-name'>
                             <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
                           </FormGroup>{' '}
                           <Button
-                            bsStyle='warning'
+                            bsStyle='primary'
                             disabled={!this.state.roomName}
                             onClick={this.gotoCustomRoom}
                           >
@@ -172,8 +172,6 @@ export default class JoinOrCreateRoom extends Component {
                     </Col>
                   </Row>
                 </div>
-              )
-            }
           </Col>
         </Row>
       </div>

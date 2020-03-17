@@ -17,6 +17,17 @@ body {
   ${themeCSS.body}
   color: white;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .sc-launcher {
   background-color: ${themeCSS.primaryColor} !important;
 }

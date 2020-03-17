@@ -1,6 +1,6 @@
 # Talk to Me
 
-Hello internet-loving-friend! 🙌🏽
+Hello friend! 👋
 
 Thanks for checking this project out. It's currently live at 
 https://talktome.space

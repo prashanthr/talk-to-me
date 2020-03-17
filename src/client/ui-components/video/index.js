@@ -37,10 +37,7 @@ class VideoPlayer extends Component {
           }
         </div>
         <div className='video-info-overlay'>
-          {this.props.metadata.socketId
-            ? `${this.props.metadata.socketId.substring(0, 5)}...${this.props.metadata.socketId.substring(this.props.metadata.socketId.length - 5, this.props.metadata.socketId.length)}`
-            : ''
-          }
+          {this.props.metadata.userName || ''}
         </div>
         <video
           poster={this.props.poster}

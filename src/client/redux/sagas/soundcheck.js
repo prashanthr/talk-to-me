@@ -79,9 +79,7 @@ function* soundcheckUpdate ({ audioInput, audioOutput, videoInput, audioEnabled,
       audio: audioOpts,
       video: videoOpts
     }
-    console.log('scheck-updatesaga: constraints', constraints)
     const stream = yield call(getUserMedia, constraints)
-    console.log('scheck-updatasaga: stream', stream, roomId, stream.getVideoTracks())
     setLocalStorage(config.localStorage.gumConstraints, constraints)
     yield put({
       type: INITIALIZE_SUCCESS,

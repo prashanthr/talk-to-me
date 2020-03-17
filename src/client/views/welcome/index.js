@@ -30,11 +30,11 @@ class Welcome extends Component {
         <Row>
           <Col md={2} />
           <Col md={8}>
-            <h2>Hello internet-loving-friend! <Emoji emoji={'🙌🏽'} label='wohoo' /></h2>
+            <h2>Hello friend! <Emoji emoji={'👋'} label='wave' /></h2>
             <div>
               <p>
               Welcome to Talk to Me. I built this application using the latest technologies,
-              to provide an easy means of group chat (audio/video/text) without having to install or download an app. 
+              to provide an easy way to talk (audio/video/text) to your friends or loved ones without having to install or download an app or use an existing buggy piece of software. 
               <br /><br />
               Join or create a room, share the link and you're good to go! 
               <br />
@@ -57,7 +57,9 @@ class Welcome extends Component {
               />
             </div>
             <p>
-              Thanks for checking this out! You're pretty cool <Emoji emoji={'😎'} label='cool' />
+              Thanks for checking this out! You're awesome <Emoji emoji={'😎'} label='awesome' />
+              <br />
+              Feel free to leave some feedback by using the page footer links, if you'd like.
             </p>
             <br />
           </Col>

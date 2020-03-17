@@ -15,7 +15,19 @@ const themeCSS = getThemeCSS()
 injectGlobal`
 body {
   ${themeCSS.body}
+  color: white;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .sc-launcher {
   background-color: ${themeCSS.primaryColor} !important;
 }
@@ -24,6 +36,9 @@ body {
 }
 .sc-header--close-button:hover {
   background: ${themeCSS.primaryColor} !important;
+}
+.sc-message--text {
+  background-color: ${themeCSS.primaryColor} !important;
 }
 .btn-primary:hover {
   background-color: ${themeCSS.primaryColor};
@@ -45,8 +60,8 @@ class Home extends Component {
     return (
       <div className='home'>
         <div className='splash'>
-          <h2>Video / Audio chat made super simple.</h2> 
-          <h4>Tired of using Skype? Hate call drops? Try me instead.</h4>
+          <h2>Group chat made super simple.</h2> 
+          <h4 className='home-sub-header'>Tired of using Skype? Hate call drops? Try me instead.</h4>
           <br />
           <InviteWrapper />
         </div>

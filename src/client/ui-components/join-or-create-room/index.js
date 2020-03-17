@@ -8,8 +8,8 @@ import { goToUrl, setLocalStorage } from '../../utils/window'
 import config from '../../config'
 import './index.css'
 
-const emojiGenie = <Emoji emoji={'🧞'} label='genie' />
 const emojiLightBulb = <Emoji emoji={'💡'} label='genie' />
+const emojiSparkle = <Emoji emoji={'✨'} label='sparkle' />
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -21,7 +21,7 @@ export default class JoinOrCreateRoom extends Component {
     this.gotoCustomRoom = this.gotoCustomRoom.bind(this)
     this.state = {
       showCustomRoomOptions: false,
-      roomNamePlaceholder: generateName(false),
+      roomNamePlaceholder: generateName(true),
       roomName: null,
       constraints: { audio: true, video: true }
     }
@@ -90,14 +90,14 @@ export default class JoinOrCreateRoom extends Component {
       <div>
         <Row>
           <Col md={12}>
-            <label>Settings</label>
+            <label className='settings-header'>Settings</label>
             <Row>
-              <Col md={6}>
+              <Col md={3}>
                 <span style={{ fontSize: '16px' }}>
-                  Device Options
+                  Device Options <br />(You can change this later)
                 </span>
               </Col>
-              <Col md={6}>
+              <Col md={9}>
                 <DropdownMenu
                   items={mediaSourceOptions}
                   selectedKey={mediaSourceOptions[0].key}
@@ -107,11 +107,11 @@ export default class JoinOrCreateRoom extends Component {
             </Row>
           </Col>
         </Row>
+        <hr />
         <Row>
           <Col md={12}>
-            <label>Ready?</label>
-            {this.props.roomId
-              ? (
+            <label className='settings-header'>Room</label>
+            {this.props.roomId && (
                 <div>
                   &nbsp;
                   <Button
@@ -123,39 +123,18 @@ export default class JoinOrCreateRoom extends Component {
                   >
                     {this.getRoomDisplayName(this.props.roomId)}
                   </Button>
+                  <hr />
+                  OR
                 </div>
-                )
-              : (
+            )}
                 <div>
                   <Row>
-                    <Col md={5}>
-                      <Button
-                        bsStyle='primary'
-                        onClick={event => {
-                          event.preventDefault()
-                          this.gotoRoom(generateName())
-                        }}
-                      >
-                        Create New Room {emojiLightBulb}
-                      </Button>
+                    <Col md={3}>
+                      <span>Create your own:</span>&nbsp;&nbsp;
                     </Col>
-                    <Col md={2}>
-                      OR
-                    </Col>
-                    <Col md={5}>
-                      <Button
-                        onClick={this.onCustomizeRoom}
-                      >
-                        Customize Room {emojiGenie}
-                      </Button>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={12}>
-                      {this.state.showCustomRoomOptions &&
+                    <Col md={9}>
                       <div>
-                        <br />
-                        <Form 
+                        <Form
                           inline
                           onSubmit={this.gotoCustomRoom}
                         >
@@ -163,21 +142,34 @@ export default class JoinOrCreateRoom extends Component {
                             <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
                           </FormGroup>{' '}
                           <Button
-                            bsStyle='warning'
+                            bsStyle='primary'
                             disabled={!this.state.roomName}
                             onClick={this.gotoCustomRoom}
                           >
-                            Join Room
+                            Create Room {emojiLightBulb}
                           </Button>
                         </Form>
                       </div>
-                    }
                     </Col>
                   </Row>
                   <br />
+                  <Row>
+                    <Col md={3}>
+                      OR 
+                    </Col>
+                    <Col md={9}>
+                      <Button
+                        bsStyle='primary'
+                        onClick={event => {
+                          event.preventDefault()
+                          this.gotoRoom(generateName())
+                        }}
+                      >
+                        Create Random Room {emojiSparkle}
+                      </Button>
+                    </Col>
+                  </Row>
                 </div>
-              )
-            }
           </Col>
         </Row>
       </div>

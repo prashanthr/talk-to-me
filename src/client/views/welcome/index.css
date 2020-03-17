@@ -2,12 +2,7 @@
   padding-top: 40px;
   padding-bottom: 0px;
   font-size: 18px;
-  color: #323232;
 }
-
-/* .welcome ol {
-  font-weight: 200;
-} */
 
 .welcome .btn:active:focus, .btn:focus {
   outline: none;
@@ -39,4 +34,8 @@
 
 .faq-link {
   cursor: pointer;
+}
+
+.faq {
+  color: black;
 }

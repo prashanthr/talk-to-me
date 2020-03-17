@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { default as config } from '../../config'
 import './index.css'
+import Emoji from '../emoji'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
@@ -27,34 +28,24 @@ export default class JoinOrCreateRoom extends Component {
   }
   render () {
     return (
-      <div>
+      <div className='invite-code-form-wrap'>
+        {this.props.error && (
+          <div className={this.props.error ? 'error' : ''}>
+            {this.props.error || ''}
+          </div>
+        )}
         <Form inline>
           <FormGroup
             controlId='invite-id'
             onChange={this.onInviteCodeChanged}
           >
-            <OverlayTrigger
-              trigger={['hover', 'focus']}
-              placement='top'
-              overlay={(
-                <Popover
-                  id='invite-code-popover-error'
-                  title='Info'
-                >
-                  <div className={this.props.error ? 'error' : ''}>
-                    {this.props.error || 'Please enter your invite code'}
-                  </div>
-                </Popover>
-                )}
-            >
-              <FormControl
-                type='text'
-                bsSize='large'
-                className={this.props.error ? 'error' : ''}
-                size={32}
-                placeholder='Enter your invite code'
-              />
-            </OverlayTrigger>
+            <FormControl
+              type='text'
+              bsSize='large'
+              className={''}
+              size={32}
+              placeholder='Enter your invite code'
+            />
           </FormGroup>{' '}
           <Button
             type='submit'
@@ -67,11 +58,11 @@ export default class JoinOrCreateRoom extends Component {
                 this.props.onAuthenticate(this.state.inviteCode)
               }
             }}>
-            Go
+            Go <Emoji emoji={'🚀'} label='rocket' />
           </Button>
         </Form>
         <br />
-        <div>
+        <div className='code-msg'>
           Don't have one?
           <span>
             &nbsp; Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>

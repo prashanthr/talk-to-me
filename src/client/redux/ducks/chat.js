@@ -26,8 +26,7 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         hostId: action.socket.id
       }
-    case SOCKET_CHAT: 
-      console.log('action', action)
+    case SOCKET_CHAT:
       return {
         ...state,
         messages: [

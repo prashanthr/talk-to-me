@@ -1,7 +1,22 @@
 .error {
   color: red;
+  font-weight: bold;
+}
+
+.info {
+  color: black;
 }
 
 .generated-invite-code {
-  color: green;
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.invite-code-form-wrap >  .form-control {
+  color: black;
+}
+
+.code-msg {
+  opacity: 0.9;
 }

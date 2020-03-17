@@ -1,3 +1,4 @@
 .sc-chat-window {
-  z-index: 1501 !important; /* just above video container so chat overlays */
+  z-index: 1501 !important;  /* just above video container so chat overlays */
+  /* opacity: 0.9; */
 }

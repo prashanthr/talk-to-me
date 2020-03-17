@@ -116,7 +116,7 @@ export default class JoinOrCreateRoom extends Component {
                 <div>
                   &nbsp;
                   <Button
-                    bsStyle={'success'}
+                    bsStyle={'primary'}
                     onClick={event => {
                       event.preventDefault()
                       this.gotoRoom(this.props.roomId)
@@ -161,7 +161,7 @@ export default class JoinOrCreateRoom extends Component {
                   <Row>
                     <Col md={12}>
                       <Button
-                        bsStyle='success'
+                        bsStyle='primary'
                         onClick={event => {
                           event.preventDefault()
                           this.gotoRoom(generateName())

@@ -23,7 +23,6 @@ class VideoPlayer extends Component {
     const height = this.props.height ? { height: this.props.height } : {}
     const width = this.props.width ? { width: this.props.width } : { }
     let source = {}
-    console.log(this.props.metadata, this.props.metadata.userIdx)
     return (
       <div>
         <div className={this.props.disableMute ? '' : 'video-controls-overlay'}>

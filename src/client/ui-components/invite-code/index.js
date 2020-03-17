@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, FormGroup, FormControl, Button, OverlayTrigger, Popover } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { default as config } from '../../config'
 import './index.css'
 import Emoji from '../emoji'

@@ -58,6 +58,8 @@ class Welcome extends Component {
             </div>
             <p>
               Thanks for checking this out! You're awesome <Emoji emoji={'😎'} label='awesome' />
+              <br />
+              Feel free to leave some feedback by using the page footer links, if you'd like.
             </p>
             <br />
           </Col>

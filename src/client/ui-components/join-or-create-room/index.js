@@ -90,7 +90,7 @@ export default class JoinOrCreateRoom extends Component {
       <div>
         <Row>
           <Col md={12}>
-            <label>Settings</label>
+            <label className='settings-header'>Settings</label>
             <Row>
               <Col md={3}>
                 <span style={{ fontSize: '16px' }}>
@@ -110,7 +110,7 @@ export default class JoinOrCreateRoom extends Component {
         <hr />
         <Row>
           <Col md={12}>
-            <label>ROOM</label>
+            <label className='settings-header'>Room</label>
             {this.props.roomId && (
                 <div>
                   &nbsp;
@@ -129,14 +129,15 @@ export default class JoinOrCreateRoom extends Component {
             )}
                 <div>
                   <Row>
-                    <Col md={12}>
+                    <Col md={3}>
+                      <span>Create your own:</span>&nbsp;&nbsp;
+                    </Col>
+                    <Col md={9}>
                       <div>
-                        
                         <Form
                           inline
                           onSubmit={this.gotoCustomRoom}
                         >
-                          <span>Create your own:</span>&nbsp;&nbsp;
                           <FormGroup controlId='room-name'>
                             <FormControl type='text' size={30} placeholder={this.state.roomNamePlaceholder} onChange={this.onRoomNameChanged} />
                           </FormGroup>{' '}
@@ -153,13 +154,10 @@ export default class JoinOrCreateRoom extends Component {
                   </Row>
                   <br />
                   <Row>
-                    <Col md={12}>
-                      OR
+                    <Col md={3}>
+                      OR 
                     </Col>
-                  </Row>
-                  <br />
-                  <Row>
-                    <Col md={12}>
+                    <Col md={9}>
                       <Button
                         bsStyle='primary'
                         onClick={event => {

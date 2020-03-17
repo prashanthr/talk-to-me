@@ -34,7 +34,7 @@ export default class JoinOrCreateRoom extends Component {
             controlId='invite-id'
             onChange={this.onInviteCodeChanged}
           >
-            {this.props.error && <OverlayTrigger
+            <OverlayTrigger
               trigger={['hover', 'focus']}
               placement='top'
               overlay={(

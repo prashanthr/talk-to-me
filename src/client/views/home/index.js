@@ -37,6 +37,9 @@ a:hover {
 .sc-header--close-button:hover {
   background: ${themeCSS.primaryColor} !important;
 }
+.sc-message--text {
+  background-color: ${themeCSS.primaryColor} !important;
+}
 .btn-primary:hover {
   background-color: ${themeCSS.primaryColor};
   border-color: ${themeCSS.primaryColor};

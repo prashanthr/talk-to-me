@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InviteWrapper from '../../ui-components/invite-code/invite-wrapper'
+import Emoji from '../../ui-components/emoji'
 import { goToUrl } from '../../utils/window'
 import { isAuthValid } from '../../redux/selectors/auth'
 import { connect } from 'react-redux'
@@ -60,7 +61,7 @@ class Home extends Component {
     return (
       <div className='home'>
         <div className='splash'>
-          <h2>Group chat made super simple.</h2> 
+          <h2>Group chat made super simple. <Emoji emoji={'🎉'} label='tada' /></h2> 
           <h4 className='home-sub-header'>Tired of using Skype? Hate call drops? Try me instead.</h4>
           <br />
           <InviteWrapper />

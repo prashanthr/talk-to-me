@@ -160,7 +160,7 @@ export default class JoinOrCreateRoom extends Component {
                   <br />
                   <Row>
                     <Col md={3}>
-                      Make your own:
+                      Or auto create one:
                     </Col>
                     <Col md={9}>
                       <Button

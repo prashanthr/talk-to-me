@@ -90,11 +90,14 @@ export default class JoinOrCreateRoom extends Component {
       <div>
         <Row>
           <Col md={12}>
-            <label className='settings-header'>Settings</label>
+            <h2 className='settings-header'>Check your settings</h2><br />
             <Row>
               <Col md={3}>
                 <span style={{ fontSize: '16px' }}>
-                  Device Options <br />(You can change this later)
+                  <label className='settings-header'>
+                    Device Options 
+                  </label>
+                  <br />(You can change this later)
                 </span>
               </Col>
               <Col md={9}>
@@ -107,13 +110,14 @@ export default class JoinOrCreateRoom extends Component {
             </Row>
           </Col>
         </Row>
-        <hr />
+        <br />
         <Row>
           <Col md={12}>
-            <label className='settings-header'>Room</label>
+            <label className='settings-header'>Room Options</label>
             {this.props.roomId && (
                 <div>
                   &nbsp;
+                  <br />
                   <Button
                     bsStyle={'primary'}
                     onClick={event => {
@@ -123,8 +127,9 @@ export default class JoinOrCreateRoom extends Component {
                   >
                     {this.getRoomDisplayName(this.props.roomId)}
                   </Button>
+                  <br /><br /><br />
                   <hr />
-                  OR
+                  <h3>OR</h3>
                 </div>
             )}
                 <div>
@@ -155,7 +160,7 @@ export default class JoinOrCreateRoom extends Component {
                   <br />
                   <Row>
                     <Col md={3}>
-                      OR 
+                      Make your own:
                     </Col>
                     <Col md={9}>
                       <Button

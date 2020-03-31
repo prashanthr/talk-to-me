@@ -6,3 +6,9 @@
 .settings-header {
   /* font-style: italic; */
 }
+
+@media (min-width: 990px) {
+  .join-or-create-room {
+    margin-top: -50px;
+  }
+}

@@ -29,3 +29,7 @@ button, select {
   background-color: #325D88;
   border-color: #325D88;
 }
+
+.app {
+  margin-bottom: 100px;
+}

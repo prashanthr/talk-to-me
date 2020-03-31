@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { onMute } from '../../redux/ducks/room'
 import { map, keys, chunk } from 'lodash'
+import { getUserName } from '../../utils/video'
 // import createObjectUrl from '../../utils/create-object-url'
 import './index.css'
 
@@ -35,7 +36,7 @@ class VideoContainer extends Component {
                       socketId: this.props.users[userId].socketId,
                       isMuted: this.props.users[userId].muted,
                       disableMute: this.props.users[userId].disableMute,
-                      userName: `user-${index + 1}`
+                      userName: getUserName(this.props.users[userId].socketId)
                     }}
                     srcObject={this.props.users[userId].stream}
                     //src={this.props.users[userId].streamUrl || (this.props.users[userId].stream ? createObjectUrl(this.props.users[userId].stream) : null)}

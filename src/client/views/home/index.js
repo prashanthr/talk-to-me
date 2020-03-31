@@ -29,6 +29,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.sc-user-input a {
+  color: black !important;
+}
+
 .sc-launcher {
   background-color: ${themeCSS.primaryColor} !important;
 }

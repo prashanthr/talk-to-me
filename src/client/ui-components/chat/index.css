@@ -2,3 +2,7 @@
   z-index: 1501 !important;  /* just above video container so chat overlays */
   /* opacity: 0.9; */
 }
+
+.sc-launcher {
+  z-index: 1501 !important;
+}

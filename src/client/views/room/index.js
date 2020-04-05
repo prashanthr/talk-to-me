@@ -11,7 +11,7 @@ import ChatMenu from './chat-menu'
 import WaitingForOthers from './waiting-for-others'
 import './index.css'
 
-const errorCopy = 'Encountered an error getting streams. Are you using a supported browser (ex: Google Chrome)?. Please clear your cookies and cache for this site and try again.'
+const errorCopy = 'Encountered an error getting streams. Are you using a supported browser (ex: Google Chrome)? Please clear your cookies and cache for this site and try again.'
 class Room extends Component {
   componentWillMount () {
     this.props.initialize(this.props.roomId)

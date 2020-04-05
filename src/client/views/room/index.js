@@ -6,9 +6,12 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
 import { onToggleChat } from '../../redux/ducks/chat'
+import { isEmpty } from 'lodash'
 import ChatMenu from './chat-menu'
+import WaitingForOthers from './waiting-for-others'
 import './index.css'
 
+const errorCopy = 'Encountered an error getting streams. Are you using a supported browser (ex: Google Chrome)? Please clear your cookies and cache for this site and try again.'
 class Room extends Component {
   componentWillMount () {
     this.props.initialize(this.props.roomId)
@@ -33,10 +36,18 @@ class Room extends Component {
               />
             </Col>
           </Row>
+          {!this.props.hasPeers && (
+            <Row>
+              <Col md={12} xs={12}>
+                <WaitingForOthers />
+                <br />
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col md={12} xs={12}>
               {this.props.error
-                ? 'Encountered an error getting streams'
+                ? (errorCopy)
                 : (
                   this.props.user && this.props.user.stream
                   ? <VideoContainer />
@@ -63,6 +74,7 @@ Room.propTypes = {
 
 function mapStateToProps (state, ownProps) {
   return {
+    hasPeers: !isEmpty(state.peer),
     roomId: ownProps && ownProps.match ? ownProps.match.params.id : null,
     error: state.room.error,
     user: state.user,

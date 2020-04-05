@@ -7,6 +7,10 @@ const themes = {
   orca: {
     color1: '#44A08D',
     color2: '#093637'
+  },
+  default: {
+    color1: '#282c34',
+    primary: '#325D88'
   }
 }
 

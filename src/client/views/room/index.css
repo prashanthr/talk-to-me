@@ -3,3 +3,11 @@
   text-align: center;
   padding-bottom: 10px;
 }
+
+.room-notice {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  font-size: 18px;
+  border-radius: 20px;
+}

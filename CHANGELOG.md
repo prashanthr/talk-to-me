@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.13.8"></a>
+## [1.13.8](https://github.com/prashanthr/talk-to-me/compare/v1.13.7...v1.13.8) (2020-04-05)
+
+
+### Bug Fixes
+
+* **site-enhancements:** Update theme, faq, copy and notices ([#56](https://github.com/prashanthr/talk-to-me/issues/56)) ([40d89ea](https://github.com/prashanthr/talk-to-me/commit/40d89ea))
+
+
+
 <a name="1.13.7"></a>
 ## [1.13.7](https://github.com/prashanthr/talk-to-me/compare/v1.13.6...v1.13.7) (2020-03-31)
 

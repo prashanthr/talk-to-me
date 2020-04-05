@@ -45,9 +45,16 @@ a:hover {
 .sc-message--text {
   background-color: ${themeCSS.primaryColor} !important;
 }
+.sc-message--content.received .sc-message--text {
+  color: white !important;
+  background-color: ${themeCSS.primaryColor} !important;
+}
 .btn-primary:hover {
   background-color: ${themeCSS.primaryColor};
   border-color: ${themeCSS.primaryColor};
+}
+.room-notice {
+  background: ${themeCSS.primaryColor};
 }
 `
 class Home extends Component {

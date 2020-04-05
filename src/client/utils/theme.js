@@ -2,13 +2,19 @@ import { keys } from 'lodash'
 import themes from './theme-colors'
 
 // build css gradient
-const getBackgroundCSS = ({ color1, color2, color3 }) => (
-  `
-  background: ${color1}; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, ${color1}, ${color2}${color3 ? `, ${color3}` : ''}  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, ${color1}, ${color2}${color3 ? `, ${color3}` : ''}); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-  `
-)
+const getBackgroundCSS = ({ color1, color2, color3 }) => {
+  if (color1 && !color2 && !color3) {
+    return `
+      background: ${color1};
+    `
+  } else {
+    return `
+      background: ${color1}; /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, ${color1}, ${color2}${color3 ? `, ${color3}` : ''}  ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, ${color1}, ${color2}${color3 ? `, ${color3}` : ''}); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+    `
+  }
+}
 
 function getRandomIntInclusive (min, max) {
   min = Math.ceil(min)
@@ -24,11 +30,13 @@ const getRandomThemeColors = () => {
   return themes[themeKeys[randomIndex]]
 }
 
+const getDefaultThemeColors = () => themes.default
+
 // get CSS For Random Theme
-export function getThemeCSS () {
-  const themeColors = getRandomThemeColors()
+export function getThemeCSS (random = false) {
+  const themeColors = random ? getRandomThemeColors() : getDefaultThemeColors()
   return { 
     body: getBackgroundCSS(themeColors), 
-    primaryColor: themeColors.color1 
+    primaryColor: themeColors.primary || themeColors.color1 
   }
 }

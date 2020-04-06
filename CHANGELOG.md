@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.13.9"></a>
+## [1.13.9](https://github.com/prashanthr/talk-to-me/compare/v1.13.8...v1.13.9) (2020-04-06)
+
+
+
 <a name="1.13.8"></a>
 ## [1.13.8](https://github.com/prashanthr/talk-to-me/compare/v1.13.7...v1.13.8) (2020-04-05)
 

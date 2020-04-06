@@ -20,14 +20,13 @@ const Footer = () => (
       Made with 💛
     </span>
     <br />
-    Liked it? Buy me a &nbsp;
+    Liked it?&nbsp;
     <FooterLink
       href={config.coffeeUrl}
       text={(
         <span>
+          Buy me a coffee&nbsp;
           <Emoji emoji={'☕'} label='coffee' />
-          {'or '}
-          <Emoji emoji='🍩' label='donut' />
         </span>
       )}
     />

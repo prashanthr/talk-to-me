@@ -6,7 +6,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { initialize, shutdown } from '../../redux/ducks/room'
 import { onToggleChat } from '../../redux/ducks/chat'
-import { isEmpty } from 'lodash'
+import { keys } from 'lodash'
 import ChatMenu from './chat-menu'
 import Head from '../../ui-components/head'
 import WaitingForOthers from './waiting-for-others'
@@ -27,7 +27,7 @@ class Room extends Component {
     return (
       <div id='room-outer-wrapper'>
         <Head 
-          title={`Room - ${this.props.roomId} [${this.props.numPeers}]`}
+          title={`Room - ${this.props.roomId} [${this.props.numPeers + 1}]`}
           appendSiteNamePrefix
         />
         <ChatMenu />

@@ -1,6 +1,6 @@
 import React from 'react'
-import Helmet from 'react-helmet'
-import { SITE_NAME, TITLE, META } from '../meta.js'
+import { Helmet } from 'react-helmet'
+import { SITE_NAME, TITLE, META } from '../../meta.js'
 
 const Head = ({ title, meta, favIcon, appendSiteNamePrefix }) => (
   <Helmet

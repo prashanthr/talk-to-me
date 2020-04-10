@@ -8,6 +8,7 @@ import { initialize, shutdown } from '../../redux/ducks/room'
 import { onToggleChat } from '../../redux/ducks/chat'
 import { isEmpty } from 'lodash'
 import ChatMenu from './chat-menu'
+import Head from '../../ui-components/head'
 import WaitingForOthers from './waiting-for-others'
 import './index.css'
 
@@ -25,6 +26,10 @@ class Room extends Component {
   render () {
     return (
       <div id='room-outer-wrapper'>
+        <Head 
+          title={`Room - ${this.props.roomId} [${this.props.numPeers}]`}
+          appendSiteNamePrefix
+        />
         <ChatMenu />
         <Grid fluid>
           <Row className='show-grid'>
@@ -36,7 +41,7 @@ class Room extends Component {
               />
             </Col>
           </Row>
-          {!this.props.hasPeers && (
+          {this.props.numPeers === 0 && (
             <Row>
               <Col md={12} xs={12}>
                 <WaitingForOthers />
@@ -74,7 +79,7 @@ Room.propTypes = {
 
 function mapStateToProps (state, ownProps) {
   return {
-    hasPeers: !isEmpty(state.peer),
+    numPeers: keys(state.peer).length || 0,
     roomId: ownProps && ownProps.match ? ownProps.match.params.id : null,
     error: state.room.error,
     user: state.user,

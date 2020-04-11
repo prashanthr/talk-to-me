@@ -6,5 +6,10 @@
         "expirySeconds": 864000,
         "audience": "talk-to-me",
         "secret": ":secret"
+    },
+    "healthCheck": {
+        "enabled": false,
+        "endpoint": "https://hc-ping.com/d08b7c5f-c253-4039-a1ae-83c8eb41f870",
+        "schedule": "* * * * *"
     }
 }

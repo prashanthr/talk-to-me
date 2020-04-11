@@ -9,6 +9,8 @@ import api from './api'
 import _debug from 'debug'
 import socketController from './socket'
 import io from './socket/io'
+import cronSchedule from 'node-schedule'
+import healthCheck from './utils/health-check'
 
 const debug = _debug('server')
 
@@ -35,6 +37,17 @@ let server = async () => {
     debug(`Server running on ${config.port}`)
     const ioServer = io.attach(httpServer)
     socketController(ioServer)
+    // cron health check
+    const { endpoint, schedule, enabled } = config.healthCheck
+    if (enabled) {
+      debug(`Health check is enabled for ${schedule}`)
+      cronSchedule.scheduleJob(
+        schedule,
+        async () => { await healthCheck(endpoint) }
+      )
+    } else {
+      debug('Health check is disabled')
+    }
   })
 }
 server()

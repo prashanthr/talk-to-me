@@ -1,0 +1,7 @@
+{
+  "healthCheck": {
+    "enabled": true,
+    "endpoint": "https://hc-ping.com/638b7695-9ac0-4ead-a756-e8bc331a2c19",
+    "schedule": "0 0 * * *"
+  }
+}

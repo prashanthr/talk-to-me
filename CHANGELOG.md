@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.14.0"></a>
+# [1.14.0](https://github.com/prashanthr/talk-to-me/compare/v1.13.9...v1.14.0) (2020-04-11)
+
+
+### Bug Fixes
+
+* **sentry:** Update sentry ([#57](https://github.com/prashanthr/talk-to-me/issues/57)) ([e7e9c9e](https://github.com/prashanthr/talk-to-me/commit/e7e9c9e))
+
+
+### Features
+
+* **health-check:** Add health check from healthchecks.io ([#59](https://github.com/prashanthr/talk-to-me/issues/59)) ([a4e4f70](https://github.com/prashanthr/talk-to-me/commit/a4e4f70))
+* **meta:** Add Meta to all pages ([#58](https://github.com/prashanthr/talk-to-me/issues/58)) ([706a901](https://github.com/prashanthr/talk-to-me/commit/706a901))
+
+
+
 <a name="1.13.9"></a>
 ## [1.13.9](https://github.com/prashanthr/talk-to-me/compare/v1.13.8...v1.13.9) (2020-04-06)
 

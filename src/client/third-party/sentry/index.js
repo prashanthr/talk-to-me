@@ -1,69 +1,63 @@
 // https://sentry.io
 import config from '../../config'
-import raven from 'raven-js'
+import * as Sentry from '@sentry/browser'
 
 const sentryConfig = config.log.sentry
 const sentry = () => {
   if (sentryConfig.enabled && sentryConfig.dsn) {
     console.log('Logging is enabled')
-    raven.config(sentryConfig.dsn, {
+    Sentry.init({
+      dsn: sentryConfig.dsn,
       environment: process.env.NODE_ENV || 'development',
       release: process.env.APP_VERSION,
       captureUnhandledRejections: sentryConfig.captureUnhandledRejections,
       autoBreadcrumbs: sentryConfig.autoBreadcrumbs,
       tags: sentryConfig.tags
-    }).install()
+    })
 
     // Global sentry handlers
     window.captureException = (err, context) => {
-      if (context) {
-        raven.captureException(err, { extra: context })
-      } else {
-        raven.captureException(err)
-      }
+      captureException(err, context)
     }
     window.captureBreadcrumb = crumb => {
-      raven.captureBreadcrumb(crumb)
+      captureBreadcrumb(crumb)
     }
     window.captureMessage = (message, options) => {
-      raven.captureMessage(message, options)
+      captureMessage(message, options)
     }
     window.showErrorDialog = eventId => {
-      raven.showReportDialog({
-        eventId
-      })
+      showErrorDialog(eventId || Sentry.lastEventId)
     }
   } else {
     console.log('Logging is disabled')
     window.captureException = err => {}
     window.captureBreadcrumb = crumb => {}
     window.captureMessage = (message, options) => {}
+    window.showErrorDialog = eventId => {}
   }
 }
 
-export const showErrorDialog = () => {
-  if (raven.isSetup() && raven.lastEventId()) {
-    raven.showReportDialog({
-      eventId: raven.lastEventId(),
+export const showErrorDialog = (eventId) => {
+    Sentry.showReportDialog({
+      eventId: eventId,
       dsn: sentryConfig.dsn
     })
-  }
 }
 
 export const captureException = (err, context) => {
   if (context) {
-    raven.captureException(err, { extra: context })
+    Sentry.captureMessage(err, { extra: context} )
   } else {
-    raven.captureException(err)
+    Sentry.captureMessage(err)
   }
 }
 
 export const captureBreadcrumb = crumb => {
-  raven.captureBreadcrumb(crumb)
+  Sentry.addBreadcrumb(crumb)
 }
 
 export const captureMessage = (message, options) => {
-  raven.captureMessage(message, options)
+  Sentry.captureMessage(message, options)
 }
 
 export default sentry

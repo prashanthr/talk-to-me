@@ -7,6 +7,7 @@ import { getNextUrl } from '../../utils/window'
 import { parseRoomIdFromNextUrl } from '../../utils/room'
 import FAQ from './faq'
 import './index.css'
+import Head from '../../ui-components/head'
 
 class Welcome extends Component {
   constructor (props) {
@@ -27,6 +28,10 @@ class Welcome extends Component {
     const roomId = parseRoomIdFromNextUrl(next)
     return (
       <Grid fluid className='welcome'>
+        <Head 
+          title={'Welcome'}
+          appendSiteNamePrefix
+        />
         <Row>
           <Col md={2} />
           <Col md={8}>

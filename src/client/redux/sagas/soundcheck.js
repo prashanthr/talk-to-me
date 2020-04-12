@@ -11,6 +11,7 @@ import { INITIALIZE_SUCCESS } from '../ducks/room'
 import { getDevices, getUserMedia } from '../../utils/navigator'
 import { setLocalStorage, getLocalStorage, reload, getUserInfo } from '../../utils/window'
 import config from '../../config'
+import { captureAll } from '../../third-party/sentry'
 
 function* soundcheckInitialize () {
   try {

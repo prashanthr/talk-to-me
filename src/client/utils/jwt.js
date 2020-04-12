@@ -1,5 +1,6 @@
 import decode from 'jwt-decode'
 import { getUserInfo } from './window'
+import { captureAll } from '../third-party/sentry'
 
 export const getTokenExpirationDate = token => {
   const decoded = decode(token)
@@ -21,7 +22,7 @@ export const isTokenValid = token => {
   } catch (error) {
     const errorMsg = 'Error validating auth token'
     console.error(errorMsg, error)
-    captureAll({
+     captureAll({
       message: errorMsg,
       breadcrumb: getUserInfo(),
       error

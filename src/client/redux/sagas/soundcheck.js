@@ -9,7 +9,7 @@ import {
 } from '../ducks/soundcheck'
 import { INITIALIZE_SUCCESS } from '../ducks/room'
 import { getDevices, getUserMedia } from '../../utils/navigator'
-import { setLocalStorage, getLocalStorage, reload } from '../../utils/window'
+import { setLocalStorage, getLocalStorage, reload, getUserInfo } from '../../utils/window'
 import config from '../../config'
 
 function* soundcheckInitialize () {
@@ -28,12 +28,17 @@ function* soundcheckInitialize () {
       audioEnabled,
       videoEnabled
     })
-  } catch (err) {
-    console.log('Error initializing soundcheck')
-    console.error(err)
+  } catch (error) {
+    const errorMsg = 'Error initializing soundcheck'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     yield put({
       type: INITIALIZE_SOUNDCHECK_FAILED,
-      error: err
+      error: error
     })
   }
 }
@@ -88,12 +93,17 @@ function* soundcheckUpdate ({ audioInput, audioOutput, videoInput, audioEnabled,
     })
     // reload to refresh stream updates
     reload()
-  } catch (err) {
-    console.log('Error initializing soundcheck')
-    console.error(err)
+  } catch (error) {
+    const errorMsg = 'Error initializing soundcheck'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     yield put({
       type: UPDATE_SOUNDCHECK_FAILED,
-      error: err
+      error: error
     })
   }
 }

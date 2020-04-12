@@ -1,4 +1,5 @@
 import decode from 'jwt-decode'
+import { getUserInfo } from './window'
 
 export const getTokenExpirationDate = token => {
   const decoded = decode(token)
@@ -18,7 +19,13 @@ export const isTokenValid = token => {
     }
     return (date.valueOf() > new Date().valueOf() + 0 * 1000)
   } catch (error) {
-    console.error(error)
+    const errorMsg = 'Error validating auth token'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     return false
   }
 }

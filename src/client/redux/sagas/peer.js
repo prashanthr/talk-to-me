@@ -6,13 +6,17 @@ import Peer from 'simple-peer'
 import { store } from '../../index'
 import config from '../../config'
 import { setLocalStorage, getLocalStorage, getUserInfo } from '../../utils/window'
-import { captureBreadcrumb, captureException } from '../../third-party/sentry'
+import { captureBreadcrumb, captureException, captureMessage, captureAll } from '../../third-party/sentry'
 
 // Peer event handlers
 const peerEventError = (err) => {
-  console.error('Peer event error', err.code, err)
-  captureBreadcrumb(getUserInfo())
-  captureException(err)
+  const errorMsg = 'Peer event error'
+  console.error(errorMsg, err.code, err)
+  captureAll({
+    message: errorMsg,
+    breadcrumb: getUserInfo(),
+    error
+  })
   if (err.code === 'ERR_ICE_CONNECTION_FAILURE' ||
       (err.message &&
         (
@@ -76,15 +80,21 @@ const createPeer = ({
     const localIce = getLocalStorage(config.localStorage.ice)
     let iceServers
     if (localIce && localIce.error && localIce.stunServerKey) {
-      console.info('encountered error with ice server previously')
+      const infoMsg = 'encountered error with ice server previously'
+      console.info(infoMsg)
+      captureMessage(infoMsg)
       const currentIndex = stunServerKeys.indexOf(localIce.stunServerKey)
       if (currentIndex && currentIndex < stunServerKeys.length - 1) {
         const newIceKey = stunServerKeys[currentIndex] + 1
-        console.info(`using ${newIceKey} stun`)
+        const stunInfoMsg = `using ${newIceKey} stun`
+        console.info(stunInfoMsg)
+        captureMessage(stunInfoMsg)
         iceServers = config.stunServers[newIceKey]
       }
     } else {
-      console.info('using primary stun')
+      const infoMsg = 'using primary stun'
+      console.info(infoMsg)
+      captureMessage(infoMsg)
       setLocalStorage(config.localStorage.ice, { stunServerKey: 'primary' })
       iceServers = config.stunServers.primary
     }

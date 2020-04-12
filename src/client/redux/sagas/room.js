@@ -2,8 +2,9 @@ import { call, put, fork, takeLatest } from 'redux-saga/effects'
 import { INITIALIZE, INITIALIZE_SUCCESS, INITIALIZE_FAILED, SHUTDOWN } from '../ducks/room'
 import { SOCKET_INITIALIZE, SOCKET_DESTROY } from '../ducks/socket'
 import { getUserMedia } from '../../utils/navigator'
-import { getLocalStorage } from '../../utils/window'
+import { getLocalStorage, getUserInfo } from '../../utils/window'
 import config from '../../config'
+import { captureAll } from '../../third-party/sentry'
 
 function* initialize (action) {
   try {
@@ -24,8 +25,14 @@ function* initialize (action) {
       roomId: action.roomId
     })
   } catch (error) {
-    console.log('Initialize Failed')
+    const errorMsg = 'Initialize Failed'
+    console.log(errorMsg)
     console.error(error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     yield put({
       type: INITIALIZE_FAILED,
       error
@@ -40,8 +47,14 @@ function* shutdown (action) {
       roomId: action.roomId
     })
   } catch (error) {
-    console.log('Error destorying socket')
+    const errorMsg = 'Error destorying socket'
+    console.log(errorMsg)
     console.error(error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
   }
 }
 

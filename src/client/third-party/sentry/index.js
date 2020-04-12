@@ -60,4 +60,16 @@ export const captureMessage = (message, options) => {
   Sentry.captureMessage(message, options)
 }
 
+export const captureAll = ({ message, breadcrumb, error }) => {
+  if (message) {
+    captureMessage(message)
+  }
+  if (breadcrumb) {
+    captureBreadcrumb(breadcrumb)
+  }
+  if (error){
+    captureException(error)
+  }
+}
+
 export default sentry

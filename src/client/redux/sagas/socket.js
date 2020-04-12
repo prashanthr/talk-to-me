@@ -12,6 +12,8 @@ import {
 import {
   VIDEO_MUTE
 } from '../ducks/room'
+import { captureAll } from '../../third-party/sentry'
+import { getUserInfo } from '../../utils/window'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {
   return new Promise((resolve, reject) => {
@@ -70,7 +72,13 @@ function* socketInitialize (action) {
       socket
     })
   } catch (error) {
-    console.error('Socket Initialize Failed', error)
+    const errorMsg = 'Socket Initialize Failed'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     yield put({
       type: SOCKET_INITIALIZE_FAILED,
       error
@@ -88,8 +96,14 @@ function* socketSignal (action) {
     const peers = yield select(state => state.peer)
     const peer = peers[action.peerId].channel
     yield handleSocketSignal({ peer, peerId: action.peerId, signal: action.signal })
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    const errorMsg = 'Encountered error in socket signalling'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
   }
 }
 
@@ -98,8 +112,14 @@ function* socketChat (action) {
     // const peers = yield select(state => state.peer)
     // const peer = peers[action.peerId].channel
     yield handleSocketChat({ /* peer,*/ peerId: action.peerId, message: action.message, socket: clientSocket })
-  } catch (err) {
-    console.error('oops', err)
+  } catch (error) {
+    const errorMsg = 'Encountered error in chat via socket'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
   }
 }
 
@@ -107,8 +127,14 @@ function* socketMute (action) {
   try {
     const { peerId, muted } = action
     yield handleSocketMute({ peerId, muted, socket: clientSocket })
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    const errorMsg = 'Encountered an error in mute via socket'
+    console.error(errorMsg, error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
   }
 }
 

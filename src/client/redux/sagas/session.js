@@ -6,7 +6,8 @@ import {
 } from '../ducks/session'
 import axios from 'axios'
 import config from '../../config'
-import { goToUrl, setLocalStorage, getNextUrl } from '../../utils/window'
+import { goToUrl, setLocalStorage, getNextUrl, getUserInfo } from '../../utils/window'
+import { captureAll } from '../../third-party/sentry'
 
 function* authenticate (action) {
   try {
@@ -26,8 +27,14 @@ function* authenticate (action) {
     const nextUrl = `/welcome${next || ''}`
     goToUrl(nextUrl, 'Welcome')
   } catch (error) {
-    console.log('Error authenticating')
+    const errorMsg = 'Error authenticating'
+    console.log(errorMsg)
     console.error(error)
+    captureAll({
+      message: errorMsg,
+      breadcrumb: getUserInfo(),
+      error
+    })
     yield put({
       type: AUTHENTICATE_FAILED,
       code: error.response && error.response.data ? error.response.data.code : action.inviteCode,

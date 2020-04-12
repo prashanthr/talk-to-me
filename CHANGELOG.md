@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.14.1"></a>
+## [1.14.1](https://github.com/prashanthr/talk-to-me/compare/v1.14.0...v1.14.1) (2020-04-12)
+
+
+### Bug Fixes
+
+* **sentry:** utilize sentry better ([#60](https://github.com/prashanthr/talk-to-me/issues/60)) ([bb89b1d](https://github.com/prashanthr/talk-to-me/commit/bb89b1d))
+
+
+
 <a name="1.14.0"></a>
 # [1.14.0](https://github.com/prashanthr/talk-to-me/compare/v1.13.9...v1.14.0) (2020-04-11)
 

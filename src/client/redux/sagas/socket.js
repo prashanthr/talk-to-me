@@ -12,7 +12,7 @@ import {
 import {
   VIDEO_MUTE
 } from '../ducks/room'
-import { captureAll, captureException } from '../../third-party/sentry'
+import { captureAll } from '../../third-party/sentry'
 import { getUserInfo } from '../../utils/window'
 
 const handleSocketSignal = async ({ peer, peerId, signal }) => {

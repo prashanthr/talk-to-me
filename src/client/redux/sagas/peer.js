@@ -6,7 +6,7 @@ import Peer from 'simple-peer'
 import { store } from '../../index'
 import config from '../../config'
 import { setLocalStorage, getLocalStorage, getUserInfo } from '../../utils/window'
-import { captureBreadcrumb, captureException, captureMessage, captureAll } from '../../third-party/sentry'
+import { captureMessage, captureAll } from '../../third-party/sentry'
 
 // Peer event handlers
 const peerEventError = (error) => {

@@ -1,5 +1,5 @@
 {
-    "port": 9095,
+    "port": 9000,
     "appUri": "http://localhost:3000",
     "apiUri": "http://localhost:9095/api",
     "auth": {

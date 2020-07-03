@@ -24,7 +24,7 @@ RUN yarn --${NODE_ENV}
 # Install App Dependencies
 COPY . ${WORK_DIR}
 # Build the front end assets
-RUN yarn build
+RUN yarn build-prod
 # Run application
 CMD ["./node_modules/.bin/pm2-runtime", "start", "ecosystem.json"]
 # Expose port

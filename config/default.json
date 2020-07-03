@@ -1,7 +1,7 @@
 {
     "port": 9000,
     "appUri": "http://localhost:3000",
-    "apiUri": "http://localhost:9095/api",
+    "apiUri": "http://localhost:9000/api",
     "auth": {
         "expirySeconds": 864000,
         "audience": "talk-to-me",

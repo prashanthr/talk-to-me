@@ -5,10 +5,12 @@ if [ -z $TAG ]; then
 fi
 
 # config setup
-cp ./config/secrets/config/index.js ./src/client/config/
+cp ./config/secrets/client/index.js ./src/client/config/
+cp ./config/secrets/server/default.json ./src/config/default.json
 
 echo "Building docker image with tag $TAG..."
 docker build -t $TAG .
 
 # Reset config
 git checkout ./src/client/config/
+git checkout ./src/config/default.json

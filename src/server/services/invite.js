@@ -1,4 +1,6 @@
-import inviteCodes from '../../../config/secrets/invite-codes.json'
+// import inviteCodes from '../../../config/secrets/invite-codes.json'
+
+const inviteCodes = ['ilovetheinternet']
 
 class InviteService {
   constructor () {

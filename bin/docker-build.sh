@@ -6,11 +6,11 @@ fi
 
 # config setup
 cp ./config/secrets/client/index.js ./src/client/config/
-cp ./config/secrets/server/default.json ./src/config/default.json
+cp ./config/secrets/server/default.json ./config/default.json
 
 echo "Building docker image with tag $TAG..."
 docker build -t $TAG .
 
 # Reset config
 git checkout ./src/client/config/
-git checkout ./src/config/default.json
+git checkout ./config/default.json

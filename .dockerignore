@@ -1,0 +1,6 @@
+*.yaml
+*.yml
+.vscode
+deploy
+test
+config/secrets

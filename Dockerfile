@@ -20,6 +20,7 @@ RUN mkdir -p ${WORK_DIR}
 WORKDIR ${WORK_DIR}
 # package handling
 ADD package*.json ${WORK_DIR}
+ADD yarn.lock ${WORK_DIR}
 RUN yarn --${NODE_ENV}
 # Install App Dependencies
 COPY . ${WORK_DIR}

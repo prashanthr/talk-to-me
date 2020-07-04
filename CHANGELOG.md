@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.15.0"></a>
+# [1.15.0](https://github.com/prashanthr/talk-to-me/compare/v1.14.1...v1.15.0) (2020-07-04)
+
+
+### Features
+
+* **ch48:** Create docker image for talktome space ([#62](https://github.com/prashanthr/talk-to-me/issues/62)) ([ef66990](https://github.com/prashanthr/talk-to-me/commit/ef66990))
+* **ch49:** Create k8 infra configs ([#66](https://github.com/prashanthr/talk-to-me/issues/66)) ([0c4c459](https://github.com/prashanthr/talk-to-me/commit/0c4c459))
+* **ch71:** Upgrades upgrades upgrades for talktome space ([#63](https://github.com/prashanthr/talk-to-me/issues/63)) ([4b9f514](https://github.com/prashanthr/talk-to-me/commit/4b9f514))
+
+
+
 <a name="1.14.1"></a>
 ## [1.14.1](https://github.com/prashanthr/talk-to-me/compare/v1.14.0...v1.14.1) (2020-04-12)
 

@@ -11,9 +11,9 @@ spec:
   - port: 80
     name: http
     targetPort: 9000
-  # - port: 443
-  #   name: https
-  #   targetPort: 9000
+  - port: 443
+    name: https
+    targetPort: 9000
 ---
 apiVersion: apps/v1
 kind: Deployment

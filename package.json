@@ -70,8 +70,8 @@
     "copy-config-prod": "scp -i ~/.ssh/do ./config/secrets/server/invite-codes.json root@45.55.194.231:/var/www/current/config/secrets/ && scp -i ~/.ssh/do ./config/secrets/server/default.json root@45.55.194.231:/var/www/current/config/",
     "update-config-prod": "ssh -i ~/.ssh/do root@45.55.194.231 \"cd /var/www/current; bash; yarn update-config\"",
     "docker-build": "TAG=talk-to-me:dev ./bin/docker-build.sh",
-    "docker-build-and-run": "CONTAINER_NAME=comical-site TAG_NAME=dev ./bin/docker-build-and-run.sh",
-    "docker-build-and-release": "CONTAINER_NAME=comical-site TAG_NAME=latest ./bin/docker-build-and-release.sh"
+    "docker-build-and-run": "CONTAINER_NAME=talk-to-me TAG_NAME=dev ./bin/docker-build-and-run.sh",
+    "docker-build-and-release": "CONTAINER_NAME=talk-to-me TAG_NAME=latest ./bin/docker-build-and-release.sh"
   },
   "repository": {
     "type": "git",

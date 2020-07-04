@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: talk-to-me
+  name: talk-to-me-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: talk-to-me-app
+  ports:
+  - port: 80
+    name: http
+    targetPort: 9000
+  # - port: 443
+  #   name: https
+  #   targetPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: talk-to-me
+  name: talk-to-me-app
+spec:
+  selector:
+    matchLabels:
+      app: talk-to-me-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: talk-to-me-app
+    spec:
+      containers:
+      - name: talk-to-me-app
+        image: prequod/talk-to-me:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+          protocol: TCP

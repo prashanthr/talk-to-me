@@ -27,7 +27,6 @@
     "node-schedule": "^1.3.2",
     "peer": "^0.2.8",
     "peerjs": "^0.3.14",
-    "pm2": "^4.4.0",
     "prop-types": "^15.6.0",
     "query-string": "^5.0.1",
     "react": "^16.2.0",

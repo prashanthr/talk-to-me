@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: talk-to-me
+  namespace: harmonia
   name: talk-to-me-app
 spec:
   type: LoadBalancer
@@ -18,7 +18,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: talk-to-me
+  namespace: harmonia
   name: talk-to-me-app
 spec:
   selector:

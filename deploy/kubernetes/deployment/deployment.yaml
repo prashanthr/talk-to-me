@@ -24,7 +24,7 @@ spec:
   selector:
     matchLabels:
       app: talk-to-me-app
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:

@@ -34,6 +34,12 @@ spec:
       - name: talk-to-me-app
         image: prequod/talk-to-me:latest
         imagePullPolicy: Always
+        env:
+        - name: AUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pandoras-box
+              key: auth-secret
         ports:
         - containerPort: 9000
           protocol: TCP

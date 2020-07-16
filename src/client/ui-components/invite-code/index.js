@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { default as config } from '../../config'
 import { Recaptcha } from '@universal-apps/swan-react'
 import Emoji from '../emoji'

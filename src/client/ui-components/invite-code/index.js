@@ -14,9 +14,9 @@ export default class JoinOrCreateRoom extends Component {
     this.toggleRecaptcha = this.toggleRecaptcha.bind(this)
     this.verifyRecaptcha = this.verifyRecaptcha.bind(this)
     this.state = {
-      showRecaptcha: false,
       inviteCode: config.inviteCode,
       generatedCode: config.inviteCode,
+      showRecaptcha: false,
       isRecaptchaVerified: false
     }
   }

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.16.0"></a>
+# [1.16.0](https://github.com/prashanthr/talk-to-me/compare/v1.15.1...v1.16.0) (2020-07-16)
+
+
+### Features
+
+* **ch75:** Change code entry to re-captcha ([#69](https://github.com/prashanthr/talk-to-me/issues/69)) ([c5f6120](https://github.com/prashanthr/talk-to-me/commit/c5f6120))
+* **license:** Add license to repo ([#67](https://github.com/prashanthr/talk-to-me/issues/67)) ([a8772e0](https://github.com/prashanthr/talk-to-me/commit/a8772e0))
+
+
+
 <a name="1.15.1"></a>
 ## [1.15.1](https://github.com/prashanthr/talk-to-me/compare/v1.15.0...v1.15.1) (2020-07-05)
 

@@ -30,7 +30,8 @@ class AuthService {
   }
 
   isSecretInvalid () {
-    return (!config.auth.secret || config.auth.secret === ':secret')
+    const secret = process.env.AUTH_SECRET || config.auth.secret
+    return (!secret || secret === ':secret')
   }
 
   async verifyToken (token) {

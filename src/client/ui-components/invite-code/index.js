@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { default as config } from '../../config'
-import './index.css'
+import { Recaptcha } from '@universal-apps/swan-react'
 import Emoji from '../emoji'
+import './index.css'
 
 export default class JoinOrCreateRoom extends Component {
   constructor (props) {
     super(props)
     this.onInviteCodeChanged = this.onInviteCodeChanged.bind(this)
     this.validate = this.validate.bind(this)
+    this.toggleRecaptcha = this.toggleRecaptcha.bind(this)
+    this.verifyRecaptcha = this.verifyRecaptcha.bind(this)
     this.state = {
-      inviteCode: null,
-      generatedCode: config.inviteCode
+      inviteCode: config.inviteCode,
+      generatedCode: config.inviteCode,
+      showRecaptcha: false,
+      isRecaptchaVerified: false
+    }
+  }
+
+  toggleRecaptcha () {
+    this.setState({
+      showRecaptcha: !this.state.showRecaptcha
+    })
+  }
+
+  verifyRecaptcha (token) {
+    if (token) {
+      this.setState({
+        isRecaptchaVerified: true
+      })
     }
   }
 
@@ -28,45 +47,47 @@ export default class JoinOrCreateRoom extends Component {
   }
   render () {
     return (
-      <div className='invite-code-form-wrap'>
-        {this.props.error && (
-          <div className={this.props.error ? 'error' : ''}>
-            {this.props.error || ''}
-          </div>
-        )}
-        <Form inline>
-          <FormGroup
-            controlId='invite-id'
-            onChange={this.onInviteCodeChanged}
-          >
-            <FormControl
-              type='text'
+      <div>
+        <div align='center'>
+          {!this.state.showRecaptcha && (
+            <Button
+              bsStyle='primary'
               bsSize='large'
-              className={''}
-              size={32}
-              placeholder='Enter your invite code'
+              disabled={this.state.showRecaptcha}
+              onClick={event => {
+                event.preventDefault()
+                this.toggleRecaptcha()
+              }}>
+                Start Chatting
+            </Button>
+          )}
+          {this.state.showRecaptcha && (
+            <Recaptcha
+              isVerified={this.state.isRecaptchaVerified}
+              recaptchaKey={config.recaptchaSiteKey}
+              onInteractionVerify={this.verifyRecaptcha}
+              successComponent={(
+                <div>
+                  <span className=''>
+                    Welcome human. <br /><br />
+                  </span>
+                  <Button
+                    type='submit'
+                    bsStyle='warning'
+                    bsSize='large'
+                    disabled={!this.state.inviteCode}
+                    onClick={event => {
+                      event.preventDefault()
+                      if (this.state.inviteCode) {
+                        this.props.onAuthenticate(this.state.inviteCode)
+                      }
+                  }}>
+                    Let's Go <Emoji emoji={'🚀'} label='rocket' />
+                  </Button>
+                </div>
+              )}
             />
-          </FormGroup>{' '}
-          <Button
-            type='submit'
-            bsStyle='warning'
-            bsSize='large'
-            disabled={!this.state.inviteCode}
-            onClick={event => {
-              event.preventDefault()
-              if (this.state.inviteCode) {
-                this.props.onAuthenticate(this.state.inviteCode)
-              }
-            }}>
-            Go <Emoji emoji={'🚀'} label='rocket' />
-          </Button>
-        </Form>
-        <br />
-        <div className='code-msg'>
-          Don't have one?
-          <span>
-            &nbsp; Use code <span className='generated-invite-code'>{this.state.generatedCode}</span>
-          </span>
+          )}
         </div>
       </div>
     )

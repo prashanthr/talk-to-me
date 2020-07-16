@@ -53,7 +53,7 @@ class Welcome extends Component {
             </div>
             <br /><br />
             <div>
-              <b>Questions?</b> Read the <a className='faq-link' onClick={this.toggleFaq}>FAQ</a>
+              <b>Questions?</b> Read the <button className='faq-link' onClick={this.toggleFaq}>FAQ</button>
               <Modal
                 show={this.state.showFaqModal}
                 content={<FAQ />}

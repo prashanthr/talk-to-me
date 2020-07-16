@@ -64,7 +64,7 @@ export default class JoinOrCreateRoom extends Component {
           {this.state.showRecaptcha && (
             <Recaptcha
               isVerified={this.state.isRecaptchaVerified}
-              recaptchaKey={'6LdJErAZAAAAAL9ee3o50pF1ZHbcBgNYI9U3Wo5W'}//config.recaptchaSiteKey
+              recaptchaKey={config.recaptchaSiteKey}
               onInteractionVerify={this.verifyRecaptcha}
               successComponent={(
                 <div>

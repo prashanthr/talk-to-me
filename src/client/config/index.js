@@ -31,7 +31,8 @@ const config = {
   inviteUrl: 'https://goo.gl/forms/gd3nPeuDWbhghGzY2',
   contactUrl: 'https://goo.gl/forms/NRyqULBDE4sT5EN33',
   coffeeUrl: 'https://www.buymeacoffee.com/TGuwXOA',
-  bugUrl: 'https://forms.gle/LzjbDPqZpU5aUGzR9'
+  bugUrl: 'https://forms.gle/LzjbDPqZpU5aUGzR9',
+  recaptchaSiteKey: ''
 }
 
 export default config

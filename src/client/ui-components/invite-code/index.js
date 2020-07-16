@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { default as config } from '../../config'
-import { Recaptcha } from 'swan-react'
+import { Recaptcha } from '@universal-apps/swan-react'
 import Emoji from '../emoji'
 import './index.css'
 
@@ -46,46 +46,49 @@ export default class JoinOrCreateRoom extends Component {
     })
   }
   render () {
-    console.log('this.state', this.state)
     return (
       <div>
-      <div align='center'>
-        {!this.state.showRecaptcha && (
-          <Button
-            bsStyle='warning'
-            bsSize='large'
-          
-            disabled={this.state.showRecaptcha}
-            onClick={event => {
-              event.preventDefault()
-              this.toggleRecaptcha()
-            }}>
-              Start Chatting
-          </Button>
-        )}
-        {this.state.showRecaptcha && (
-          <Recaptcha
-            isVerified={this.state.isRecaptchaVerified}
-            recaptchaKey={'6LdJErAZAAAAAL9ee3o50pF1ZHbcBgNYI9U3Wo5W'}//config.recaptchaSiteKey
-            onInteractionVerify={this.verifyRecaptcha}
-            successComponent={(
-              <Button
-              type='submit'
-              bsStyle='warning'
+        <div align='center'>
+          {!this.state.showRecaptcha && (
+            <Button
+              bsStyle='primary'
               bsSize='large'
-              disabled={!this.state.inviteCode}
+              disabled={this.state.showRecaptcha}
               onClick={event => {
                 event.preventDefault()
-                if (this.state.inviteCode) {
-                  this.props.onAuthenticate(this.state.inviteCode)
-                }
+                this.toggleRecaptcha()
               }}>
-              Go <Emoji emoji={'🚀'} label='rocket' />
-              </Button>
-            )}
-          />
-        )}
-      </div>
+                Start Chatting
+            </Button>
+          )}
+          {this.state.showRecaptcha && (
+            <Recaptcha
+              isVerified={this.state.isRecaptchaVerified}
+              recaptchaKey={'6LdJErAZAAAAAL9ee3o50pF1ZHbcBgNYI9U3Wo5W'}//config.recaptchaSiteKey
+              onInteractionVerify={this.verifyRecaptcha}
+              successComponent={(
+                <div>
+                  <span className=''>
+                    Welcome human. <br /><br />
+                  </span>
+                  <Button
+                    type='submit'
+                    bsStyle='warning'
+                    bsSize='large'
+                    disabled={!this.state.inviteCode}
+                    onClick={event => {
+                      event.preventDefault()
+                      if (this.state.inviteCode) {
+                        this.props.onAuthenticate(this.state.inviteCode)
+                      }
+                  }}>
+                    Let's Go <Emoji emoji={'🚀'} label='rocket' />
+                  </Button>
+                </div>
+              )}
+            />
+          )}
+        </div>
       </div>
     )
   }

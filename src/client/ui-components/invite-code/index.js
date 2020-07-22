@@ -69,7 +69,7 @@ export default class JoinOrCreateRoom extends Component {
               successComponent={(
                 <div>
                   <span className=''>
-                    Welcome human. <br /><br />
+                    Welcome human 👋<br /><br />
                   </span>
                   <Button
                     type='submit'

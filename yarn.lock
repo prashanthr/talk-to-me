@@ -1765,10 +1765,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@universal-apps/swan-react@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@universal-apps/swan-react/-/swan-react-0.0.2.tgz#8f606e472033d7e9f8d0774657f2a070a1a8fb0d"
-  integrity sha512-i7pGpMeZvlo7B7RuvNoLGAVdd+yGMM7fdCkZhUFQXcVAdIGssZwTwENfg8jM5W0czwDqSnFWf5wT8MKUAjsVag==
+"@universal-apps/swan-react@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@universal-apps/swan-react/-/swan-react-0.0.33.tgz#9d631f52c505b1525d580426c1fd9d43b590e255"
+  integrity sha512-HXWGaaJPvHqx+OljyWCoWrIkQEC8PIymZB+1roiss8MRLLlPEwZH8hQhEdhJTDsBDe6u0EdKJaDjAdmVyNy0QQ==
   dependencies:
     react-google-recaptcha "^2.1.0"
     react-google-recaptcha-v3 "^1.5.2"
@@ -11632,9 +11632,9 @@ react-fast-compare@^2.0.4:
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
 react-google-recaptcha-v3@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.5.2.tgz#0a20cb133270bd4fbd90a641937142e45d0ff9ae"
-  integrity sha512-lv+uWHZJ7aU5cbDSPYprehnxLAysriyK2V6lNGv3EF7XVffJbV2bJb0b8m4FHi1EYC9+BnvmCZT1n8oupEgYMw==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.7.0.tgz#b072464d4237b8f147beaf28fb833264534dc222"
+  integrity sha512-yV7muvRmeD2T0oa6yFfCuVD9caTWqsFGoQBsFryRw+IMgyB2IXNK25NTEt7KYIeloGaJh94GZbB92xFne5HdEw==
   dependencies:
     hoist-non-react-statics "3.3.2"
 

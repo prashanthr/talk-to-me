@@ -3,7 +3,7 @@
 Hello friend! 👋
 
 Thanks for checking this project out. It's currently live at 
-https://talktome.space
+https://talktome.universal-apps.xyz
 
 ## Why was this built?
 

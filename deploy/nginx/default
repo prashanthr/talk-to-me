@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name talktome.space;
+    server_name talktome.universal-apps.xyz;
 
     location / {
         proxy_pass http://localhost:9000;

@@ -10,7 +10,7 @@ RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install apt-utils -y && apt-get install net-tools vim curl -y 
 RUN apt-get clean
 # Install Yarn
-RUN npm install -g yarn
+# RUN npm install -g yarn
 # Set env
 ENV WORK_DIR=/var/www/deploy/app/
 ENV NODE_ENV=production

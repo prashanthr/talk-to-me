@@ -11,6 +11,6 @@ sudo certbot --authenticator webroot --installer nginx
 ```
 
 ```
-1. domain - talktome.space
+1. domain - talktome.universal-apps.xyz
 2. webroot - /var/www/current/build
 ```

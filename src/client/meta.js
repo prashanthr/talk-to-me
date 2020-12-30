@@ -1,5 +1,5 @@
 export const SITE_NAME = 'TalktoMe'
-export const TITLE = `${SITE_NAME} - Group chat made super simple. 🎉`
+export const TITLE = `${SITE_NAME} - Group chat made super simple 🎉`
 export const URL = 'https://talktome.universal-apps.xyz'
 export const DESCRIPTION =  'A super simple way to conduct group calls over WebRTC. No call drops, no packet loss. Just a plain and pure video chat experience. Create a room and share the link - that\'s it. Oh and what\'s more? It\'s free!'
 export const KEYWORDS = 'skype,hangouts,zoom,webrtc,video,audio,chat,call,conference,room,free,talk,talktome'

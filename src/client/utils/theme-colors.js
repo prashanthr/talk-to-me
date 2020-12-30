@@ -8,9 +8,13 @@ const themes = {
     color1: '#44A08D',
     color2: '#093637'
   },
-  default: {
+  legacy: {
     color1: '#282c34',
     primary: '#325D88'
+  },
+  default: {
+    color1: '#282c34',
+    primary: '#D1A103'
   }
 }
 

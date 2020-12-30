@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Aleo-Light
+font link: https://alessiolaiso.com/aleo-font
+font author: Alessio Laiso
+font author site: https://alessiolaiso.com/
+
+
+icon designer: Lucas W
+icon designer link: /lucasW
+        
+{"bg":"#0B173D","icon":"#D1A103","font":"#D1A103","slogan":"#e5b517"}
+      

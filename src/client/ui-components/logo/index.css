@@ -8,3 +8,29 @@
   background-repeat: no-repeat;
   zoom: 45%;
 }
+
+.talk-to-me-logo {
+  top: 0;
+  left: 0;
+  width: 150px;
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 2%;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media all and (min-width: 750px) {
+  .talk-to-me-logo {
+    top: 0;
+    left: 0;
+    width: 250px;
+    position: absolute;
+    margin-top: 2%;
+    margin-left: 2%;
+  }
+}
+
+.talk-to-me-logo a:hover {
+  border: none;
+}

@@ -1,5 +1,7 @@
 # Talk to Me
 
+![talk-to-me-logo](./src/client/assets/vector/default-monochrome.svg)
+
 Hello friend! 👋
 
 Thanks for checking this project out. It's currently live at 

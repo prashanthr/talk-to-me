@@ -55,7 +55,7 @@ a:hover {
   border-color: ${themeCSS.primaryColor};
 }
 .room-notice {
-  background: ${themeCSS.primaryColor};
+  color: ${themeCSS.primaryColor};
 }
 `
 class Home extends Component {
@@ -74,8 +74,8 @@ class Home extends Component {
       <div className='home'>
         <Head />
         <div className='splash'>
-          <h2>Group chat made super simple. <Emoji emoji={'🎉'} label='tada' /></h2> 
-          <h4 className='home-sub-header'>Tired of using Skype? Hate call drops? Try me instead.</h4>
+          <h2>Group chat made super simple <Emoji emoji={'🎉'} label='tada' /></h2> 
+          <h4 className='home-sub-header'>Tired of using Zoom? Hate call drops? Try me instead.</h4>
           <br />
           <InviteWrapper />
         </div>

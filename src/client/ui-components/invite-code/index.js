@@ -69,11 +69,11 @@ export default class JoinOrCreateRoom extends Component {
               successComponent={(
                 <div>
                   <span className=''>
-                    Welcome human 👋<br /><br />
+                    Welcome human <Emoji emoji='👋' label='wave' /><br /><br />
                   </span>
                   <Button
                     type='submit'
-                    bsStyle='warning'
+                    bsStyle='success'
                     bsSize='large'
                     disabled={!this.state.inviteCode}
                     onClick={event => {

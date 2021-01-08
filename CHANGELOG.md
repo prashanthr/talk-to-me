@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.17.0"></a>
+# [1.17.0](https://github.com/prashanthr/talk-to-me/compare/v1.16.1...v1.17.0) (2021-01-08)
+
+
+### Features
+
+* **analytics:** Add cloudflare analytics [ch226] ([#80](https://github.com/prashanthr/talk-to-me/issues/80)) ([72f6d7c](https://github.com/prashanthr/talk-to-me/commit/72f6d7c))
+* **dns:** Update dns to uapps ([#74](https://github.com/prashanthr/talk-to-me/issues/74)) ([4583d53](https://github.com/prashanthr/talk-to-me/commit/4583d53))
+* **rebrand:** Rebrand for 2021 ([#76](https://github.com/prashanthr/talk-to-me/issues/76)) ([b8fecf8](https://github.com/prashanthr/talk-to-me/commit/b8fecf8))
+
+
+
 <a name="1.16.1"></a>
 ## [1.16.1](https://github.com/prashanthr/talk-to-me/compare/v1.16.0...v1.16.1) (2020-07-22)
 

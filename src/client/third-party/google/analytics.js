@@ -18,6 +18,7 @@ const isAnalyticsSetup = () => {
   return item === true
 }
 
+// https://developers.google.com/analytics/devguides/collection/gtagjs
 const setupAnalytics = (propertyId) => {
   const defaultParams = { 
     'anonymize_ip': true, 

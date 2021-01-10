@@ -12,6 +12,7 @@ const config = {
     ice: 'ice'
   },
   analytics: {
+    enabled: true,
     google: {
       propertyId: ''
     }

@@ -32,14 +32,14 @@ const setupAnalytics = (propertyId) => {
 }
 
 const analytics = () => {
-  if (window && config.analytics.enabled) {
-    if (isAnalyticsSetup()) {
-      console.info('Analytics active')
-    } else {
-      setupAnalytics(config.analytics.google.propertyId)
-      console.info('Analytics loaded')
-    }
-  }
+  // if (window && config.analytics.enabled) {
+  //   if (isAnalyticsSetup()) {
+  //     console.info('Analytics active')
+  //   } else {
+  //     setupAnalytics(config.analytics.google.propertyId)
+  //     console.info('Analytics loaded')
+  //   }
+  // }
 }
 
 export default analytics

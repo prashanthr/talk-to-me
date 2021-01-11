@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.17.2"></a>
+## [1.17.2](https://github.com/prashanthr/talk-to-me/compare/v1.17.1...v1.17.2) (2021-01-11)
+
+
+
 <a name="1.17.1"></a>
 ## [1.17.1](https://github.com/prashanthr/talk-to-me/compare/v1.17.0...v1.17.1) (2021-01-10)
 

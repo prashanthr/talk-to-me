@@ -1,5 +1,7 @@
+import { isProd } from '../utils/env'
 import { primaryStunServers, secondaryStunServers, ternaryStunServers, buildStunServers } from './stun'
-const config = {
+
+const defaultConfig = {
   stunServers: {
     primary: buildStunServers(primaryStunServers),
     secondary: buildStunServers(secondaryStunServers),
@@ -35,7 +37,14 @@ const config = {
   contactUrl: 'https://goo.gl/forms/NRyqULBDE4sT5EN33',
   coffeeUrl: 'https://www.buymeacoffee.com/TGuwXOA',
   bugUrl: 'https://forms.gle/LzjbDPqZpU5aUGzR9',
+  recaptchaSiteKey: '6LdJErAZAAAAAL9ee3o50pF1ZHbcBgNYI9U3Wo5W'
+}
+
+const prodConfig = {
+  ...defaultConfig,
   recaptchaSiteKey: '6LfGgf0ZAAAAAA2X1aj5KQGKvpDTOd8VRtprrOFw'
 }
+
+const config = isProd() ? prodConfig : defaultConfig
 
 export default config

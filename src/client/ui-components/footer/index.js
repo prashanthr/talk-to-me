@@ -1,6 +1,7 @@
 import React from 'react'
 import Emoji from '../emoji'
 import config from '../../config'
+import { showErrorDialog } from '../../third-party/sentry'
 import './index.css'
 
 const APP_VERSION = process.env.APP_VERSION
@@ -9,6 +10,16 @@ const FooterLink = ({ href, text, target = '_blank'}) => (
   <a href={href} target={target}>
     {text}
   </a>
+)
+
+const FooterBtn = ({ onClick, text }) => (
+  <button 
+    className='talktome-btn-link' 
+    role='link' 
+    onClick={onClick}
+  >
+    {text}
+  </button>
 )
 
 const Footer = () => (
@@ -35,8 +46,8 @@ const Footer = () => (
       href={config.contactUrl}
       text={'Feedback/Contact'}
     />. &nbsp;
-    <FooterLink
-      href={config.bugUrl}
+    <FooterBtn
+      onClick={() => showErrorDialog()}
       text={'Report an issue'}
     />
   </div>

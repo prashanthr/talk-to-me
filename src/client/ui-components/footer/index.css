@@ -8,3 +8,11 @@
   line-height: 20px;
   opacity: 0.8;
 }
+
+.talktome-btn-link {
+  border: none;
+  outline: none;
+  background:none;
+  cursor: pointer;
+  text-transform: none;
+}

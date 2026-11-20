@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^5.0.1"
   },
   "dependencies": {
     "@babel/cli": "^7.10.4",
@@ -31,11 +31,11 @@
     "pm2": "^4.4.0",
     "prop-types": "^15.6.0",
     "query-string": "^5.0.1",
-    "react": "^16.2.0",
+    "react": "^16.14.0",
     "react-bootstrap": "^0.32.1",
     "react-burger-menu": "^2.5.4",
     "react-chat-window": "^1.1.1",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.14.0",
     "react-helmet": "^6.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -58,7 +58,7 @@
     "start-server": "bin/server.sh",
     "start-server-dev": "pm2 startOrRestart ecosystem.json --only talk --env development",
     "start-server-prod": "pm2 startOrRestart ecosystem.json --only talk --env production",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "release": "standard-version",

@@ -58,7 +58,7 @@
     "start-server": "bin/server.sh",
     "start-server-dev": "pm2 startOrRestart ecosystem.json --only talk --env development",
     "start-server-prod": "pm2 startOrRestart ecosystem.json --only talk --env production",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "release": "standard-version",

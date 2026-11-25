@@ -1,11 +1,15 @@
 # Talk to Me
 
+> [!IMPORTANT]
+> **This is the original version (v1) and is no longer maintained. The repository is archived.**
+> Talk to Me has been rebuilt and lives at **https://talktome-v2.vercel.app**.
+
 ![talk-to-me-logo](./src/client/assets/vector/default-monochrome.svg)
 
 Hello friend! 👋
 
-Thanks for checking this project out. It's currently live at 
-https://talktome.universal-apps.xyz
+Thanks for checking this project out. The new version is live at
+https://talktome-v2.vercel.app (the old talktome.universal-apps.xyz address no longer works).
 
 ## Why was this built?
 
